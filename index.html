@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#FF6B6B" />
+  <title>Merlin · GS Quests</title>
+  <style>
+/* Merlin GS Quests — mobile-first, high contrast, big taps */
+:root {
+  --bg: #FFF8F0;
+  --bg2: #FFE8D6;
+  --ink: #1A1A2E;
+  --muted: #5C5C7A;
+  --card: #FFFFFF;
+  --accent: #FF6B6B;
+  --teal: #4ECDC4;
+  --gold: #FFD93D;
+  --purple: #A78BFA;
+  --green: #6BCB77;
+  --shadow: 0 8px 24px rgba(26, 26, 46, 0.12);
+  --radius: 20px;
+  --tap: 52px;
+  --font: "Segoe UI", "Nunito", "Comic Sans MS", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  background: linear-gradient(165deg, var(--bg) 0%, var(--bg2) 100%);
+  color: var(--ink);
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+body { min-height: 100dvh; }
+
+button {
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 16px;
+  min-height: var(--tap);
+  padding: 0.85rem 1.25rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s;
+  touch-action: manipulation;
+}
+button:active:not(:disabled) { transform: scale(0.97); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  padding: 1rem 1rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* —— Header bar —— */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.brand-badge {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  display: grid; place-items: center;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow);
+}
+.brand h1 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+.brand .sub {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.stats {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.stat-pill {
+  background: var(--card);
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 0.35rem;
+}
+
+.coach-line {
+  background: #fff;
+  border-left: 6px solid var(--teal);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* —— Screens —— */
+.screen { display: none; animation: fadeIn 0.3s ease; }
+.screen.active { display: flex; flex-direction: column; gap: 1rem; }
+
+/* —— Home —— */
+.hero {
+  background: linear-gradient(135deg, #FF8E8E 0%, #A78BFA 100%);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem;
+  box-shadow: var(--shadow);
+}
+.hero h2 { font-size: 1.45rem; margin-bottom: 0.35rem; }
+.hero p { opacity: 0.95; font-weight: 600; font-size: 0.95rem; }
+
+.quest-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+@media (min-width: 560px) {
+  .quest-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.quest-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  text-align: left;
+  box-shadow: var(--shadow);
+  border: 3px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-height: 140px;
+  color: var(--ink);
+}
+.quest-card:hover, .quest-card:focus-visible {
+  border-color: currentColor;
+  outline: none;
+}
+.quest-card .emoji { font-size: 2rem; }
+.quest-card .q-title { font-size: 1.05rem; font-weight: 800; }
+.quest-card .q-blurb { font-size: 0.82rem; color: var(--muted); font-weight: 600; line-height: 1.35; }
+.quest-card .q-meta { margin-top: auto; font-size: 0.8rem; font-weight: 800; opacity: 0.85; }
+
+.mix-card {
+  grid-column: 1 / -1;
+  background: linear-gradient(120deg, #FFE66D 0%, #FFB347 100%);
+  border: 3px solid #F0A500;
+  min-height: 100px;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+.mix-card .emoji { font-size: 2.4rem; }
+.mix-card .q-title { font-size: 1.2rem; }
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #FF8E53);
+  color: #fff;
+  box-shadow: 0 6px 0 #C44D4D;
+  flex: 1;
+  min-width: 140px;
+}
+.btn-primary:active:not(:disabled) { box-shadow: 0 2px 0 #C44D4D; }
+.btn-secondary {
+  background: var(--card);
+  color: var(--ink);
+  border: 3px solid #E8E0D8;
+  flex: 1;
+  min-width: 120px;
+}
+.btn-teal {
+  background: linear-gradient(135deg, var(--teal), #2BBBAD);
+  color: #fff;
+  box-shadow: 0 6px 0 #2A9D8F;
+  flex: 1;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 2px dashed #C8C0B8;
+  min-height: 44px;
+  font-size: 0.95rem;
+}
+
+/* —— Mission HUD —— */
+.mission-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: var(--card);
+  border-radius: 16px;
+  padding: 0.65rem 0.9rem;
+  box-shadow: var(--shadow);
+  flex-wrap: wrap;
+}
+.timer {
+  font-variant-numeric: tabular-nums;
+  font-weight: 900;
+  font-size: 1.35rem;
+  color: var(--accent);
+  display: flex; align-items: center; gap: 0.35rem;
+}
+.timer.warn { color: #E63946; animation: pulse 1s infinite; }
+@keyframes pulse {
+  50% { opacity: 0.7; }
+}
+.progress-dots {
+  display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+}
+.dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: #E0D8D0;
+}
+.dot.done { background: var(--green); }
+.dot.now { background: var(--accent); transform: scale(1.25); }
+.dot.retry { background: var(--gold); }
+
+/* —— Play card —— */
+.play-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+.mode-tag {
+  align-self: flex-start;
+  background: #EEF2FF;
+  color: #4338CA;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+}
+.topic-tag {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+.play-card h2 {
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.choices { display: flex; flex-direction: column; gap: 0.65rem; }
+.choice-btn {
+  text-align: left;
+  background: #F7F3EE;
+  border: 3px solid #E8E0D8;
+  color: var(--ink);
+  border-radius: 16px;
+  padding: 1rem 1.1rem;
+  min-height: var(--tap);
+}
+.choice-btn.selected { border-color: var(--teal); background: #E6FFFB; }
+.choice-btn.correct { border-color: var(--green); background: #E8F8EC; }
+.choice-btn.wrong { border-color: var(--accent); background: #FFE8E8; }
+
+/* True/False */
+.tf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.tf-btn { font-size: 1.2rem; }
+.tf-true { background: #E8F8EC; border: 3px solid var(--green); color: #1B5E20; }
+.tf-false { background: #FFE8E8; border: 3px solid var(--accent); color: #8B1A1A; }
+.why-box {
+  background: #FFF9E6;
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  font-weight: 600;
+  border: 2px solid var(--gold);
+  line-height: 1.4;
+}
+
+/* Sort */
+.buckets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+.bucket {
+  background: #F7F3EE;
+  border-radius: 14px;
+  border: 3px dashed #D0C8C0;
+  min-height: 120px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.bucket h3 {
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.35rem;
+  color: var(--muted);
+}
+.chip-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-height: 48px;
+}
+.chip {
+  background: #fff;
+  border: 2px solid #D8D0C8;
+  border-radius: 12px;
+  padding: 0.55rem 0.75rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  min-height: 44px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+.chip.in-bucket { background: #EEF2FF; border-color: var(--purple); }
+.chip.picked { outline: 3px solid var(--accent); }
+
+/* Order */
+.order-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #F7F3EE;
+  border-radius: 14px;
+  padding: 0.55rem 0.65rem;
+  border: 2px solid #E8E0D8;
+}
+.order-item span {
+  flex: 1;
+  font-weight: 700;
+  text-align: left;
+}
+.order-controls { display: flex; flex-direction: column; gap: 0.25rem; }
+.order-controls button {
+  min-height: 40px;
+  padding: 0.35rem 0.7rem;
+  background: #fff;
+  border: 2px solid #D0C8C0;
+  font-size: 0.9rem;
+}
+
+/* Teach-back */
+.reveal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.reveal-list li {
+  background: #E6FFFB;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  border-left: 5px solid var(--teal);
+}
+
+.feedback {
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  font-weight: 800;
+  text-align: center;
+  animation: fadeIn 0.25s ease;
+}
+.feedback.ok { background: #E8F8EC; color: #1B5E20; }
+.feedback.bad { background: #FFE8E8; color: #8B1A1A; }
+.feedback.cheer { background: #FFF3CD; color: #7A5C00; }
+
+/* —— Results —— */
+.results-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.results-card .big-emoji { font-size: 3.5rem; }
+.results-card h2 { font-size: 1.5rem; margin: 0.5rem 0; }
+.star-row { font-size: 2rem; letter-spacing: 0.15em; margin: 0.5rem 0; }
+.results-card p { font-weight: 600; color: var(--muted); margin-bottom: 1rem; }
+
+/* —— Coach —— */
+.coach-panel {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.coach-panel h2 { font-size: 1.35rem; }
+.coach-panel .note {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+.stat-box {
+  background: #F7F3EE;
+  border-radius: 14px;
+  padding: 0.9rem;
+  text-align: center;
+}
+.stat-box .num { font-size: 1.6rem; font-weight: 900; color: var(--accent); }
+.stat-box .lbl { font-size: 0.8rem; font-weight: 700; color: var(--muted); }
+.weak-list, .oral-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.weak-list li, .oral-list li {
+  background: #EEF2FF;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+}
+.oral-list li {
+  background: #FFF9E6;
+  border-left: 5px solid var(--gold);
+  counter-increment: oral;
+}
+.oral-list { counter-reset: oral; }
+.oral-list li::before {
+  content: "Oral " counter(oral) ": ";
+  color: #B8860B;
+}
+
+.footer-hint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.hidden { display: none !important; }
+
+.confetti-burst {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  width: 10px; height: 14px;
+  top: -20px;
+  animation: fall 1.4s ease-out forwards;
+  border-radius: 2px;
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+</style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true">🧙</div>
+        <div>
+          <h1>GS Quests</h1>
+          <div class="sub">Merlin · short missions</div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat-pill" id="statStars">⭐ 0</div>
+        <div class="stat-pill" id="statStreak">🔥 0</div>
+      </div>
+    </header>
+
+    <div class="coach-line" id="coachLine">Mission time! Short brain boost — you've got this!</div>
+
+    <!-- HOME -->
+    <section class="screen active" data-screen="home" id="screenHome">
+      <div class="hero">
+        <h2>Hi Merlin! 👋</h2>
+        <p>Pick a chapter quest or Today's Mix. Big taps, short brain boosts — about 6 minutes.</p>
+      </div>
+      <div class="quest-grid" id="questGrid"></div>
+      <div class="btn-row">
+        <button type="button" class="btn-secondary" id="btnCoach">🧭 Parent Coach</button>
+      </div>
+      <p class="footer-hint">General Studies · Ch.1–4 · offline OK</p>
+    </section>
+
+    <!-- MISSION -->
+    <section class="screen" data-screen="mission" id="screenMission">
+      <div class="mission-hud">
+        <strong id="missionTitle">Mission</strong>
+        <div class="timer" id="timerDisplay">⏱ 6:00</div>
+        <button type="button" class="btn-ghost" id="btnQuitMission">Exit</button>
+      </div>
+      <div class="progress-dots" id="progressDots" aria-label="Progress"></div>
+      <div class="play-card" id="playArea"></div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="screen" data-screen="results" id="screenResults">
+      <div class="results-card" id="resultsArea"></div>
+      <div class="btn-row">
+        <button type="button" class="btn-primary" id="btnResultsHome">Home</button>
+        <button type="button" class="btn-secondary" id="btnResultsCoach">Parent Coach</button>
+      </div>
+    </section>
+
+    <!-- COACH -->
+    <section class="screen" data-screen="coach" id="screenCoach">
+      <div class="coach-panel" id="coachPanel"></div>
+      <div class="btn-row">
+        <button type="button" class="btn-primary" id="btnCoachHome">Back to Home</button>
+      </div>
+    </section>
+
+    <nav class="btn-row" style="margin-top:0.25rem">
+      <button type="button" class="btn-ghost" id="btnHome" style="flex:1">🏠 Home</button>
+      <button type="button" class="btn-ghost" id="btnBackHome" style="display:none">Home</button>
+    </nav>
+  </div>
+
+  <script>
+/**
+ * Merlin GS Quests — curriculum cards (NGS P3 Term 1 Ch.1–4)
+ * Facts only from school notes; do not invent.
+ */
+window.GS_CARDS = {
+  chapters: [
+    {
+      id: "ch1",
+      num: 1,
+      title: "Get Well Soon",
+      emoji: "💊",
+      color: "#4ECDC4",
+      blurb: "When we feel ill — doctor, medicine, rest!"
+    },
+    {
+      id: "ch2",
+      num: 2,
+      title: "Say No",
+      emoji: "🚭",
+      color: "#FF6B6B",
+      blurb: "Smoking, drinking & drugs — stay safe!"
+    },
+    {
+      id: "ch3",
+      num: 3,
+      title: "My Feelings",
+      emoji: "💛",
+      color: "#FFE66D",
+      blurb: "Happy, sad, angry — know & care for feelings!"
+    },
+    {
+      id: "ch4",
+      num: 4,
+      title: "My Friends",
+      emoji: "🤝",
+      color: "#A78BFA",
+      blurb: "Share, care, and get along with friends!"
+    }
+  ],
+
+  cards: [
+    /* ========== CH.1 Get Well Soon (≥8) ========== */
+    {
+      id: "c1-01",
+      chapter: "ch1",
+      topic: "When you are ill",
+      mode: "sort",
+      prompt: "Sort: What SHOULD you do when you are ill?",
+      buckets: ["Should ✅", "Should NOT ❌"],
+      items: [
+        { text: "See a doctor", bucket: 0 },
+        { text: "Take the right amount of medicine at the right time", bucket: 0 },
+        { text: "Rest and drink water", bucket: 0 },
+        { text: "Take medicine bought in a pharmacy without a doctor", bucket: 1 },
+        { text: "Take leftover medicine", bucket: 1 },
+        { text: "Do nothing but sleep", bucket: 1 }
+      ]
+    },
+    {
+      id: "c1-02",
+      chapter: "ch1",
+      topic: "Doctor vs Chinese medicine",
+      mode: "mcq",
+      prompt: "How does a doctor usually check your condition?",
+      choices: [
+        "With a stethoscope",
+        "By feeling your pulse by hand only",
+        "By asking your friends",
+        "By looking at your shoes"
+      ],
+      answer: 0,
+      tip: "A doctor uses a stethoscope. Chinese medicine practitioners feel the pulse by hand."
+    },
+    {
+      id: "c1-03",
+      chapter: "ch1",
+      topic: "Doctor vs Chinese medicine",
+      mode: "truefalse",
+      prompt: "Both a doctor and a Chinese medicine practitioner check your condition and prescribe medicine.",
+      answer: true,
+      why: "Yes — both check how you feel and prescribe the right medicine for you. Their tools and medicines are different."
+    },
+    {
+      id: "c1-04",
+      chapter: "ch1",
+      topic: "Visiting the doctor",
+      mode: "order",
+      prompt: "Put these steps in a good order when you visit the doctor:",
+      steps: [
+        "Tell the doctor how you feel",
+        "Listen carefully to the doctor's instructions",
+        "Follow the instructions at home"
+      ]
+    },
+    {
+      id: "c1-05",
+      chapter: "ch1",
+      topic: "Medicine types",
+      mode: "mcq",
+      prompt: "Which of these is a type of medicine you might take?",
+      choices: [
+        "Cough syrup",
+        "Video games",
+        "Pencil sharpeners",
+        "Football boots"
+      ],
+      answer: 0,
+      tip: "Medicine types include cough syrup, pills, Chinese powder, and Chinese herbs."
+    },
+    {
+      id: "c1-06",
+      chapter: "ch1",
+      topic: "Medicine label",
+      mode: "teachback",
+      prompt: "Teach-back: What should you check on a medicine label?",
+      reveal: [
+        "Ask the clinic if you are unsure",
+        "Do not take other people's medicine",
+        "Start date / how many days",
+        "Name of the medicine",
+        "Amount / dose and time",
+        "How to take it and any side effects"
+      ],
+      coachHint: "Say 3 things you check on a label."
+    },
+    {
+      id: "c1-07",
+      chapter: "ch1",
+      topic: "Taking medicine correctly",
+      mode: "sort",
+      prompt: "Sort: Correct or Wrong ways to take medicine?",
+      buckets: ["Correct ✅", "Wrong ❌"],
+      items: [
+        { text: "Take with water", bucket: 0 },
+        { text: "Take on time", bucket: 0 },
+        { text: "Follow the doctor's instructions", bucket: 0 },
+        { text: "Take the wrong amount", bucket: 1 },
+        { text: "Stop taking medicine without asking the doctor", bucket: 1 },
+        { text: "Take someone else's medicine", bucket: 1 }
+      ]
+    },
+    {
+      id: "c1-08",
+      chapter: "ch1",
+      topic: "Storing medicine",
+      mode: "mcq",
+      prompt: "Where should medicine be stored?",
+      choices: [
+        "Cool, dry place, away from sunlight, out of children's reach",
+        "Next to the toaster in the sun",
+        "In a child's toy box",
+        "In a wet bathroom window"
+      ],
+      answer: 0,
+      tip: "Cool, dry, away from sunlight, and out of children's reach."
+    },
+    {
+      id: "c1-09",
+      chapter: "ch1",
+      topic: "Getting better",
+      mode: "truefalse",
+      prompt: "To get better, you should see a doctor as soon as possible, take medicine as the doctor says, keep the home airy, rest, drink water, and eat healthy food.",
+      answer: true,
+      why: "All of these help your body get well again."
+    },
+    {
+      id: "c1-10",
+      chapter: "ch1",
+      topic: "Caring for patients",
+      mode: "mcq",
+      prompt: "How can you care for someone who is ill?",
+      choices: [
+        "Remind them to take medicine, call them, or send a card",
+        "Give them leftover medicine from last year",
+        "Ignore them so they rest alone forever",
+        "Ask them to go to school right away"
+      ],
+      answer: 0,
+      tip: "Remind medicine · call · send a card — kind actions help!"
+    },
+
+    /* ========== CH.2 Smoking / Drinking / Drugs (≥8) ========== */
+    {
+      id: "c2-01",
+      chapter: "ch2",
+      topic: "Smoking harms",
+      mode: "mcq",
+      prompt: "Which is a harm of smoking?",
+      choices: [
+        "Bad breath and yellow fingers/teeth",
+        "Stronger lungs forever",
+        "Better appetite only",
+        "Whiter teeth"
+      ],
+      answer: 0,
+      tip: "Smoking can cause bad breath, yellow fingers/teeth, poor appetite, weight loss, serious diseases, and reduced lung growth/functions."
+    },
+    {
+      id: "c2-02",
+      chapter: "ch2",
+      topic: "Smoking harms",
+      mode: "truefalse",
+      prompt: "Smoking can reduce lung growth and lung functions.",
+      answer: true,
+      why: "True — smoking can reduce lung growth and how well the lungs work, and can lead to serious diseases."
+    },
+    {
+      id: "c2-03",
+      chapter: "ch2",
+      topic: "Drinking harms",
+      mode: "sort",
+      prompt: "Sort: What can happen when people drink too much alcohol?",
+      buckets: ["Can happen ⚠️", "Not a fact ❌"],
+      items: [
+        { text: "Lose control and judgement / pass out", bucket: 0 },
+        { text: "Harm others or cause accidents", bucket: 0 },
+        { text: "Lose money or things", bucket: 0 },
+        { text: "Brain damage, heart failure, liver cancer, stomach bleeding", bucket: 0 },
+        { text: "Makes homework better", bucket: 1 },
+        { text: "Makes lungs grow faster", bucket: 1 }
+      ]
+    },
+    {
+      id: "c2-04",
+      chapter: "ch2",
+      topic: "Asked to drink",
+      mode: "mcq",
+      prompt: "If someone asks you to drink alcohol, what should you do?",
+      choices: [
+        "Say no — it harms health",
+        "Try a little to be polite",
+        "Drink if friends cheer",
+        "Hide and drink alone"
+      ],
+      answer: 0,
+      tip: "Say no. Drinking alcohol can harm your health."
+    },
+    {
+      id: "c2-05",
+      chapter: "ch2",
+      topic: "Drug abuse",
+      mode: "teachback",
+      prompt: "Teach-back: What is drug abuse?",
+      reveal: [
+        "Using drugs that may harm the body or mind",
+        "Not for treating an illness"
+      ],
+      coachHint: "Explain drug abuse in your own words."
+    },
+    {
+      id: "c2-06",
+      chapter: "ch2",
+      topic: "Long-term drug abuse",
+      mode: "mcq",
+      prompt: "Long-term drug abuse can harm…",
+      choices: [
+        "Yourself and others — health, work/studies, appearance; even death",
+        "Only your shoes",
+        "Only your homework folder",
+        "Nothing at all"
+      ],
+      answer: 0,
+      tip: "It can harm self and others, health, work/studies, appearance, and can even cause death."
+    },
+    {
+      id: "c2-07",
+      chapter: "ch2",
+      topic: "Stay away from drugs",
+      mode: "order",
+      prompt: "If someone offers you drugs, good steps are:",
+      steps: [
+        "Say no clearly",
+        "Get away / stay safe",
+        "Tell a trusted adult (teachers or parents)"
+      ]
+    },
+    {
+      id: "c2-08",
+      chapter: "ch2",
+      topic: "Help others stay safe",
+      mode: "sort",
+      prompt: "If you see others being offered drugs, what can you do?",
+      buckets: ["Good action ✅", "Not helpful ❌"],
+      items: [
+        { text: "Tell teachers or parents", bucket: 0 },
+        { text: "Call the police", bucket: 0 },
+        { text: "Run away to stay safe", bucket: 0 },
+        { text: "Try to stop them safely", bucket: 0 },
+        { text: "Join in so you fit in", bucket: 1 },
+        { text: "Keep it a secret forever", bucket: 1 }
+      ]
+    },
+    {
+      id: "c2-09",
+      chapter: "ch2",
+      topic: "Smoking harms",
+      mode: "truefalse",
+      prompt: "Smoking can cause poor appetite and weight loss.",
+      answer: true,
+      why: "Yes — smoking can lead to poor appetite, weight loss, and other serious health problems."
+    },
+
+    /* ========== CH.3 My Feelings (≥8) ========== */
+    {
+      id: "c3-01",
+      chapter: "ch3",
+      topic: "Positive & negative feelings",
+      mode: "sort",
+      prompt: "Sort these feelings into Positive or Negative:",
+      buckets: ["Positive 😊", "Negative 😟"],
+      items: [
+        { text: "Happy", bucket: 0 },
+        { text: "Touched", bucket: 0 },
+        { text: "Excited", bucket: 0 },
+        { text: "Sad", bucket: 1 },
+        { text: "Angry", bucket: 1 },
+        { text: "Scared", bucket: 1 }
+      ]
+    },
+    {
+      id: "c3-02",
+      chapter: "ch3",
+      topic: "Causes of sadness",
+      mode: "mcq",
+      prompt: "Which can make someone feel sad?",
+      choices: [
+        "Family arguing, losing a pet, bad results / disappointing parents, or being bullied",
+        "Eating a healthy snack",
+        "Reading a fun book with a friend",
+        "Finishing homework early"
+      ],
+      answer: 0,
+      tip: "Sadness can come from family arguments, losing a pet, bad results, disappointing parents, or bullying."
+    },
+    {
+      id: "c3-03",
+      chapter: "ch3",
+      topic: "Dealing with sadness",
+      mode: "mcq",
+      prompt: "Which set lists ways that can help when you feel sad?",
+      choices: [
+        "Cry, talk, music, exercise, draw, diary",
+        "Hit, throw things, refuse to eat",
+        "Smoke, drink, take leftover medicine",
+        "Keep it secret and never talk"
+      ],
+      answer: 0,
+      tip: "Helpful ways: cry, talk, music, exercise, draw, write in a diary."
+    },
+    {
+      id: "c3-04",
+      chapter: "ch3",
+      topic: "Losing temper",
+      mode: "truefalse",
+      prompt: "When we lose our temper, hitting/hurting, throwing/destroying things, or refusing to eat can hurt our health and make Mum unhappy.",
+      answer: true,
+      why: "Those actions can harm others, break things, and affect health — and Mum may feel unhappy."
+    },
+    {
+      id: "c3-05",
+      chapter: "ch3",
+      topic: "When angry",
+      mode: "mcq",
+      prompt: "When you feel angry, a helpful idea is to…",
+      choices: [
+        "Take a deep breath and wash your face",
+        "Hit something hard",
+        "Throw your books",
+        "Refuse to eat forever"
+      ],
+      answer: 0,
+      tip: "Deep breath · wash face — calm the body first."
+    },
+    {
+      id: "c3-06",
+      chapter: "ch3",
+      topic: "Negative feelings",
+      mode: "teachback",
+      prompt: "Teach-back: What can you do with negative feelings?",
+      reveal: [
+        "Think positively",
+        "Find ways to deal with them (talk, music, exercise, draw, diary…)"
+      ],
+      coachHint: "Name 2 ways to deal with a negative feeling."
+    },
+    {
+      id: "c3-07",
+      chapter: "ch3",
+      topic: "Positive feelings",
+      mode: "mcq",
+      prompt: "Which feeling is positive?",
+      choices: ["Excited", "Angry", "Scared", "Sad"],
+      answer: 0,
+      tip: "Happy, touched, and excited are positive feelings."
+    },
+    {
+      id: "c3-08",
+      chapter: "ch3",
+      topic: "Dealing with sadness",
+      mode: "order",
+      prompt: "A calm plan when you feel sad could be:",
+      steps: [
+        "Notice you feel sad",
+        "Choose a helpful way (talk, music, draw…)",
+        "Feel a bit better and keep going"
+      ]
+    },
+    {
+      id: "c3-09",
+      chapter: "ch3",
+      topic: "Negative feelings",
+      mode: "truefalse",
+      prompt: "It is okay to have negative feelings — we can think positively and find ways to deal with them.",
+      answer: true,
+      why: "Feelings are normal. We can think positively and use healthy ways to cope."
+    },
+
+    /* ========== CH.4 My Friends (≥8) ========== */
+    {
+      id: "c4-01",
+      chapter: "ch4",
+      topic: "Friend activities",
+      mode: "mcq",
+      prompt: "Which is an activity friends might enjoy together?",
+      choices: [
+        "Reading, football, games, or a birthday party",
+        "Taking other people's medicine",
+        "Smoking together",
+        "Hiding when someone needs help"
+      ],
+      answer: 0,
+      tip: "Friends may read, play football, play games, or celebrate birthdays together."
+    },
+    {
+      id: "c4-02",
+      chapter: "ch4",
+      topic: "Sharing",
+      mode: "truefalse",
+      prompt: "Friends can share food, books, toys, and happy or sad things.",
+      answer: true,
+      why: "Yes — sharing food, books, toys, and feelings helps friendships."
+    },
+    {
+      id: "c4-03",
+      chapter: "ch4",
+      topic: "Care phrases",
+      mode: "mcq",
+      prompt: "Which phrase shows you care about a friend?",
+      choices: [
+        "I'm here to listen / It must be hard for you / I'm here for you",
+        "I don't care about your feelings",
+        "Stop talking now",
+        "Your problem is silly"
+      ],
+      answer: 0,
+      tip: "Caring phrases: “I'm here to listen”, “It must be hard for you”, “I'm here for you”."
+    },
+    {
+      id: "c4-04",
+      chapter: "ch4",
+      topic: "Getting along",
+      mode: "truefalse",
+      prompt: "To get along with friends: share when needed, help each other, and care when a friend is ill.",
+      answer: true,
+      why: "Sharing, helping, and caring when someone is ill help friendships stay strong."
+    },
+    {
+      id: "c4-05",
+      chapter: "ch4",
+      topic: "Wrong request",
+      mode: "mcq",
+      prompt: "If a friend asks you to do something wrong, you should…",
+      choices: [
+        "Say no and point out the mistakes",
+        "Always say yes to stay friends",
+        "Do it and hide it",
+        "Blame someone else"
+      ],
+      answer: 0,
+      tip: "Say no. Point out mistakes kindly and clearly."
+    },
+    {
+      id: "c4-06",
+      chapter: "ch4",
+      topic: "When friends argue",
+      mode: "order",
+      prompt: "When friends argue, a good way is:",
+      steps: [
+        "Stay calm",
+        "Talk respectfully",
+        "Try to solve the problem together"
+      ]
+    },
+    {
+      id: "c4-07",
+      chapter: "ch4",
+      topic: "Saying sorry",
+      mode: "sort",
+      prompt: "Good ways to say sorry:",
+      buckets: ["Good way ✅", "Not helpful ❌"],
+      items: [
+        { text: "Say sorry face to face", bucket: 0 },
+        { text: "Write a note", bucket: 0 },
+        { text: "Never admit a mistake", bucket: 1 },
+        { text: "Shout louder", bucket: 1 }
+      ]
+    },
+    {
+      id: "c4-08",
+      chapter: "ch4",
+      topic: "Care phrases",
+      mode: "teachback",
+      prompt: "Teach-back: Say one caring phrase you can use with a friend.",
+      reveal: [
+        "I'm here to listen",
+        "It must be hard for you",
+        "I'm here for you"
+      ],
+      coachHint: "Ask Merlin to say one caring phrase out loud."
+    },
+    {
+      id: "c4-09",
+      chapter: "ch4",
+      topic: "Getting along",
+      mode: "mcq",
+      prompt: "When a friend is ill, a kind friend will…",
+      choices: [
+        "Care for them",
+        "Ignore them",
+        "Laugh at them",
+        "Take their medicine"
+      ],
+      answer: 0,
+      tip: "Care when a friend is ill — that is part of getting along."
+    }
+  ],
+
+  /** Exactly 2 oral questions for Parent Coach (rotate from bank by weak topics) */
+  oralBank: [
+    { chapter: "ch1", q: "Tell me three things you SHOULD do when you are ill." },
+    { chapter: "ch1", q: "What should you check on a medicine label before taking it?" },
+    { chapter: "ch1", q: "Where should medicine be stored at home?" },
+    { chapter: "ch2", q: "Name two harms of smoking." },
+    { chapter: "ch2", q: "What should you say if someone asks you to drink alcohol? Why?" },
+    { chapter: "ch2", q: "What is drug abuse? What can you do if someone offers drugs?" },
+    { chapter: "ch3", q: "Name two positive and two negative feelings." },
+    { chapter: "ch3", q: "What can you do when you feel sad or angry?" },
+    { chapter: "ch3", q: "What happens if we lose our temper in a harmful way?" },
+    { chapter: "ch4", q: "Say one caring phrase you can use with a friend." },
+    { chapter: "ch4", q: "What should you do if a friend asks you to do something wrong?" },
+    { chapter: "ch4", q: "How can you say sorry after an argument?" }
+  ],
+
+  coachLines: [
+    "Mission time! Short brain boost — you've got this!",
+    "Warm-up complete. Ready for a quick quest?",
+    "Stars await! One card at a time.",
+    "Deep breath… then tap Start!",
+    "You're building strong memory muscles!",
+    "Nice focus — keep going!",
+    "Almost there — finish strong!",
+    "Wow! That was brave thinking!",
+    "Retry only this card — no worry!",
+    "Mission done! High five!"
+  ]
+};
+
+</script>
+  <script>
+/**
+ * Merlin GS Quests — ADHD-friendly short missions (static, offline)
+ */
+(function () {
+  "use strict";
+
+  const STORAGE_KEY = "merlin_gs_quests_v1";
+  const MISSION_SECS = 6 * 60; // ~6 min visible timer
+  const MIX_SIZE_MIN = 5;
+  const MIX_SIZE_MAX = 8;
+
+  const MODE_LABELS = {
+    mcq: "Multiple Choice",
+    truefalse: "True / False + Why",
+    sort: "Sort into Buckets",
+    order: "Order the Steps",
+    teachback: "Teach-Back"
+  };
+
+  /** @type {{stars:number,streak:number,lastPlayDate:string|null,history:Array,cardStats:Object}} */
+  let progress = loadProgress();
+
+  let state = {
+    screen: "home",
+    chapterId: null,
+    isMix: false,
+    queue: [],
+    index: 0,
+    correct: 0,
+    answered: 0,
+    retryIds: [],
+    timerLeft: MISSION_SECS,
+    timerId: null,
+    sortPicked: null,
+    sortMap: {},
+    orderSteps: [],
+    feedback: null,
+    awaitingContinue: false,
+    sessionWeakTopics: [],
+    coachLineIdx: 0
+  };
+
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+
+  function loadProgress() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (_) {}
+    return {
+      stars: 0,
+      streak: 0,
+      lastPlayDate: null,
+      history: [],
+      cardStats: {} // id -> { attempts, correct, lastWrong }
+    };
+  }
+
+  function saveProgress() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    } catch (_) {}
+  }
+
+  function todayStr() {
+    const d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+
+  function updateStreakOnStart() {
+    const t = todayStr();
+    if (progress.lastPlayDate === t) return;
+    const y = new Date();
+    y.setDate(y.getDate() - 1);
+    const yStr = y.getFullYear() + "-" + String(y.getMonth() + 1).padStart(2, "0") + "-" + String(y.getDate()).padStart(2, "0");
+    if (progress.lastPlayDate === yStr) progress.streak += 1;
+    else progress.streak = 1;
+    progress.lastPlayDate = t;
+    saveProgress();
+  }
+
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function cardsForChapter(chId) {
+    return window.GS_CARDS.cards.filter((c) => c.chapter === chId);
+  }
+
+  function weakScore(cardId) {
+    const s = progress.cardStats[cardId];
+    if (!s || s.attempts === 0) return 0.5; // unseen = mild priority
+    const rate = s.correct / s.attempts;
+    return 1 - rate + (s.lastWrong ? 0.3 : 0);
+  }
+
+  function buildMix() {
+    const all = window.GS_CARDS.cards.slice();
+    const scored = all
+      .map((c) => ({ c, score: weakScore(c.id) + Math.random() * 0.2 }))
+      .sort((a, b) => b.score - a.score);
+    const n = MIX_SIZE_MIN + Math.floor(Math.random() * (MIX_SIZE_MAX - MIX_SIZE_MIN + 1));
+    // diversify chapters a bit
+    const picked = [];
+    const seenCh = {};
+    for (const { c } of scored) {
+      if (picked.length >= n) break;
+      const count = seenCh[c.chapter] || 0;
+      if (count >= 3 && picked.length < n - 1) continue;
+      picked.push(c);
+      seenCh[c.chapter] = count + 1;
+    }
+    while (picked.length < MIX_SIZE_MIN && scored.length) {
+      const next = scored.find((x) => !picked.includes(x.c));
+      if (!next) break;
+      picked.push(next.c);
+    }
+    return shuffle(picked).slice(0, n);
+  }
+
+  function coachLine(kind) {
+    const lines = window.GS_CARDS.coachLines;
+    if (kind === "start") return lines[0];
+    if (kind === "retry") return lines[8];
+    if (kind === "done") return lines[9];
+    if (kind === "cheer") return lines[7];
+    state.coachLineIdx = (state.coachLineIdx + 1) % lines.length;
+    return lines[state.coachLineIdx];
+  }
+
+  function setCoach(text) {
+    const el = $("#coachLine");
+    if (el) el.textContent = text;
+  }
+
+  function showScreen(name) {
+    state.screen = name;
+    $$(".screen").forEach((s) => s.classList.toggle("active", s.dataset.screen === name));
+  }
+
+  function renderStats() {
+    $("#statStars").textContent = "⭐ " + progress.stars;
+    $("#statStreak").textContent = "🔥 " + progress.streak;
+  }
+
+  function renderHome() {
+    stopTimer();
+    renderStats();
+    setCoach(coachLine("idle"));
+    const grid = $("#questGrid");
+    grid.innerHTML = "";
+    window.GS_CARDS.chapters.forEach((ch) => {
+      const cards = cardsForChapter(ch.id);
+      const btn = document.createElement("button");
+      btn.className = "quest-card";
+      btn.style.color = ch.color;
+      btn.innerHTML =
+        '<span class="emoji">' + ch.emoji + "</span>" +
+        '<span class="q-title">Ch.' + ch.num + " · " + ch.title + "</span>" +
+        '<span class="q-blurb">' + ch.blurb + "</span>" +
+        '<span class="q-meta">' + cards.length + " cards · ~6 min</span>";
+      btn.addEventListener("click", () => startMission(ch.id, false));
+      grid.appendChild(btn);
+    });
+    const mix = document.createElement("button");
+    mix.className = "quest-card mix-card";
+    mix.innerHTML =
+      '<span class="emoji">🎲</span><div>' +
+      '<div class="q-title">Today\'s Mix</div>' +
+      '<div class="q-blurb">5–8 random / weak cards · short brain boost</div></div>';
+    mix.addEventListener("click", () => startMission(null, true));
+    grid.appendChild(mix);
+    showScreen("home");
+  }
+
+  function pickChapterQueue(chapterId) {
+    const all = shuffle(cardsForChapter(chapterId));
+    const n = Math.min(all.length, MIX_SIZE_MIN + Math.floor(Math.random() * (MIX_SIZE_MAX - MIX_SIZE_MIN + 1)));
+    // Prefer mixed modes
+    const byMode = {};
+    all.forEach((c) => {
+      (byMode[c.mode] = byMode[c.mode] || []).push(c);
+    });
+    const picked = [];
+    const modes = shuffle(Object.keys(byMode));
+    // round-robin modes
+    let guard = 0;
+    while (picked.length < n && guard < 100) {
+      guard++;
+      for (const m of modes) {
+        if (picked.length >= n) break;
+        const list = byMode[m];
+        if (list && list.length) picked.push(list.shift());
+      }
+    }
+    return shuffle(picked);
+  }
+
+  function startMission(chapterId, isMix) {
+    updateStreakOnStart();
+    let queue;
+    if (isMix) queue = buildMix();
+    else queue = pickChapterQueue(chapterId);
+
+    state.chapterId = chapterId;
+    state.isMix = isMix;
+    state.queue = queue;
+    state.index = 0;
+    state.correct = 0;
+    state.answered = 0;
+    state.retryIds = [];
+    state.sessionWeakTopics = [];
+    state.timerLeft = MISSION_SECS;
+    state.feedback = null;
+    state.awaitingContinue = false;
+
+    const title = isMix
+      ? "Today's Mix"
+      : window.GS_CARDS.chapters.find((c) => c.id === chapterId).title;
+    $("#missionTitle").textContent = (isMix ? "🎲 " : "🚀 ") + title;
+    setCoach(coachLine("start"));
+    startTimer();
+    showScreen("mission");
+    renderCard();
+  }
+
+  function startTimer() {
+    stopTimer();
+    updateTimerUI();
+    state.timerId = setInterval(() => {
+      state.timerLeft -= 1;
+      updateTimerUI();
+      if (state.timerLeft <= 0) {
+        stopTimer();
+        finishMission(true);
+      }
+    }, 1000);
+  }
+
+  function stopTimer() {
+    if (state.timerId) {
+      clearInterval(state.timerId);
+      state.timerId = null;
+    }
+  }
+
+  function updateTimerUI() {
+    const m = Math.floor(Math.max(0, state.timerLeft) / 60);
+    const s = Math.max(0, state.timerLeft) % 60;
+    const el = $("#timerDisplay");
+    el.textContent = "⏱ " + m + ":" + String(s).padStart(2, "0");
+    el.classList.toggle("warn", state.timerLeft <= 60);
+  }
+
+  function renderProgressDots() {
+    const wrap = $("#progressDots");
+    wrap.innerHTML = "";
+    state.queue.forEach((card, i) => {
+      const d = document.createElement("span");
+      d.className = "dot";
+      if (i < state.index) d.classList.add("done");
+      if (i === state.index) d.classList.add("now");
+      if (state.retryIds.includes(card.id) && i === state.index) d.classList.add("retry");
+      wrap.appendChild(d);
+    });
+  }
+
+  function currentCard() {
+    return state.queue[state.index];
+  }
+
+  function renderCard() {
+    const card = currentCard();
+    if (!card) {
+      finishMission(false);
+      return;
+    }
+    state.feedback = null;
+    state.awaitingContinue = false;
+    state.sortPicked = null;
+    state.sortMap = {};
+    renderProgressDots();
+
+    const area = $("#playArea");
+    area.innerHTML = "";
+
+    const mode = document.createElement("div");
+    mode.className = "mode-tag";
+    mode.textContent = MODE_LABELS[card.mode] || card.mode;
+    area.appendChild(mode);
+
+    const topic = document.createElement("div");
+    topic.className = "topic-tag";
+    topic.textContent = "Topic: " + card.topic;
+    area.appendChild(topic);
+
+    const h2 = document.createElement("h2");
+    h2.textContent = card.prompt;
+    area.appendChild(h2);
+
+    const body = document.createElement("div");
+    body.id = "cardBody";
+    area.appendChild(body);
+
+    const fb = document.createElement("div");
+    fb.id = "feedbackBox";
+    fb.className = "hidden";
+    area.appendChild(fb);
+
+    const actions = document.createElement("div");
+    actions.className = "btn-row";
+    actions.id = "cardActions";
+    area.appendChild(actions);
+
+    if (card.mode === "mcq") renderMcq(card, body, actions);
+    else if (card.mode === "truefalse") renderTF(card, body, actions);
+    else if (card.mode === "sort") renderSort(card, body, actions);
+    else if (card.mode === "order") renderOrder(card, body, actions);
+    else if (card.mode === "teachback") renderTeachback(card, body, actions);
+  }
+
+  function showFeedback(ok, msg) {
+    const fb = $("#feedbackBox");
+    fb.className = "feedback " + (ok ? "ok" : "bad");
+    fb.textContent = msg;
+    fb.classList.remove("hidden");
+  }
+
+  function recordAttempt(card, ok) {
+    if (!progress.cardStats[card.id]) {
+      progress.cardStats[card.id] = { attempts: 0, correct: 0, lastWrong: false };
+    }
+    const st = progress.cardStats[card.id];
+    st.attempts += 1;
+    if (ok) {
+      st.correct += 1;
+      st.lastWrong = false;
+    } else {
+      st.lastWrong = true;
+      if (!state.sessionWeakTopics.includes(card.topic)) {
+        state.sessionWeakTopics.push(card.topic);
+      }
+    }
+    saveProgress();
+  }
+
+  function onCorrect(card, extraMsg) {
+    recordAttempt(card, true);
+    state.correct += 1;
+    state.answered += 1;
+    state.awaitingContinue = true;
+    showFeedback(true, extraMsg || "🎉 Yes! Great thinking!");
+    setCoach(coachLine("cheer"));
+    const actions = $("#cardActions");
+    actions.innerHTML = "";
+    const btn = document.createElement("button");
+    btn.className = "btn-primary";
+    btn.textContent = "Next →";
+    btn.addEventListener("click", nextCard);
+    actions.appendChild(btn);
+    burstConfetti();
+  }
+
+  function onWrong(card, tip) {
+    recordAttempt(card, false);
+    state.answered += 1;
+    state.awaitingContinue = true;
+    // Retry this card only: insert a copy after current if not already queued as immediate retry
+    const already = state.queue.slice(state.index + 1).some((c) => c.id === card.id);
+    if (!already) {
+      state.queue.splice(state.index + 1, 0, card);
+      state.retryIds.push(card.id);
+    }
+    showFeedback(false, "💪 Almost! Let's try this one again. " + (tip || ""));
+    setCoach(coachLine("retry"));
+    const actions = $("#cardActions");
+    actions.innerHTML = "";
+    const btn = document.createElement("button");
+    btn.className = "btn-teal";
+    btn.textContent = "Retry this card →";
+    btn.addEventListener("click", nextCard);
+    actions.appendChild(btn);
+  }
+
+  function nextCard() {
+    state.index += 1;
+    if (state.index >= state.queue.length) finishMission(false);
+    else renderCard();
+  }
+
+  /* —— Modes —— */
+  function renderMcq(card, body, actions) {
+    const wrap = document.createElement("div");
+    wrap.className = "choices";
+    card.choices.forEach((text, i) => {
+      const b = document.createElement("button");
+      b.className = "choice-btn";
+      b.textContent = text;
+      b.addEventListener("click", () => {
+        if (state.awaitingContinue) return;
+        $$(".choice-btn", wrap).forEach((x) => (x.disabled = true));
+        if (i === card.answer) {
+          b.classList.add("correct");
+          onCorrect(card);
+        } else {
+          b.classList.add("wrong");
+          $$(".choice-btn", wrap)[card.answer].classList.add("correct");
+          onWrong(card, card.tip || "");
+        }
+      });
+      wrap.appendChild(b);
+    });
+    body.appendChild(wrap);
+  }
+
+  function renderTF(card, body, actions) {
+    const row = document.createElement("div");
+    row.className = "tf-row";
+    ["True", "False"].forEach((label, idx) => {
+      const b = document.createElement("button");
+      b.className = "tf-btn " + (idx === 0 ? "tf-true" : "tf-false");
+      b.textContent = idx === 0 ? "✅ True" : "❌ False";
+      b.addEventListener("click", () => {
+        if (state.awaitingContinue) return;
+        const val = idx === 0;
+        $$("button", row).forEach((x) => (x.disabled = true));
+        const why = document.createElement("div");
+        why.className = "why-box";
+        why.textContent = "Why: " + card.why;
+        body.appendChild(why);
+        if (val === card.answer) onCorrect(card, "🎉 Correct! Check the Why box.");
+        else onWrong(card, "Read the Why box, then retry.");
+      });
+      row.appendChild(b);
+    });
+    body.appendChild(row);
+  }
+
+  function renderSort(card, body, actions) {
+    const pool = document.createElement("div");
+    pool.className = "chip-pool";
+    pool.id = "chipPool";
+
+    const buckets = document.createElement("div");
+    buckets.className = "buckets";
+    card.buckets.forEach((name, bi) => {
+      const buck = document.createElement("div");
+      buck.className = "bucket";
+      buck.dataset.bucket = String(bi);
+      const h = document.createElement("h3");
+      h.textContent = name;
+      buck.appendChild(h);
+      const drop = document.createElement("div");
+      drop.className = "chip-pool";
+      drop.dataset.drop = String(bi);
+      buck.appendChild(drop);
+      buck.addEventListener("click", () => {
+        if (state.sortPicked == null || state.awaitingContinue) return;
+        placeChip(state.sortPicked, bi, card);
+      });
+      buckets.appendChild(buck);
+    });
+
+    const items = shuffle(card.items.map((it, i) => ({ ...it, _i: i })));
+    items.forEach((it) => {
+      const chip = document.createElement("button");
+      chip.className = "chip";
+      chip.textContent = it.text;
+      chip.dataset.idx = String(it._i);
+      chip.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (state.awaitingContinue) return;
+        // if already in a bucket, allow re-pick
+        $$(".chip").forEach((c) => c.classList.remove("picked"));
+        chip.classList.add("picked");
+        state.sortPicked = it._i;
+      });
+      pool.appendChild(chip);
+    });
+
+    const hint = document.createElement("p");
+    hint.className = "topic-tag";
+    hint.textContent = "Tap a chip, then tap a bucket.";
+    body.appendChild(hint);
+    body.appendChild(pool);
+    body.appendChild(buckets);
+
+    const check = document.createElement("button");
+    check.className = "btn-primary";
+    check.textContent = "Check ✓";
+    check.addEventListener("click", () => checkSort(card));
+    actions.appendChild(check);
+  }
+
+  function placeChip(idx, bucket, card) {
+    state.sortMap[idx] = bucket;
+    state.sortPicked = null;
+    // re-render chip positions
+    const cardItems = card.items;
+    const pool = $("#chipPool");
+    $$(".bucket .chip-pool[data-drop]").forEach((d) => (d.innerHTML = ""));
+    pool.innerHTML = "";
+    cardItems.forEach((it, i) => {
+      const chip = document.createElement("button");
+      chip.className = "chip" + (state.sortMap[i] != null ? " in-bucket" : "");
+      chip.textContent = it.text;
+      chip.dataset.idx = String(i);
+      chip.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (state.awaitingContinue) return;
+        $$(".chip").forEach((c) => c.classList.remove("picked"));
+        chip.classList.add("picked");
+        state.sortPicked = i;
+      });
+      if (state.sortMap[i] != null) {
+        const drop = $('[data-drop="' + state.sortMap[i] + '"]');
+        drop.appendChild(chip);
+      } else {
+        pool.appendChild(chip);
+      }
+    });
+  }
+
+  function checkSort(card) {
+    if (state.awaitingContinue) return;
+    const allPlaced = card.items.every((_, i) => state.sortMap[i] != null);
+    if (!allPlaced) {
+      showFeedback(false, "Put every chip into a bucket first!");
+      $("#feedbackBox").className = "feedback cheer";
+      return;
+    }
+    const ok = card.items.every((it, i) => state.sortMap[i] === it.bucket);
+    if (ok) onCorrect(card, "🎉 Perfect sorting!");
+    else onWrong(card, "Some chips are in the wrong bucket.");
+  }
+
+  function renderOrder(card, body, actions) {
+    // Start shuffled
+    state.orderSteps = shuffle(card.steps.map((t, i) => ({ text: t, correctIndex: i })));
+    const list = document.createElement("div");
+    list.className = "order-list";
+    list.id = "orderList";
+    body.appendChild(list);
+    drawOrderList();
+
+    const check = document.createElement("button");
+    check.className = "btn-primary";
+    check.textContent = "Check order ✓";
+    check.addEventListener("click", () => {
+      if (state.awaitingContinue) return;
+      const ok = state.orderSteps.every((s, i) => s.correctIndex === i);
+      if (ok) onCorrect(card, "🎉 Right order!");
+      else onWrong(card, "Try moving the steps with ▲ ▼.");
+    });
+    actions.appendChild(check);
+  }
+
+  function drawOrderList() {
+    const list = $("#orderList");
+    list.innerHTML = "";
+    state.orderSteps.forEach((step, i) => {
+      const row = document.createElement("div");
+      row.className = "order-item";
+      const num = document.createElement("strong");
+      num.textContent = i + 1 + ".";
+      const span = document.createElement("span");
+      span.textContent = step.text;
+      const ctrl = document.createElement("div");
+      ctrl.className = "order-controls";
+      const up = document.createElement("button");
+      up.textContent = "▲";
+      up.disabled = i === 0 || state.awaitingContinue;
+      up.addEventListener("click", () => {
+        if (i === 0) return;
+        [state.orderSteps[i - 1], state.orderSteps[i]] = [state.orderSteps[i], state.orderSteps[i - 1]];
+        drawOrderList();
+      });
+      const down = document.createElement("button");
+      down.textContent = "▼";
+      down.disabled = i === state.orderSteps.length - 1 || state.awaitingContinue;
+      down.addEventListener("click", () => {
+        if (i >= state.orderSteps.length - 1) return;
+        [state.orderSteps[i + 1], state.orderSteps[i]] = [state.orderSteps[i], state.orderSteps[i + 1]];
+        drawOrderList();
+      });
+      ctrl.appendChild(up);
+      ctrl.appendChild(down);
+      row.appendChild(num);
+      row.appendChild(span);
+      row.appendChild(ctrl);
+      list.appendChild(row);
+    });
+  }
+
+  function renderTeachback(card, body, actions) {
+    const hint = document.createElement("p");
+    hint.className = "topic-tag";
+    hint.textContent = "Say your answer out loud (or to Mum/Dad), then reveal!";
+    body.appendChild(hint);
+
+    const revealBox = document.createElement("div");
+    revealBox.id = "revealBox";
+    revealBox.className = "hidden";
+    body.appendChild(revealBox);
+
+    const revealBtn = document.createElement("button");
+    revealBtn.className = "btn-secondary";
+    revealBtn.textContent = "Reveal answers 👀";
+    revealBtn.addEventListener("click", () => {
+      const ul = document.createElement("ul");
+      ul.className = "reveal-list";
+      card.reveal.forEach((line) => {
+        const li = document.createElement("li");
+        li.textContent = line;
+        ul.appendChild(li);
+      });
+      revealBox.innerHTML = "";
+      revealBox.appendChild(ul);
+      revealBox.classList.remove("hidden");
+      revealBtn.disabled = true;
+    });
+    actions.appendChild(revealBtn);
+
+    const gotIt = document.createElement("button");
+    gotIt.className = "btn-primary";
+    gotIt.textContent = "I said it! ⭐";
+    gotIt.addEventListener("click", () => {
+      if (state.awaitingContinue) return;
+      // Teach-back counts as correct when child confirms (oral practice)
+      onCorrect(card, "🌟 Awesome teach-back!");
+    });
+    actions.appendChild(gotIt);
+
+    const needHelp = document.createElement("button");
+    needHelp.className = "btn-ghost";
+    needHelp.textContent = "Need another try";
+    needHelp.addEventListener("click", () => {
+      if (state.awaitingContinue) return;
+      onWrong(card, card.coachHint || "Reveal, practice, then try again!");
+    });
+    actions.appendChild(needHelp);
+  }
+
+  function finishMission(timedOut) {
+    stopTimer();
+    const totalUnique = new Set(state.queue.map((c) => c.id)).size;
+    const accuracy = state.answered ? Math.round((state.correct / state.answered) * 100) : 0;
+    let starsEarned = 1;
+    if (accuracy >= 60) starsEarned = 2;
+    if (accuracy >= 85) starsEarned = 3;
+    if (timedOut && state.answered === 0) starsEarned = 1;
+    progress.stars += starsEarned;
+    progress.history.push({
+      date: todayStr(),
+      chapterId: state.chapterId,
+      isMix: state.isMix,
+      correct: state.correct,
+      answered: state.answered,
+      accuracy,
+      weakTopics: state.sessionWeakTopics.slice(),
+      timedOut: !!timedOut
+    });
+    if (progress.history.length > 30) progress.history = progress.history.slice(-30);
+    saveProgress();
+    renderStats();
+
+    const res = $("#resultsArea");
+    res.innerHTML =
+      '<div class="big-emoji">' + (timedOut ? "⏰" : "🏆") + "</div>" +
+      "<h2>" + (timedOut ? "Time's up — great effort!" : "Mission complete!") + "</h2>" +
+      '<div class="star-row">' + "⭐".repeat(starsEarned) + "☆".repeat(3 - starsEarned) + "</div>" +
+      "<p>You got <strong>" + state.correct + "</strong> right out of <strong>" + state.answered +
+      "</strong> tries (" + accuracy + "%). Cards in this mission: " + totalUnique + ".</p>";
+
+    setCoach(coachLine("done"));
+    burstConfetti();
+    showScreen("results");
+  }
+
+  /** Parent Coach: accuracy, weak topics, exactly 2 oral questions */
+  function renderCoach() {
+    stopTimer();
+    setCoach("Parent Coach — 60-second briefing for Mo");
+    renderStats();
+
+    const hist = progress.history;
+    const recent = hist.slice(-5);
+    let totalC = 0, totalA = 0;
+    const weakCount = {};
+    recent.forEach((h) => {
+      totalC += h.correct;
+      totalA += h.answered;
+      (h.weakTopics || []).forEach((t) => {
+        weakCount[t] = (weakCount[t] || 0) + 1;
+      });
+    });
+    // also from cardStats
+    Object.keys(progress.cardStats).forEach((id) => {
+      const st = progress.cardStats[id];
+      if (st.lastWrong) {
+        const card = window.GS_CARDS.cards.find((c) => c.id === id);
+        if (card) weakCount[card.topic] = (weakCount[card.topic] || 0) + 1;
+      }
+    });
+
+    const accuracy = totalA ? Math.round((totalC / totalA) * 100) : 0;
+    const weakTopics = Object.entries(weakCount)
+      .sort((a, b) => b[1] - a[1])
+      .map(([t]) => t)
+      .slice(0, 5);
+
+    const oral = pickTwoOral(weakTopics);
+
+    const panel = $("#coachPanel");
+    panel.innerHTML =
+      "<h2>🧭 Parent Coach</h2>" +
+      '<p class="note">Quick briefing for Mo — no tutor mode needed. Short missions / brain boost only.</p>' +
+      '<div class="stat-grid">' +
+      '<div class="stat-box"><div class="num">' + accuracy + '%</div><div class="lbl">Recent accuracy</div></div>' +
+      '<div class="stat-box"><div class="num">' + progress.streak + '</div><div class="lbl">Day streak</div></div>' +
+      '<div class="stat-box"><div class="num">' + progress.stars + '</div><div class="lbl">Total stars</div></div>' +
+      '<div class="stat-box"><div class="num">' + hist.length + '</div><div class="lbl">Missions done</div></div>' +
+      "</div>" +
+      "<h3>Weak topics</h3>" +
+      (weakTopics.length
+        ? '<ul class="weak-list">' + weakTopics.map((t) => "<li>" + escapeHtml(t) + "</li>").join("") + "</ul>"
+        : '<p class="note">No weak topics yet — play a mission first!</p>') +
+      "<h3>Exactly 2 oral questions</h3>" +
+      '<ul class="oral-list">' +
+      oral.map((q) => "<li>" + escapeHtml(q) + "</li>").join("") +
+      "</ul>";
+
+    showScreen("coach");
+  }
+
+  function pickTwoOral(weakTopics) {
+    const bank = window.GS_CARDS.oralBank.slice();
+    // Prefer questions matching weak chapter topics
+    const weakChapters = new Set();
+    weakTopics.forEach((topic) => {
+      const card = window.GS_CARDS.cards.find((c) => c.topic === topic);
+      if (card) weakChapters.add(card.chapter);
+    });
+    const preferred = bank.filter((o) => weakChapters.has(o.chapter));
+    const rest = bank.filter((o) => !weakChapters.has(o.chapter));
+    const pool = shuffle(preferred.concat(shuffle(rest)));
+    const picked = [];
+    const usedCh = new Set();
+    for (const o of pool) {
+      if (picked.length >= 2) break;
+      // try diversify chapters
+      if (picked.length === 1 && usedCh.has(o.chapter) && pool.length > 2) continue;
+      picked.push(o.q);
+      usedCh.add(o.chapter);
+    }
+    while (picked.length < 2 && pool.length) {
+      const q = pool[picked.length % pool.length].q;
+      if (!picked.includes(q)) picked.push(q);
+      else picked.push(bank[(picked.length * 3) % bank.length].q);
+    }
+    return picked.slice(0, 2);
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function burstConfetti() {
+    const layer = document.createElement("div");
+    layer.className = "confetti-burst";
+    const colors = ["#FF6B6B", "#4ECDC4", "#FFE66D", "#A78BFA", "#6BCB77", "#FF8E53"];
+    for (let i = 0; i < 28; i++) {
+      const p = document.createElement("div");
+      p.className = "confetti-piece";
+      p.style.left = Math.random() * 100 + "%";
+      p.style.background = colors[i % colors.length];
+      p.style.animationDelay = Math.random() * 0.3 + "s";
+      p.style.animationDuration = 1 + Math.random() * 0.8 + "s";
+      layer.appendChild(p);
+    }
+    document.body.appendChild(layer);
+    setTimeout(() => layer.remove(), 2000);
+  }
+
+  function bindNav() {
+    $("#btnHome").addEventListener("click", () => {
+      stopTimer();
+      renderHome();
+    });
+    $("#btnCoach").addEventListener("click", renderCoach);
+    $("#btnBackHome").addEventListener("click", renderHome);
+    $("#btnResultsHome").addEventListener("click", renderHome);
+    $("#btnResultsCoach").addEventListener("click", renderCoach);
+    $("#btnCoachHome").addEventListener("click", renderHome);
+    $("#btnQuitMission").addEventListener("click", () => {
+      if (confirm("Leave this mission? Progress so far is saved.")) {
+        stopTimer();
+        renderHome();
+      }
+    });
+  }
+
+  function init() {
+    if (!window.GS_CARDS) {
+      document.body.innerHTML = "<p style='padding:2rem;font-family:sans-serif'>Missing data/cards.js</p>";
+      return;
+    }
+    bindNav();
+    renderHome();
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();
+
+</script>
+</body>
+</html>
