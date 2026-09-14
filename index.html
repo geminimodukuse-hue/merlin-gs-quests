@@ -1,1962 +1,1601 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="theme-color" content="#FF6B6B" />
-  <title>Merlin · GS Quests</title>
-  <style>
-/* Merlin GS Quests — mobile-first, high contrast, big taps */
-:root {
-  --bg: #FFF8F0;
-  --bg2: #FFE8D6;
-  --ink: #1A1A2E;
-  --muted: #5C5C7A;
-  --card: #FFFFFF;
-  --accent: #FF6B6B;
-  --teal: #4ECDC4;
-  --gold: #FFD93D;
-  --purple: #A78BFA;
-  --green: #6BCB77;
-  --shadow: 0 8px 24px rgba(26, 26, 46, 0.12);
-  --radius: 20px;
-  --tap: 52px;
-  --font: "Segoe UI", "Nunito", "Comic Sans MS", system-ui, sans-serif;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFF6EA">
+<meta name="description" content="Merlin GS Quests — short, playful NGS Term 1 revision missions for Primary 3.">
+<title>Merlin GS Quests · NGS Term 1</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='36' r='26' fill='%23FF7A59'/%3E%3Ccircle cx='32' cy='36' r='22' fill='%23FFF6EA'/%3E%3Cpath d='M32 6l-4 8h8z' fill='%237C6BF0'/%3E%3Ccircle cx='24' cy='34' r='4' fill='%2333305C'/%3E%3Ccircle cx='40' cy='34' r='4' fill='%2333305C'/%3E%3Cpath d='M26 44c4 3 8 3 12 0' stroke='%23FF7A59' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Baloo+2:wght@500;600;700;800&display=swap">
+<style>
+/* ============ Merlin GS Quests — app styles ============ */
+:root{
+  --bg:#FFF6EA; --ink:#33305C; --ink-soft:#6B678F; --card:#FFFFFF; --line:#F0E7D6;
+  --coral:#FF7A59; --coral-deep:#F2603C; --gold:#FFC53D; --gold-deep:#F5A800;
+  --green:#2BAE8A; --violet:#7C6BF0; --good:#2FBF71; --bad:#E85D75;
+  --radius:20px; --shadow:0 6px 18px rgba(76,60,40,.10);
+  --font:'Baloo 2', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent; margin:0; padding:0}
+html{scroll-behavior:auto}
+body{
+  font-family:var(--font); color:var(--ink); background:var(--bg); font-size:17px; line-height:1.45;
+  background-image:radial-gradient(560px 340px at 8% -6%, rgba(255,197,61,.28), transparent 65%),
+                   radial-gradient(520px 360px at 100% 4%, rgba(255,122,89,.16), transparent 62%),
+                   radial-gradient(640px 420px at 50% 108%, rgba(124,107,240,.14), transparent 60%);
+  background-attachment:fixed; min-height:100dvh;
+}
+button{font-family:inherit; font-size:inherit; color:inherit; border:0; background:none; cursor:pointer; touch-action:manipulation}
+.app{max-width:560px; margin:0 auto; padding:0 16px calc(24px + env(safe-area-inset-bottom)); min-height:100dvh}
+.hidden{display:none!important}
+
+/* ---------- header ---------- */
+header{
+  position:sticky; top:0; z-index:40; display:flex; align-items:center; gap:10px;
+  padding:10px 2px; margin-bottom:6px; background:linear-gradient(var(--bg) 72%, transparent);
+}
+.brand{display:flex; align-items:center; gap:9px; margin-right:auto}
+.brand .logo{width:40px; height:40px; flex:none}
+.brand h1{font-size:19px; font-weight:800; letter-spacing:.2px}
+.brand small{display:block; font-size:11.5px; color:var(--ink-soft); font-weight:600; line-height:1.1}
+.icon-btn{
+  width:44px; height:44px; border-radius:14px; background:var(--card); box-shadow:var(--shadow);
+  display:inline-flex; align-items:center; justify-content:center; color:var(--ink); flex:none;
+  transition:transform .12s ease;
+}
+.icon-btn:active{transform:scale(.92)}
+.icon-btn svg{width:22px; height:22px}
+
+/* ---------- generic buttons ---------- */
+.btn{
+  display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; width:100%;
+  border-radius:16px; font-weight:800; font-size:17px; padding:10px 16px;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.btn:active{transform:scale(.965)}
+.btn-primary{background:var(--coral); color:#fff; box-shadow:0 6px 16px rgba(255,122,89,.38)}
+.btn-gold{background:var(--gold); color:#5B3E00; box-shadow:0 6px 16px rgba(245,168,0,.34)}
+.btn-ghost{background:var(--card); color:var(--ink); box-shadow:var(--shadow)}
+.btn-violet{background:var(--violet); color:#fff; box-shadow:0 6px 16px rgba(124,107,240,.34)}
+.btn svg{width:20px; height:20px; flex:none}
+.btn-row{display:flex; gap:10px}
+.btn-row .btn{flex:1}
+
+/* ---------- home ---------- */
+.hero{display:flex; align-items:center; gap:14px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px; margin:8px 0 14px}
+.hero .owl{width:92px; height:92px; flex:none; animation:owlFloat 3.4s ease-in-out infinite}
+.hero h2{font-size:21px; font-weight:800; line-height:1.2}
+.hero p{color:var(--ink-soft); font-weight:600; font-size:14px; margin-top:2px}
+.chip{
+  display:inline-flex; align-items:center; gap:6px; min-height:40px; padding:6px 12px; border-radius:999px;
+  background:var(--card); box-shadow:var(--shadow); font-weight:700; font-size:14px; color:var(--ink-soft);
+  border:2px solid transparent; transition:all .15s ease;
+}
+.chip.on{color:var(--ink); border-color:var(--gold); background:#FFF9E8}
+.chip svg{width:17px; height:17px}
+.settings{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 14px; align-items:center}
+.settings .spacer{flex:1}
+.quests-head{display:flex; align-items:baseline; justify-content:space-between; margin:16px 2px 8px}
+.quests-head h3{font-size:17px; font-weight:800}
+.quests-head .note{font-size:12.5px; color:var(--ink-soft); font-weight:600}
+.chap{
+  display:flex; align-items:center; gap:12px; background:var(--card); border-radius:18px; box-shadow:var(--shadow);
+  padding:13px 14px; margin-bottom:10px; width:100%; text-align:left; position:relative; overflow:hidden;
+  transition:transform .12s ease;
+}
+.chap:active{transform:scale(.975)}
+.chap .tile{width:52px; height:52px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:27px; flex:none; color:#fff}
+.chap .info{flex:1; min-width:0}
+.chap .info b{display:block; font-size:16.5px; font-weight:800; line-height:1.2}
+.chap .info .pages{font-size:12px; color:var(--ink-soft); font-weight:600}
+.chap .stars{font-size:12.5px; color:var(--gold-deep); font-weight:700; white-space:nowrap}
+.meter{height:8px; border-radius:99px; background:#F1EADB; overflow:hidden; margin-top:6px}
+.meter i{display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--gold),#FFB020); width:0%; transition:width .5s ease}
+.meter-label{display:flex; justify-content:space-between; font-size:11.5px; color:var(--ink-soft); font-weight:600; margin-top:3px}
+.cta-wrap{display:flex; flex-direction:column; gap:10px; margin-top:14px}
+.cta-big{min-height:64px; font-size:19px; border-radius:18px}
+.cta-big .sub{display:block; font-size:12.5px; font-weight:600; opacity:.85}
+.mix-tip{font-size:12.5px; color:var(--ink-soft); text-align:center; font-weight:600; margin-top:6px}
+
+/* ---------- play / question ---------- */
+.topbar{display:flex; align-items:center; gap:8px; margin:4px 0 10px}
+.topbar .label{font-weight:800; font-size:14.5px; white-space:nowrap}
+.topbar .spacer{flex:1}
+.stat{display:inline-flex; align-items:center; gap:5px; background:var(--card); box-shadow:var(--shadow); border-radius:12px; padding:5px 10px; font-weight:800; font-size:14px; min-height:38px}
+.stat svg{width:17px; height:17px}
+.stat .t{font-variant-numeric:tabular-nums}
+.timer.warn{animation:timerPulse .8s ease-in-out infinite; color:var(--bad)}
+.timerbar{height:6px; border-radius:99px; background:#F1EADB; overflow:hidden; margin:0 0 12px}
+.timerbar i{display:block; height:100%; width:100%; background:var(--coral); transition:width .9s linear}
+.dots{display:flex; gap:5px; justify-content:center; margin:10px 0 12px}
+.dots span{width:9px; height:9px; border-radius:99px; background:#E7DCC4; transition:all .2s}
+.dots span.done{background:var(--gold)}
+.dots span.now{background:var(--coral); transform:scale(1.35)}
+.qcard{background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px 16px; animation:cardIn .32s ease}
+.qcard .q-tag{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:800; letter-spacing:.6px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px}
+.qcard .q-tag svg{width:15px; height:15px}
+.qcard .prompt{font-size:20px; font-weight:800; line-height:1.35}
+.qcard .prompt-sub{font-size:14.5px; color:var(--ink-soft); font-weight:600; margin-top:6px}
+.read-btn{margin-top:10px}
+.opt{
+  display:flex; align-items:center; gap:10px; width:100%; min-height:54px; margin-top:10px; padding:10px 14px;
+  background:#FBF6EA; border:2.5px solid #EFE3CC; border-radius:15px; font-weight:700; font-size:16px; text-align:left;
+  transition:transform .12s ease, background .15s, border-color .15s;
+}
+.opt:active{transform:scale(.98)}
+.opt .e{font-size:22px; flex:none}
+.opt.ok{background:#E9F9EF; border-color:var(--good); animation:pop .3s ease}
+.opt.no{background:#FDEAEE; border-color:var(--bad); animation:shake .4s ease}
+.why{margin-top:12px; background:#FFF6E3; border:2px dashed var(--gold); border-radius:14px; padding:12px 14px; font-size:15px; font-weight:600; color:#6B4A00; animation:cardIn .3s ease}
+.why b{display:block; margin-bottom:2px; font-size:13px; letter-spacing:.5px; text-transform:uppercase; color:var(--gold-deep)}
+.tf-row{display:flex; gap:12px; margin-top:12px}
+.tf-btn{flex:1; min-height:60px; border-radius:15px; background:#FBF6EA; border:2.5px solid #EFE3CC; font-weight:800; font-size:19px; display:flex; align-items:center; justify-content:center; gap:8px; transition:all .12s}
+.tf-btn:active{transform:scale(.97)}
+.tf-btn.ok{background:#E9F9EF; border-color:var(--good); animation:pop .3s ease}
+.tf-btn.no{background:#FDEAEE; border-color:var(--bad); animation:shake .4s ease}
+.buckets{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px}
+.bucket{background:#FBF6EA; border:2.5px solid #EFE3CC; border-radius:15px; padding:10px 8px; min-height:120px}
+.bucket h4{font-size:13.5px; font-weight:800; text-align:center; margin-bottom:8px; color:var(--ink-soft)}
+.bucket .chip-item{display:block; width:100%; margin:5px 0; padding:7px 6px; border-radius:10px; font-size:12.5px; font-weight:700; line-height:1.2}
+.chip-item{background:#fff; border:2px solid #E7DCC4; text-align:center}
+.chip-item.selA{background:#E9F9EF; border-color:var(--green)}
+.chip-item.selB{background:#EAF0FF; border-color:var(--violet)}
+.chip-item.bad{background:#FDEAEE; border-color:var(--bad); animation:shake .4s ease}
+.order-wrap{margin-top:12px}
+.order-src{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px}
+.order-src button{padding:8px 12px; border-radius:12px; background:#FBF6EA; border:2px solid #EFE3CC; font-weight:700; font-size:14.5px}
+.order-src button:disabled{opacity:.35}
+.order-slots{display:flex; flex-direction:column; gap:6px}
+.order-slot{min-height:44px; border:2px dashed #E0D3B8; border-radius:12px; padding:6px 10px; font-weight:700; font-size:14.5px; display:flex; align-items:center; gap:8px}
+.order-slot .n{color:var(--gold-deep); font-weight:800}
+.order-slot button{margin-left:auto; color:var(--bad); font-weight:800; font-size:15px; padding:4px}
+.pairs{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px}
+.pair-col{display:flex; flex-direction:column; gap:8px}
+.pair-col h5{font-size:12px; letter-spacing:.5px; text-transform:uppercase; color:var(--ink-soft); font-weight:800; text-align:center}
+.pair-item{min-height:52px; border-radius:13px; background:#FBF6EA; border:2.5px solid #EFE3CC; font-weight:700; font-size:14.5px; display:flex; align-items:center; justify-content:center; gap:6px; padding:6px; text-align:center; transition:all .12s}
+.pair-item.sel{background:#FFF6E3; border-color:var(--gold)}
+.pair-item.ok{background:#E9F9EF; border-color:var(--good); animation:pop .3s ease}
+.pair-item.bad{background:#FDEAEE; border-color:var(--bad); animation:shake .4s ease}
+.pair-item .e{font-size:20px}
+.fill-sent{font-size:18px; font-weight:800; line-height:1.55; margin:12px 0}
+.fill-sent u{color:var(--coral-deep); text-decoration:none; background:#FFF0E8; border-radius:8px; padding:0 8px}
+.fill-bank{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.fill-bank button{padding:9px 14px; border-radius:12px; background:#FBF6EA; border:2px solid #EFE3CC; font-weight:700; font-size:15px}
+.fill-bank button:disabled{opacity:.35}
+.recall{margin-top:12px}
+.recall .facts{background:#F7F3FF; border:2px solid #E2DAFF; border-radius:14px; padding:12px 14px; font-weight:700; font-size:15px}
+.recall .facts li{margin:4px 0 4px 18px}
+.teach-bank{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.teach-bank button{padding:9px 12px; border-radius:12px; background:#FBF6EA; border:2px solid #EFE3CC; font-weight:700; font-size:13.5px}
+.teach-bank button.pick{background:#E9F9EF; border-color:var(--good)}
+.check-row{margin-top:14px}
+.next-row{margin-top:14px}
+
+/* ---------- mascot ---------- */
+.mascot-line{display:flex; align-items:flex-end; gap:10px; margin-top:14px; min-height:70px}
+.mascot-line .owl-sm{width:52px; height:52px; flex:none}
+.bubble{background:var(--card); box-shadow:var(--shadow); border-radius:16px 16px 16px 4px; padding:10px 14px; font-weight:700; font-size:15px; max-width:82%; animation:cardIn .3s ease}
+
+/* ---------- done ---------- */
+.done-hero{text-align:center; padding:26px 10px 10px}
+.done-hero .big-star{font-size:56px; animation:starSpin 1.2s ease}
+.done-hero h2{font-size:26px; font-weight:800}
+.done-hero p{color:var(--ink-soft); font-weight:600; margin-top:4px}
+.star-row{display:flex; justify-content:center; gap:8px; margin:16px 0 4px}
+.star-cell{width:66px; background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:10px 4px; text-align:center}
+.star-cell svg{width:26px; height:26px}
+.star-cell b{display:block; font-size:17px}
+.star-cell small{font-size:11px; color:var(--ink-soft); font-weight:700}
+.stats-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0}
+.stat-card{background:var(--card); border-radius:16px; box-shadow:var(--shadow); padding:12px; text-align:center}
+.stat-card b{font-size:22px; display:block}
+.stat-card small{font-size:12px; color:var(--ink-soft); font-weight:700}
+.mastery-move{background:#FFF6E3; border:2px dashed var(--gold); border-radius:16px; padding:12px 14px; margin:14px 0; font-size:14px; font-weight:700}
+.mastery-move b{display:block; font-size:13px; letter-spacing:.5px; text-transform:uppercase; color:var(--gold-deep); margin-bottom:4px}
+.confetti-bit{position:fixed; top:-14px; width:10px; height:14px; border-radius:3px; z-index:60; pointer-events:none; animation:confettiFall 2.6s linear forwards}
+
+/* ---------- parent coach ---------- */
+.parent-head{display:flex; align-items:center; gap:12px; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px; margin:8px 0 14px}
+.parent-head .icon{width:48px; height:48px; border-radius:15px; background:#F3F0FF; color:var(--violet); display:flex; align-items:center; justify-content:center; flex:none}
+.parent-head h2{font-size:19px; font-weight:800}
+.parent-head p{font-size:12.5px; color:var(--ink-soft); font-weight:600}
+.panel{background:var(--card); border-radius:18px; box-shadow:var(--shadow); padding:14px 16px; margin-bottom:12px}
+.panel h3{font-size:15px; font-weight:800; margin-bottom:8px; display:flex; align-items:center; gap:7px}
+.panel h3 svg{width:18px; height:18px; color:var(--coral)}
+.oral-q{background:#F7F3FF; border:2px solid #E2DAFF; border-radius:14px; padding:12px 14px; margin-top:10px}
+.oral-q .q{font-weight:800; font-size:15.5px}
+.oral-q .a{margin-top:6px; font-size:13.5px; color:var(--ink-soft); font-weight:600}
+.oral-q .can{margin-top:6px; font-size:13.5px; font-weight:700; color:var(--violet)}
+.weak-row{display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid var(--line)}
+.weak-row:last-child{border-bottom:0}
+.weak-row .dot{width:34px; height:34px; border-radius:10px; background:#FDEAEE; color:var(--bad); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; flex:none}
+.weak-row .t{font-weight:700; font-size:13.5px; flex:1; min-width:0}
+.weak-row .t small{display:block; color:var(--ink-soft); font-weight:600}
+.weak-row .p{font-size:12.5px; color:var(--ink-soft); font-weight:700}
+.zh-tip{background:#FFF6E3; border:2px dashed var(--gold); border-radius:14px; padding:10px 14px; font-size:14px; font-weight:700; color:#6B4A00; margin-top:10px}
+
+/* ---------- toast ---------- */
+#toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(80px); background:var(--ink); color:#fff; padding:11px 18px; border-radius:99px; font-weight:700; font-size:14.5px; z-index:80; opacity:0; transition:all .3s ease; max-width:88%; text-align:center; pointer-events:none}
+#toast.show{transform:translateX(-50%) translateY(0); opacity:1}
+
+/* ---------- star burst ---------- */
+.burst{position:fixed; pointer-events:none; z-index:70}
+.burst span{position:absolute; font-size:20px; animation:burstFly .8s ease-out forwards}
+
+/* ---------- keyframes ---------- */
+@keyframes cardIn{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+@keyframes pop{0%{transform:scale(1)} 45%{transform:scale(1.05)} 100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)} 20%{transform:translateX(-7px)} 40%{transform:translateX(7px)} 60%{transform:translateX(-5px)} 80%{transform:translateX(5px)}}
+@keyframes owlFloat{0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-7px) rotate(2deg)}}
+@keyframes timerPulse{0%,100%{opacity:1} 50%{opacity:.55}}
+@keyframes burstFly{from{opacity:1; transform:translate(0,0) scale(1)} to{opacity:0; transform:translate(var(--dx),var(--dy)) scale(1.4)}}
+@keyframes confettiFall{0%{transform:translateY(-16px) rotate(0)} 100%{transform:translateY(110vh) rotate(640deg); opacity:.9}}
+@keyframes starSpin{0%{transform:scale(0) rotate(-60deg)} 70%{transform:scale(1.25) rotate(8deg)} 100%{transform:scale(1) rotate(0)}}
+@keyframes flamePulse{0%,100%{transform:scale(1)} 50%{transform:scale(1.18)}}
+.flame-hot svg{animation:flamePulse .5s ease-in-out infinite}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001s!important; animation-iteration-count:1!important; transition-duration:.001s!important}
+  .confetti-bit{display:none}
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html, body {
-  height: 100%;
-  font-family: var(--font);
-  background: linear-gradient(165deg, var(--bg) 0%, var(--bg2) 100%);
-  color: var(--ink);
-  -webkit-tap-highlight-color: transparent;
-  overflow-x: hidden;
+@media (max-width:379px){
+  body{font-size:16px}
+  .qcard .prompt{font-size:18px}
+  .stat{font-size:13px; padding:5px 8px}
 }
-
-body { min-height: 100dvh; }
-
-button {
-  font-family: inherit;
-  font-size: 1.05rem;
-  font-weight: 700;
-  border: none;
-  border-radius: 16px;
-  min-height: var(--tap);
-  padding: 0.85rem 1.25rem;
-  cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s;
-  touch-action: manipulation;
-}
-button:active:not(:disabled) { transform: scale(0.97); }
-button:disabled { opacity: 0.45; cursor: not-allowed; }
-
-.app {
-  max-width: 720px;
-  margin: 0 auto;
-  min-height: 100dvh;
-  padding: 1rem 1rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* —— Header bar —— */
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-.brand-badge {
-  width: 48px; height: 48px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--accent), var(--purple));
-  display: grid; place-items: center;
-  font-size: 1.5rem;
-  box-shadow: var(--shadow);
-}
-.brand h1 {
-  font-size: 1.25rem;
-  line-height: 1.2;
-}
-.brand .sub {
-  font-size: 0.8rem;
-  color: var(--muted);
-  font-weight: 600;
-}
-.stats {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-.stat-pill {
-  background: var(--card);
-  border-radius: 999px;
-  padding: 0.45rem 0.85rem;
-  font-weight: 800;
-  font-size: 0.95rem;
-  box-shadow: var(--shadow);
-  display: flex; align-items: center; gap: 0.35rem;
-}
-
-.coach-line {
-  background: #fff;
-  border-left: 6px solid var(--teal);
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  font-weight: 700;
-  color: var(--ink);
-  box-shadow: var(--shadow);
-  animation: fadeIn 0.35s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: none; }
-}
-
-/* —— Screens —— */
-.screen { display: none; animation: fadeIn 0.3s ease; }
-.screen.active { display: flex; flex-direction: column; gap: 1rem; }
-
-/* —— Home —— */
-.hero {
-  background: linear-gradient(135deg, #FF8E8E 0%, #A78BFA 100%);
-  color: #fff;
-  border-radius: var(--radius);
-  padding: 1.25rem 1.35rem;
-  box-shadow: var(--shadow);
-}
-.hero h2 { font-size: 1.45rem; margin-bottom: 0.35rem; }
-.hero p { opacity: 0.95; font-weight: 600; font-size: 0.95rem; }
-
-.quest-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.85rem;
-}
-@media (min-width: 560px) {
-  .quest-grid { grid-template-columns: 1fr 1fr; }
-}
-
-.quest-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 1.1rem;
-  text-align: left;
-  box-shadow: var(--shadow);
-  border: 3px solid transparent;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  min-height: 140px;
-  color: var(--ink);
-}
-.quest-card:hover, .quest-card:focus-visible {
-  border-color: currentColor;
-  outline: none;
-}
-.quest-card .emoji { font-size: 2rem; }
-.quest-card .q-title { font-size: 1.05rem; font-weight: 800; }
-.quest-card .q-blurb { font-size: 0.82rem; color: var(--muted); font-weight: 600; line-height: 1.35; }
-.quest-card .q-meta { margin-top: auto; font-size: 0.8rem; font-weight: 800; opacity: 0.85; }
-
-.mix-card {
-  grid-column: 1 / -1;
-  background: linear-gradient(120deg, #FFE66D 0%, #FFB347 100%);
-  border: 3px solid #F0A500;
-  min-height: 100px;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-}
-.mix-card .emoji { font-size: 2.4rem; }
-.mix-card .q-title { font-size: 1.2rem; }
-
-.btn-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-}
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent), #FF8E53);
-  color: #fff;
-  box-shadow: 0 6px 0 #C44D4D;
-  flex: 1;
-  min-width: 140px;
-}
-.btn-primary:active:not(:disabled) { box-shadow: 0 2px 0 #C44D4D; }
-.btn-secondary {
-  background: var(--card);
-  color: var(--ink);
-  border: 3px solid #E8E0D8;
-  flex: 1;
-  min-width: 120px;
-}
-.btn-teal {
-  background: linear-gradient(135deg, var(--teal), #2BBBAD);
-  color: #fff;
-  box-shadow: 0 6px 0 #2A9D8F;
-  flex: 1;
-}
-.btn-ghost {
-  background: transparent;
-  color: var(--muted);
-  border: 2px dashed #C8C0B8;
-  min-height: 44px;
-  font-size: 0.95rem;
-}
-
-/* —— Mission HUD —— */
-.mission-hud {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  background: var(--card);
-  border-radius: 16px;
-  padding: 0.65rem 0.9rem;
-  box-shadow: var(--shadow);
-  flex-wrap: wrap;
-}
-.timer {
-  font-variant-numeric: tabular-nums;
-  font-weight: 900;
-  font-size: 1.35rem;
-  color: var(--accent);
-  display: flex; align-items: center; gap: 0.35rem;
-}
-.timer.warn { color: #E63946; animation: pulse 1s infinite; }
-@keyframes pulse {
-  50% { opacity: 0.7; }
-}
-.progress-dots {
-  display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
-}
-.dot {
-  width: 12px; height: 12px; border-radius: 50%;
-  background: #E0D8D0;
-}
-.dot.done { background: var(--green); }
-.dot.now { background: var(--accent); transform: scale(1.25); }
-.dot.retry { background: var(--gold); }
-
-/* —— Play card —— */
-.play-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  flex: 1;
-}
-.mode-tag {
-  align-self: flex-start;
-  background: #EEF2FF;
-  color: #4338CA;
-  font-size: 0.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-}
-.topic-tag {
-  font-size: 0.85rem;
-  color: var(--muted);
-  font-weight: 700;
-}
-.play-card h2 {
-  font-size: 1.25rem;
-  line-height: 1.35;
-}
-
-.choices { display: flex; flex-direction: column; gap: 0.65rem; }
-.choice-btn {
-  text-align: left;
-  background: #F7F3EE;
-  border: 3px solid #E8E0D8;
-  color: var(--ink);
-  border-radius: 16px;
-  padding: 1rem 1.1rem;
-  min-height: var(--tap);
-}
-.choice-btn.selected { border-color: var(--teal); background: #E6FFFB; }
-.choice-btn.correct { border-color: var(--green); background: #E8F8EC; }
-.choice-btn.wrong { border-color: var(--accent); background: #FFE8E8; }
-
-/* True/False */
-.tf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-.tf-btn { font-size: 1.2rem; }
-.tf-true { background: #E8F8EC; border: 3px solid var(--green); color: #1B5E20; }
-.tf-false { background: #FFE8E8; border: 3px solid var(--accent); color: #8B1A1A; }
-.why-box {
-  background: #FFF9E6;
-  border-radius: 14px;
-  padding: 0.9rem 1rem;
-  font-weight: 600;
-  border: 2px solid var(--gold);
-  line-height: 1.4;
-}
-
-/* Sort */
-.buckets {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.65rem;
-}
-.bucket {
-  background: #F7F3EE;
-  border-radius: 14px;
-  border: 3px dashed #D0C8C0;
-  min-height: 120px;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.bucket h3 {
-  font-size: 0.85rem;
-  text-align: center;
-  padding: 0.35rem;
-  color: var(--muted);
-}
-.chip-pool {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  min-height: 48px;
-}
-.chip {
-  background: #fff;
-  border: 2px solid #D8D0C8;
-  border-radius: 12px;
-  padding: 0.55rem 0.75rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-  min-height: 44px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-}
-.chip.in-bucket { background: #EEF2FF; border-color: var(--purple); }
-.chip.picked { outline: 3px solid var(--accent); }
-
-/* Order */
-.order-list { display: flex; flex-direction: column; gap: 0.5rem; }
-.order-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #F7F3EE;
-  border-radius: 14px;
-  padding: 0.55rem 0.65rem;
-  border: 2px solid #E8E0D8;
-}
-.order-item span {
-  flex: 1;
-  font-weight: 700;
-  text-align: left;
-}
-.order-controls { display: flex; flex-direction: column; gap: 0.25rem; }
-.order-controls button {
-  min-height: 40px;
-  padding: 0.35rem 0.7rem;
-  background: #fff;
-  border: 2px solid #D0C8C0;
-  font-size: 0.9rem;
-}
-
-/* Teach-back */
-.reveal-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.reveal-list li {
-  background: #E6FFFB;
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  font-weight: 700;
-  border-left: 5px solid var(--teal);
-}
-
-.feedback {
-  border-radius: 14px;
-  padding: 0.9rem 1rem;
-  font-weight: 800;
-  text-align: center;
-  animation: fadeIn 0.25s ease;
-}
-.feedback.ok { background: #E8F8EC; color: #1B5E20; }
-.feedback.bad { background: #FFE8E8; color: #8B1A1A; }
-.feedback.cheer { background: #FFF3CD; color: #7A5C00; }
-
-/* —— Results —— */
-.results-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-.results-card .big-emoji { font-size: 3.5rem; }
-.results-card h2 { font-size: 1.5rem; margin: 0.5rem 0; }
-.star-row { font-size: 2rem; letter-spacing: 0.15em; margin: 0.5rem 0; }
-.results-card p { font-weight: 600; color: var(--muted); margin-bottom: 1rem; }
-
-/* —— Coach —— */
-.coach-panel {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.coach-panel h2 { font-size: 1.35rem; }
-.coach-panel .note {
-  font-size: 0.9rem;
-  color: var(--muted);
-  font-weight: 600;
-}
-.stat-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.65rem;
-}
-.stat-box {
-  background: #F7F3EE;
-  border-radius: 14px;
-  padding: 0.9rem;
-  text-align: center;
-}
-.stat-box .num { font-size: 1.6rem; font-weight: 900; color: var(--accent); }
-.stat-box .lbl { font-size: 0.8rem; font-weight: 700; color: var(--muted); }
-.weak-list, .oral-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.weak-list li, .oral-list li {
-  background: #EEF2FF;
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  font-weight: 700;
-}
-.oral-list li {
-  background: #FFF9E6;
-  border-left: 5px solid var(--gold);
-  counter-increment: oral;
-}
-.oral-list { counter-reset: oral; }
-.oral-list li::before {
-  content: "Oral " counter(oral) ": ";
-  color: #B8860B;
-}
-
-.footer-hint {
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--muted);
-  font-weight: 600;
-  margin-top: auto;
-  padding-top: 0.5rem;
-}
-
-.hidden { display: none !important; }
-
-.confetti-burst {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 99;
-  overflow: hidden;
-}
-.confetti-piece {
-  position: absolute;
-  width: 10px; height: 14px;
-  top: -20px;
-  animation: fall 1.4s ease-out forwards;
-  border-radius: 2px;
-}
-@keyframes fall {
-  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-}
-
 </style>
 </head>
 <body>
-  <div class="app">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-badge" aria-hidden="true">🧙</div>
+<div class="app" id="app">
+
+  <header>
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="37" r="26" fill="#FF7A59"/><circle cx="32" cy="37" r="22" fill="#FFF6EA"/><path d="M32 7l-5 9h10z" fill="#7C6BF0"/><circle cx="24" cy="36" r="4" fill="#33305C"/><circle cx="40" cy="36" r="4" fill="#33305C"/><path d="M26 45c4 3 8 3 12 0" stroke="#FF7A59" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+      <div><h1>Merlin GS Quests</h1><small>NGS Term 1 · P3 · short missions</small></div>
+    </div>
+    <button class="icon-btn" id="btn-sound" aria-label="Sound" data-action="toggle-sound"></button>
+    <button class="icon-btn" id="btn-home" aria-label="Home" data-action="go-home"></button>
+  </header>
+
+  <main>
+
+    <!-- ================= HOME ================= -->
+    <section id="view-home" class="view">
+      <div class="hero">
+        <svg class="owl" viewBox="0 0 120 120" aria-hidden="true">
+          <path d="M60 14l-7 13h14z" fill="#7C6BF0"/>
+          <ellipse cx="60" cy="66" rx="42" ry="40" fill="#FFD9C9"/>
+          <ellipse cx="60" cy="66" rx="34" ry="32" fill="#FFF6EA"/>
+          <path d="M26 52c-8 6-10 20-4 30 3 5 9 7 14 5-6-8-8-22-2-33z" fill="#FFC53D"/>
+          <path d="M94 52c8 6 10 20 4 30-3 5-9 7-14 5 6-8 8-22 2-33z" fill="#FFC53D"/>
+          <circle cx="46" cy="62" r="9" fill="#fff"/><circle cx="46" cy="62" r="4.6" fill="#33305C"/>
+          <circle cx="74" cy="62" r="9" fill="#fff"/><circle cx="74" cy="62" r="4.6" fill="#33305C"/>
+          <path d="M50 82c6 4.6 14 4.6 20 0" stroke="#FF7A59" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M20 40c2-6 8-10 14-10M100 40c-2-6-8-10-14-10" stroke="#7C6BF0" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>
         <div>
-          <h1>GS Quests</h1>
-          <div class="sub">Merlin · short missions</div>
+          <h2>Ready for a quest, Merlin?</h2>
+          <p>Short missions · brain boost · stars &amp; streaks</p>
         </div>
       </div>
-      <div class="stats">
-        <div class="stat-pill" id="statStars">⭐ 0</div>
-        <div class="stat-pill" id="statStreak">🔥 0</div>
-      </div>
-    </header>
 
-    <div class="coach-line" id="coachLine">Mission time! Short brain boost — you've got this!</div>
-
-    <!-- HOME -->
-    <section class="screen active" data-screen="home" id="screenHome">
-      <div class="hero">
-        <h2>Hi Merlin! 👋</h2>
-        <p>Pick a chapter quest or Today's Mix. Big taps, short brain boosts — about 6 minutes.</p>
+      <div class="settings">
+        <button class="chip" id="chip-shuffle" data-action="toggle-shuffle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg><span id="lbl-shuffle">Shuffle chapters</span></button>
+        <button class="chip" id="chip-mix" data-action="toggle-mix"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="7" r="2.6"/><circle cx="12" cy="17" r="2.6"/><path d="M8 7.4l7.6 7.2M6.8 8.5l3.9 6.3"/></svg><span id="lbl-mix">Always new cards</span></button>
+        <div class="spacer"></div>
+        <button class="chip" data-action="pick-timer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg><span id="lbl-timer">6 min</span></button>
       </div>
-      <div class="quest-grid" id="questGrid"></div>
+
+      <div class="cta-wrap">
+        <button class="btn btn-gold cta-big" data-action="start-mix">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>
+          <span>Today's Mix<span class="sub">6–8 brain boost cards · extra weight on weak topics</span></span>
+        </button>
+        <button class="btn btn-primary cta-big" data-action="start-lightning">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>
+          <span>Lightning Round<span class="sub">60 seconds of quick choices</span></span>
+        </button>
+      </div>
+
+      <div class="quests-head"><h3>Quest maps</h3><span class="note" id="total-stars-note">⭐ 0 stars so far</span></div>
+      <div id="chapter-list"></div>
+
+      <div class="cta-wrap">
+        <button class="btn btn-violet" data-action="open-parent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>Parent Coach</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= PLAY ================= -->
+    <section id="view-play" class="view hidden">
+      <div class="topbar">
+        <button class="stat" data-action="exit-early" aria-label="I'm done">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          <span class="t">I'm done</span>
+        </button>
+        <div class="spacer"></div>
+        <span class="stat timer" id="stat-timer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>
+          <span class="t" id="timer-text">6:00</span>
+        </span>
+        <span class="stat" id="stat-streak">
+          <svg viewBox="0 0 24 24" fill="#FF7A59" stroke="#FF7A59" stroke-width="1.4"><path d="M12 2c1 4-4 6-4 10a4 4 0 008 0c0-2-1-3-2-4 .5 2 2 3 2 5a5 5 0 01-10 0c0-4 3-5 4-8 .5 2 1 3 1.5 3.5C10.5 6 11 4 12 2z"/></svg>
+          <span class="t" id="streak-text">0</span>
+        </span>
+        <span class="stat" id="stat-stars">
+          <svg viewBox="0 0 24 24" fill="#FFC53D"><path d="M12 2.5l2.9 5.9 6.6 1-4.7 4.6 1.1 6.5-5.9-3.1-5.9 3.1 1.1-6.5L2.5 9.4l6.6-1z"/></svg>
+          <span class="t" id="stars-text">0</span>
+        </span>
+      </div>
+      <div class="timerbar"><i id="timer-bar"></i></div>
+      <div class="dots" id="dots"></div>
+      <div id="qarea"></div>
+    </section>
+
+    <!-- ================= DONE ================= -->
+    <section id="view-done" class="view hidden">
+      <div class="done-hero">
+        <div class="big-star" id="done-emoji">⭐</div>
+        <h2 id="done-title">Quest complete!</h2>
+        <p id="done-sub"></p>
+      </div>
+      <div class="star-row">
+        <div class="star-cell"><svg viewBox="0 0 24 24" fill="#FFC53D"><path d="M12 2.5l2.9 5.9 6.6 1-4.7 4.6 1.1 6.5-5.9-3.1-5.9 3.1 1.1-6.5L2.5 9.4l6.6-1z"/></svg><b id="done-stars">0</b><small>stars</small></div>
+        <div class="star-cell"><svg viewBox="0 0 24 24" fill="#FF7A59"><path d="M12 2c1 4-4 6-4 10a4 4 0 008 0c0-2-1-3-2-4 .5 2 2 3 2 5a5 5 0 01-10 0c0-4 3-5 4-8 .5 2 1 3 1.5 3.5C10.5 6 11 4 12 2z"/></svg><b id="done-streak">0</b><small>best streak</small></div>
+        <div class="star-cell"><svg viewBox="0 0 24 24" fill="none" stroke="#2BAE8A" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg><b id="done-time">0:00</b><small>time</small></div>
+        <div class="star-cell"><svg viewBox="0 0 24 24" fill="#7C6BF0"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg><b id="done-cards">0</b><small>cards</small></div>
+      </div>
+      <div class="mastery-move" id="mastery-move"></div>
       <div class="btn-row">
-        <button type="button" class="btn-secondary" id="btnCoach">🧭 Parent Coach</button>
-      </div>
-      <p class="footer-hint">General Studies · Ch.1–4 · offline OK</p>
-    </section>
-
-    <!-- MISSION -->
-    <section class="screen" data-screen="mission" id="screenMission">
-      <div class="mission-hud">
-        <strong id="missionTitle">Mission</strong>
-        <div class="timer" id="timerDisplay">⏱ 6:00</div>
-        <button type="button" class="btn-ghost" id="btnQuitMission">Exit</button>
-      </div>
-      <div class="progress-dots" id="progressDots" aria-label="Progress"></div>
-      <div class="play-card" id="playArea"></div>
-    </section>
-
-    <!-- RESULTS -->
-    <section class="screen" data-screen="results" id="screenResults">
-      <div class="results-card" id="resultsArea"></div>
-      <div class="btn-row">
-        <button type="button" class="btn-primary" id="btnResultsHome">Home</button>
-        <button type="button" class="btn-secondary" id="btnResultsCoach">Parent Coach</button>
+        <button class="btn btn-gold" data-action="play-again">Play again</button>
+        <button class="btn btn-ghost" data-action="go-home">Home</button>
       </div>
     </section>
 
-    <!-- COACH -->
-    <section class="screen" data-screen="coach" id="screenCoach">
-      <div class="coach-panel" id="coachPanel"></div>
-      <div class="btn-row">
-        <button type="button" class="btn-primary" id="btnCoachHome">Back to Home</button>
+    <!-- ================= PARENT COACH ================= -->
+    <section id="view-parent" class="view hidden">
+      <div class="parent-head">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div><h2>Parent Coach</h2><p>For Mom · session summary · 2 oral questions</p></div>
       </div>
+      <div id="parent-body"></div>
     </section>
 
-    <nav class="btn-row" style="margin-top:0.25rem">
-      <button type="button" class="btn-ghost" id="btnHome" style="flex:1">🏠 Home</button>
-      <button type="button" class="btn-ghost" id="btnBackHome" style="display:none">Home</button>
-    </nav>
+  </main>
+</div>
+
+<div id="mascot-bubble" class="hidden" aria-hidden="true">
+  <div class="mascot-line">
+    <svg class="owl-sm" viewBox="0 0 120 120"><path d="M60 14l-7 13h14z" fill="#7C6BF0"/><ellipse cx="60" cy="66" rx="42" ry="40" fill="#FFD9C9"/><ellipse cx="60" cy="66" rx="34" ry="32" fill="#FFF6EA"/><circle cx="46" cy="62" r="9" fill="#fff"/><circle cx="46" cy="62" r="4.6" fill="#33305C"/><circle cx="74" cy="62" r="9" fill="#fff"/><circle cx="74" cy="62" r="4.6" fill="#33305C"/><path d="M50 82c6 4.6 14 4.6 20 0" stroke="#FF7A59" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+    <div class="bubble" id="mascot-text"></div>
   </div>
+</div>
+<div id="toast" role="status"></div>
 
-  <script>
-/**
- * Merlin GS Quests — curriculum cards (NGS P3 Term 1 Ch.1–4)
- * Facts only from school notes; do not invent.
- */
-window.GS_CARDS = {
-  chapters: [
-    {
-      id: "ch1",
-      num: 1,
-      title: "Get Well Soon",
-      emoji: "💊",
-      color: "#4ECDC4",
-      blurb: "When we feel ill — doctor, medicine, rest!"
-    },
-    {
-      id: "ch2",
-      num: 2,
-      title: "Say No",
-      emoji: "🚭",
-      color: "#FF6B6B",
-      blurb: "Smoking, drinking & drugs — stay safe!"
-    },
-    {
-      id: "ch3",
-      num: 3,
-      title: "My Feelings",
-      emoji: "💛",
-      color: "#FFE66D",
-      blurb: "Happy, sad, angry — know & care for feelings!"
-    },
-    {
-      id: "ch4",
-      num: 4,
-      title: "My Friends",
-      emoji: "🤝",
-      color: "#A78BFA",
-      blurb: "Share, care, and get along with friends!"
+<script>
+"use strict";
+/* ================================================================
+   CORE: data, store, rng, audio
+   ================================================================ */
+var CARDS_FALLBACK = {"meta": {"title": "Merlin GS Quests", "subject": "New General Studies (NGS) · Term 1", "level": "Primary 3", "version": "1.0.0"}, "units": [{"id": "u1", "title": "Healthy Living", "emoji": "💪", "color": "#2BAE8A", "chapters": [{"id": "c1", "title": "Get Well Soon", "pages": "pp.4–9", "emoji": "🤒", "color": "#2BAE8A", "facts": [{"id": "c1f1", "unit": "Healthy Living", "chapter": "Get Well Soon", "topic": "When you are ill", "page": "pp.4–9", "facts": ["When you feel ill, see a doctor, take the right dose of medicine on time, and rest and drink water."], "good": ["See a doctor", "Take the right dose of medicine on time", "Rest and drink water"], "bad": ["Buy leftover medicine from the pharmacy", "Take leftover medicine at home", "Only sleep and do nothing"], "why": "A doctor can find out what is wrong and give the right medicine. Rest and water help your body recover.", "scenario": "You wake up with a sore throat. What is the best thing to do?", "steps": ["See a doctor as soon as possible", "Take medicine according to the doctor", "Rest", "Drink water"], "fill": {"text": "When you are ill, you should see a ____.", "answer": "doctor", "bank": ["doctor", "teacher", "friend"]}, "keywords": ["see a doctor", "right dose", "on time", "rest", "water"], "can": "唔舒服嘅時候，應該點做呀？", "questionBank": ["MCQ: Which should you do when you feel ill?", "TF: 'Only sleep and do nothing' is a good way to get better.", "Sort: Good idea vs Not a good idea when ill", "Fill: When you are ill, you should see a ____."]}, {"id": "c1f2", "unit": "Healthy Living", "chapter": "Get Well Soon", "topic": "Doctor and Chinese medicine practitioner", "page": "pp.4–9", "facts": ["Doctors and Chinese medicine practitioners both check you and prescribe medicine. A doctor uses a stethoscope. A Chinese medicine practitioner checks your pulse by hand. They may give different medicine."], "good": ["A doctor uses a stethoscope", "A Chinese medicine practitioner checks your pulse by hand", "Both of them check you and prescribe medicine"], "bad": ["The doctor checks your pulse by hand", "Only the doctor prescribes medicine", "You do not need to tell them how you feel"], "why": "Doctors and Chinese medicine practitioners both help you, but they check you in different ways and may give different medicine.", "scenario": "At the clinic, the person checks your pulse by hand. Who is this?", "pairs": [["Doctor", "stethoscope"], ["Chinese medicine practitioner", "checks your pulse by hand"]], "fill": {"text": "A doctor uses a ____ to listen to your body.", "answer": "stethoscope", "bank": ["stethoscope", "drum", "phone"]}, "keywords": ["stethoscope", "pulse by hand", "prescribe medicine"], "can": "中醫同西醫檢查身體嘅方法有咩唔同呀？", "questionBank": ["MCQ: Who uses a stethoscope?", "TF: A Chinese medicine practitioner checks your pulse by hand.", "Match: Doctor vs Chinese medicine practitioner", "Fill: A doctor uses a ____ to listen to your body."]}, {"id": "c1f3", "unit": "Healthy Living", "chapter": "Get Well Soon", "topic": "Seeing the doctor", "page": "pp.4–9", "facts": ["When you visit the doctor, tell them how you feel and follow their instructions."], "good": ["Tell the doctor how you feel", "Follow the doctor's instructions", "Tell the doctor what hurts"], "bad": ["Say nothing and guess", "Hide how you feel", "Do the opposite of what the doctor says"], "why": "The doctor needs to know how you feel so they can give you the right help.", "scenario": "The doctor asks you, 'How do you feel?' What should you do?", "fill": {"text": "Tell the doctor how you ____.", "answer": "feel", "bank": ["feel", "look", "smell"]}, "keywords": ["tell how you feel", "follow instructions"], "can": "睇醫生嘅時候要點樣同醫生講呀？", "questionBank": ["MCQ: What should you do at the doctor's?", "TF: You should hide how you feel from the doctor.", "Sort: Good idea vs Not a good idea at the doctor's", "Fill: Tell the doctor how you ____."]}, {"id": "c1f4", "unit": "Healthy Living", "chapter": "Get Well Soon", "topic": "Types of medicine", "page": "pp.4–9", "facts": ["Medicine comes in many forms: syrup, pills, Chinese powder and herbs."], "good": ["Syrup", "Pills", "Chinese powder", "Herbs"], "bad": ["Candy", "Sweets", "Chips"], "why": "Medicine can be syrup, pills, Chinese powder or herbs. Only take the right kind for you.", "scenario": "Which of these is a type of medicine?", "pairs": [["syrup", "🍶"], ["pills", "💊"], ["Chinese powder", "🥄"], ["herbs", "🌿"]], "fill": {"text": "____ is a type of medicine.", "answer": "Syrup", "bank": ["Syrup", "Candy", "Chips"]}, "keywords": ["syrup", "pills", "Chinese powder", "herbs"], "can": "藥有邊幾種樣式呀？", "questionBank": ["MCQ: Which is a type of medicine?", "TF: Herbs are a type of medicine.", "Match: Medicine form vs picture", "Fill: ____ is a type of medicine."]}, {"id": "c1f5", "unit": "Healthy Living", "chapter": "Get Well Soon", "topic": "Reading the medicine label", "page": "pp.4–9", "facts": ["The medicine label tells you which clinic it came from, your name, when to start and how many days to take it, the amount, the dose and time, how to take it and possible side effects. Never take other people's medicine."], "good": ["Check which clinic the medicine came from", "Never take other people's medicine", "Read the dose and time on the label", "Know when to start and how many days", "Know how to take it and possible side effects"], "bad": ["Take other people's medicine", "Take any amount you like", "Skip reading the label"], "why": "The label tells you exactly how to take the medicine safely.", "scenario": "Your friend gives you his medicine. What should you do?", "fill": {"text": "Never take other ____'s medicine.", "answer": "people", "bank": ["people", "teacher", "pet"]}, "keywords": ["your name", "dose and time", "how to take it", "side effects", "never take others' medicine"], "can": "藥袋上面嘅標籤有咩用㗎？", "questionBank": ["MCQ: What can the medicine label tell you?", "TF: It is OK to take your friend's medicine.", "Sort: What the label tells you vs Not", "Fill: Never take other ____'s medicine."]}, {"id": "c1f6", "unit": "Healthy Living", "chapter": "Get Well Soon", "topic": "Taking medicine correctly", "page": "pp.4–9", "facts": ["Take medicine with water, on time, and follow the doctor. Never take the wrong amount, stop without asking the doctor, or take other people's medicine."], "good": ["Take medicine with water", "Take medicine on time", "Follow the doctor's instructions"], "bad": ["Take the wrong amount", "Stop without asking the doctor", "Take other people's medicine"], "why": "Taking medicine the right way helps you get better safely.", "scenario": "It is time for your medicine. What should you do?", "fill": {"text": "Take medicine with ____.", "answer": "water", "bank": ["water", "juice", "cola"]}, "keywords": ["with water", "on time", "follow the doctor"], "can": "食藥嘅時候要留意啲咩呀？", "questionBank": ["MCQ: Which is the RIGHT way to take medicine?", "TF: You can stop taking medicine without asking the doctor.", "Sort: Right way vs Wrong way to take medicine", "Fill: Take medicine with ____."]}, {"id": "c1f7", "unit": "Healthy Living", "chapter": "Get Well Soon", "topic": "Storing medicine safely", "page": "pp.4–9", "facts": ["Keep medicine in a cool, dry place, away from sunlight and out of children's reach."], "good": ["A cool place", "A dry place", "Away from sunlight", "Out of children's reach"], "bad": ["A hot place", "A damp place", "In the sunlight", "Where children can reach it"], "why": "If medicine is stored badly, it can go bad or become dangerous.", "scenario": "Where is the safest place to keep medicine at home?", "fill": {"text": "Keep medicine in a cool, ____ place.", "answer": "dry", "bank": ["dry", "wet", "hot"]}, "keywords": ["cool", "dry", "away from sunlight", "out of children's reach"], "can": "藥要收喺邊度先安全呀？", "questionBank": ["MCQ: Where should you keep medicine?", "TF: Medicine can be kept in a hot, damp place.", "Sort: Safe place vs Unsafe place for medicine", "Fill: Keep medicine in a cool, ____ place."]}, {"id": "c1f8", "unit": "Healthy Living", "chapter": "Get Well Soon", "topic": "Getting better fast", "page": "pp.4–9", "facts": ["To get better fast: see a doctor as soon as possible, take medicine according to the doctor, keep the home airy, rest, drink water and eat healthy food."], "good": ["See a doctor as soon as possible", "Take medicine according to the doctor", "Keep the home airy", "Rest", "Drink water", "Eat healthy food"], "bad": ["Play outside all day", "Eat only junk food", "Stay in a stuffy room"], "why": "Rest, water, healthy food and fresh air all help your body fight the illness.", "scenario": "How can you get better faster when you are ill?", "fill": {"text": "Eat ____ food to help you get better.", "answer": "healthy", "bank": ["healthy", "junk", "spicy"]}, "keywords": ["see a doctor", "rest", "drink water", "healthy food", "airy home"], "can": "點樣先可以快啲好返呀？", "questionBank": ["MCQ: What helps you get better faster?", "TF: Playing outside all day helps you get better faster.", "Sort: Helps recovery vs Does not help", "Fill: Eat ____ food to help you get better."]}, {"id": "c1f9", "unit": "Healthy Living", "chapter": "Get Well Soon", "topic": "Caring for someone who is ill", "page": "pp.4–9", "facts": ["You can care for an ill friend or family member by reminding them to take medicine, calling them and making them a get-well card."], "good": ["Remind them to take medicine", "Call them to cheer them up", "Make a get-well card"], "bad": ["Give them your medicine", "Invite them to play football", "Play loud music near them"], "why": "Small caring acts, like a call, a reminder or a card, make someone who is ill feel loved.", "scenario": "Your classmate is ill at home. How can you care for them?", "fill": {"text": "You can make a get-____ card for a sick friend.", "answer": "well", "bank": ["well", "sick", "bad"]}, "keywords": ["remind medicine", "call", "get-well card"], "can": "朋友病咗，你可以點樣關心佢呀？", "questionBank": ["MCQ: How can you care for an ill friend?", "TF: Give your medicine to a sick friend to help them.", "Sort: Caring acts vs Not caring", "Fill: You can make a get-____ card for a sick friend."]}]}, {"id": "c2", "title": "Say No to Smoking, Drinking and Drugs", "pages": "pp.10–14", "emoji": "🚭", "color": "#2BAE8A", "facts": [{"id": "c2f1", "unit": "Healthy Living", "chapter": "Say No to Smoking, Drinking and Drugs", "topic": "Harms of smoking", "page": "pp.10–14", "facts": ["Smoking gives you bad breath, makes your fingers and teeth yellow, makes you lose your appetite and weight, can cause serious diseases, and stops your lungs from growing well."], "good": ["Smoking gives you bad breath", "Smoking makes your fingers and teeth yellow", "Smoking makes you lose your appetite and weight", "Smoking can cause serious diseases", "Smoking stops your lungs from growing well"], "bad": ["Smoking keeps your teeth white", "Smoking gives you strong lungs", "Smoking gives you a big appetite"], "why": "Smoking hurts your body in many ways: your breath, teeth, fingers, appetite, lungs and more.", "scenario": "A friend offers you a cigarette. What should you do?", "fill": {"text": "Smoking gives you bad ____.", "answer": "breath", "bank": ["breath", "luck", "dreams"]}, "keywords": ["bad breath", "yellow teeth", "lose appetite", "serious diseases", "lungs"], "can": "食煙會點樣整壞身體㗎？", "questionBank": ["MCQ: Which is a harm of smoking?", "TF: Smoking gives you bad breath.", "Sort: Harm of smoking vs Not a harm", "Fill: Smoking gives you bad ____."]}, {"id": "c2f2", "unit": "Healthy Living", "chapter": "Say No to Smoking, Drinking and Drugs", "topic": "Dangers of drinking", "page": "pp.10–14", "facts": ["Drinking can make you lose control and judgement, and you may pass out. It can harm others, cause accidents, and make you lose money and things. Later it can damage your brain, cause heart failure, liver cancer and stomach bleeding."], "good": ["Drinking can make you lose control and judgement", "Drinking can harm others and cause accidents", "Drinking can make you lose money and things", "Drinking can damage your brain", "Drinking can cause heart failure, liver cancer and stomach bleeding"], "bad": ["Drinking makes you think clearly", "Drinking keeps you healthy", "Drinking makes you rich"], "why": "Alcohol hurts your body now and later, and can hurt the people around you.", "scenario": "Someone at a party offers you alcohol. What should you say?", "fill": {"text": "If someone asks you to drink, say ____.", "answer": "no", "bank": ["no", "yes", "maybe"]}, "keywords": ["lose control", "accidents", "brain damage", "liver cancer", "say no"], "can": "有人請你飲酒，你應該點做呀？", "questionBank": ["MCQ: Which is a danger of drinking?", "TF: Drinking can damage your brain.", "Sort: Danger of drinking vs Not a danger", "Fill: If someone asks you to drink, say ____."]}, {"id": "c2f3", "unit": "Healthy Living", "chapter": "Say No to Smoking, Drinking and Drugs", "topic": "Drug abuse", "page": "pp.10–14", "facts": ["Drug abuse means taking drugs in the wrong way. It harms you and others, hurts your health and studies, changes your appearance, and can even cause death."], "good": ["Drug abuse means taking drugs in the wrong way", "Drug abuse harms your health", "Drug abuse harms your studies", "Drug abuse changes your appearance", "Drug abuse can cause death"], "bad": ["Drug abuse makes you smarter", "Drug abuse is good for your health", "Drug abuse is safe to try once"], "why": "Drug abuse is very dangerous: it hurts you, your family and your future.", "scenario": "Which of these is TRUE about drug abuse?", "buckets": ["True about drug abuse", "Not true"], "fill": {"text": "Drug abuse means taking drugs in the ____ way.", "answer": "wrong", "bank": ["wrong", "right", "fun"]}, "keywords": ["wrong way", "harms your health", "harms your studies", "death"], "can": "濫藥係咩意思？有咩害處呀？", "questionBank": ["MCQ: Which is TRUE about drug abuse?", "TF: Drug abuse can cause death.", "Sort: True about drug abuse vs Not true", "Fill: Drug abuse means taking drugs in the ____ way."]}, {"id": "c2f4", "unit": "Healthy Living", "chapter": "Say No to Smoking, Drinking and Drugs", "topic": "Staying away and getting help", "page": "pp.10–14", "facts": ["If someone offers you cigarettes, alcohol or drugs, say no. If you see other people being offered them, tell your teacher or parents, call the police, run away, or stop them."], "good": ["Say no", "Tell a teacher or your parents", "Call the police", "Run away", "Stop them from doing it"], "bad": ["Try it to be cool", "Take it home", "Pretend it is fine"], "why": "Say no, and if others are in danger, get help from an adult or the police.", "scenario": "A stranger offers you something that is not medicine. What should you do?", "steps": ["Say no", "Tell a teacher or your parents", "Call the police if needed"], "fill": {"text": "If you see others being offered drugs, tell your teacher or ____.", "answer": "parents", "bank": ["parents", "friends", "pets"]}, "keywords": ["say no", "tell teachers or parents", "call the police", "run away"], "can": "有人叫你試煙、酒或者毒品，你要點做呀？", "questionBank": ["MCQ: What should you do if someone offers you cigarettes?", "TF: You should try a cigarette once to be cool.", "Order: What to do when someone offers you drugs", "Fill: Tell your teacher or ____ if you see others being offered drugs."]}]}]}, {"id": "u2", "title": "Healthy Mind", "emoji": "🧠", "color": "#7C6BF0", "chapters": [{"id": "c3", "title": "My Feelings", "pages": "pp.18–24", "emoji": "🌈", "color": "#7C6BF0", "facts": [{"id": "c3f1", "unit": "Healthy Mind", "chapter": "My Feelings", "topic": "Positive and negative feelings", "page": "pp.18–24", "facts": ["Happy, touched and excited are positive feelings. Sad, angry and scared are negative feelings."], "good": ["Happy", "Touched", "Excited"], "bad": ["Sad", "Angry", "Scared"], "why": "Happy, touched and excited feel good, so they are positive feelings. Sad, angry and scared are negative feelings.", "scenario": "Which of these is a POSITIVE feeling?", "buckets": ["Positive feeling", "Negative feeling"], "pairs": [["happy", "😊"], ["touched", "🥹"], ["excited", "🤩"], ["sad", "😢"], ["angry", "😠"], ["scared", "😨"]], "fill": {"text": "Feeling happy is a ____ feeling.", "answer": "positive", "bank": ["positive", "negative", "secret"]}, "keywords": ["happy", "touched", "excited", "sad", "angry", "scared"], "can": "開心、感動、興奮係正面定負面情緒呀？", "questionBank": ["MCQ: Which is a positive feeling?", "TF: Being scared is a positive feeling.", "Sort: Positive feeling vs Negative feeling", "Match: Feeling vs Face"]}, {"id": "c3f2", "unit": "Healthy Mind", "chapter": "My Feelings", "topic": "What makes us sad", "page": "pp.18–24", "facts": ["You may feel sad when family members argue, when you lose a pet, when you get bad results, or when you are bullied."], "good": ["When family members argue", "When you lose a pet", "When you get bad results", "When you are bullied"], "bad": ["When you eat your favourite food", "When you play with friends", "When you win a prize"], "why": "Sad feelings often come from things that are hard, like arguments, losing something, bad results or bullying.", "scenario": "Your pet fish died. How might you feel?", "buckets": ["Can make you feel sad", "Usually makes you happy"], "fill": {"text": "You might feel sad when your family ____.", "answer": "argues", "bank": ["argues", "dances", "sings"]}, "keywords": ["family argues", "lose a pet", "bad results", "bullied"], "can": "有咩事會令你覺得唔開心呀？", "questionBank": ["MCQ: Which can make you feel sad?", "TF: Losing a pet can make you feel sad.", "Sort: Can make you sad vs Usually makes you happy", "Fill: You might feel sad when your family ____."]}, {"id": "c3f3", "unit": "Healthy Mind", "chapter": "My Feelings", "topic": "Ways to feel better", "page": "pp.18–24", "facts": ["When you feel sad, you can cry, talk to someone, listen to music, exercise, draw or write a diary."], "good": ["Cry", "Talk to someone", "Listen to music", "Exercise", "Draw", "Write a diary"], "bad": ["Hit or hurt someone", "Throw or destroy things", "Refuse to eat"], "why": "Talking, moving, drawing or writing can help sad feelings pass.", "scenario": "You feel sad today. Which is a good way to feel better?", "pairs": [["talk to someone", "🗣️"], ["listen to music", "🎵"], ["exercise", "🏃"], ["draw", "🎨"], ["write a diary", "📔"]], "fill": {"text": "You can write a ____ when you feel sad.", "answer": "diary", "bank": ["diary", "letter", "song"]}, "keywords": ["cry", "talk to someone", "listen to music", "exercise", "draw", "diary"], "can": "唔開心嘅時候，有咩方法可以舒服啲呀？", "questionBank": ["MCQ: Which is a good way to feel better?", "TF: Throwing things is a good way to feel better.", "Sort: Good way to feel better vs Not good", "Match: Way to feel better vs Picture"]}, {"id": "c3f4", "unit": "Healthy Mind", "chapter": "My Feelings", "topic": "Losing your temper", "page": "pp.18–24", "facts": ["Losing your temper can mean hitting or hurting others, throwing or destroying things, or refusing to eat. These hurt you and others."], "good": ["Take a deep breath", "Wash your face", "Tell someone how you feel"], "bad": ["Hit or hurt others", "Throw or destroy things", "Refuse to eat"], "why": "Losing your temper can hurt people and things. There are better ways to calm down.", "scenario": "You are very angry. Which should you NOT do?", "fill": {"text": "Do not throw or ____ things when you are angry.", "answer": "destroy", "bank": ["destroy", "save", "clean"]}, "keywords": ["hit or hurt", "throw or destroy", "refuse to eat"], "can": "嬲嘅時候，有邊啲行為唔應該做呀？", "questionBank": ["MCQ: Which should you NOT do when you are angry?", "TF: Hitting others when angry is a good idea.", "Sort: Good idea vs Not a good idea when angry", "Fill: Do not throw or ____ things when you are angry."]}, {"id": "c3f5", "unit": "Healthy Mind", "chapter": "My Feelings", "topic": "Calming down when angry", "page": "pp.18–24", "facts": ["When you are angry, take a deep breath and wash your face to calm down."], "good": ["Take a deep breath", "Wash your face", "Think of a good way to solve it"], "bad": ["Shout at everyone", "Hit the wall", "Throw your things"], "why": "Deep breaths and washing your face cool your anger so you can think clearly.", "scenario": "You feel angry. What helps you calm down?", "steps": ["Take a deep breath", "Wash your face", "Think of a good way to solve it"], "fill": {"text": "Take a deep ____ to calm down.", "answer": "breath", "bank": ["breath", "bite", "break"]}, "keywords": ["deep breath", "wash your face"], "can": "嬲嘅時候點樣可以冷靜返呀？", "questionBank": ["MCQ: What helps you calm down when angry?", "TF: Shouting at everyone helps you calm down.", "Order: How to calm down when you are angry", "Fill: Take a deep ____ to calm down."]}, {"id": "c3f6", "unit": "Healthy Mind", "chapter": "My Feelings", "topic": "Facing problems", "page": "pp.18–24", "facts": ["When you have a problem, think positively and find ways to solve it."], "good": ["Think positively", "Find ways to solve the problem"], "bad": ["Give up", "Hide it from everyone", "Blame others"], "why": "Thinking positively and finding solutions help you feel in control.", "scenario": "You get a bad result in a test. What should you do?", "fill": {"text": "Think ____ and find ways to solve the problem.", "answer": "positively", "bank": ["positively", "angrily", "sadly"]}, "keywords": ["think positively", "find ways"], "can": "遇到問題嘅時候，應該用咩心態面對呀？", "questionBank": ["MCQ: What should you do when you have a problem?", "TF: Giving up is a good way to face a problem.", "Sort: Good way to face a problem vs Not good", "Fill: Think ____ and find ways to solve the problem."]}]}, {"id": "c4", "title": "My Friends", "pages": "pp.25–30", "emoji": "🤝", "color": "#7C6BF0", "facts": [{"id": "c4f1", "unit": "Healthy Mind", "chapter": "My Friends", "topic": "Fun with friends", "page": "pp.25–30", "facts": ["You can have fun with friends by reading, playing football, playing games and celebrating birthdays together."], "good": ["Reading", "Football", "Games", "Birthday parties"], "bad": ["Fighting", "Taking their things without asking", "Laughing at them"], "why": "Reading, playing and celebrating together make friendships fun and strong.", "scenario": "Which is a fun activity to do with friends?", "pairs": [["reading", "📚"], ["football", "⚽"], ["games", "🎲"], ["birthday parties", "🎂"]], "fill": {"text": "You can read a ____ with your friends.", "answer": "book", "bank": ["book", "medicine", "fridge"]}, "keywords": ["reading", "football", "games", "birthday parties"], "can": "同朋友一齊可以玩啲咩呀？", "questionBank": ["MCQ: Which is a fun activity with friends?", "TF: Fighting is a fun activity with friends.", "Match: Activity vs Picture", "Fill: You can read a ____ with your friends."]}, {"id": "c4f2", "unit": "Healthy Mind", "chapter": "My Friends", "topic": "Sharing with friends", "page": "pp.25–30", "facts": ["Good friends share food, books, toys, and happy and sad things with each other."], "good": ["Share food", "Share books", "Share toys", "Share happy and sad things"], "bad": ["Keep everything to yourself", "Take your friend's medicine", "Share nothing and laugh at them"], "why": "Sharing makes both of you happy and makes the friendship stronger.", "scenario": "Your friend wants to borrow your book. What do you do?", "fill": {"text": "It is good to share your ____ with friends.", "answer": "toys", "bank": ["toys", "medicine", "money"]}, "keywords": ["share food", "share books", "share toys", "share happy and sad things"], "can": "同朋友之間，有咩可以分享㗎？", "questionBank": ["MCQ: What can you share with friends?", "TF: Good friends share happy and sad things.", "Sort: Things to share vs Not to share", "Fill: It is good to share your ____ with friends."]}, {"id": "c4f3", "unit": "Healthy Mind", "chapter": "My Friends", "topic": "Caring words", "page": "pp.25–30", "facts": ["When a friend is sad, you can say: 'I'm here to listen.' 'It must be hard for you.' 'I'm here for you.'"], "good": ["I'm here to listen", "It must be hard for you", "I'm here for you"], "bad": ["Go away", "It's your fault", "Stop crying, it's nothing"], "why": "Kind words tell your friend that you care and that they are not alone.", "scenario": "Your friend is sad. What can you say to them?", "fill": {"text": "I'm here to ____.", "answer": "listen", "bank": ["listen", "shout", "sleep"]}, "keywords": ["I'm here to listen", "It must be hard for you", "I'm here for you"], "can": "朋友唔開心嘅時候，可以同佢講啲咩呀？", "questionBank": ["MCQ: What can you say to a sad friend?", "TF: 'Go away' is a caring thing to say.", "Sort: Caring words vs Not caring", "Fill: I'm here to ____."]}, {"id": "c4f4", "unit": "Healthy Mind", "chapter": "My Friends", "topic": "Getting along", "page": "pp.25–30", "facts": ["To get along with friends, share when needed, help each other, and care for them when they are ill."], "good": ["Share when needed", "Help each other", "Care for them when they are ill"], "bad": ["Always fight", "Never help", "Ignore them when they are ill"], "why": "Sharing, helping and caring are the secrets to getting along with friends.", "scenario": "Your friend is ill. How can you show you care?", "fill": {"text": "Help your friends when they need ____.", "answer": "help", "bank": ["help", "money", "trouble"]}, "keywords": ["share when needed", "help each other", "care when ill"], "can": "點樣先可以同朋友相處得好呀？", "questionBank": ["MCQ: How do friends get along?", "TF: Friends always fight to get along.", "Sort: Getting along vs Not getting along", "Fill: Help your friends when they need ____."]}, {"id": "c4f5", "unit": "Healthy Mind", "chapter": "My Friends", "topic": "When friends ask you to do wrong things", "page": "pp.25–30", "facts": ["If a friend asks you to do something wrong, say no and point out their mistake."], "good": ["Say no", "Point out their mistake", "Tell them what is right"], "bad": ["Do it because they asked", "Keep quiet and do it", "Copy what they do"], "why": "A real friend stops you from doing wrong, and you can do the same for them.", "scenario": "A friend asks you to do something wrong. What should you do?", "fill": {"text": "If a friend asks you to do something wrong, say ____.", "answer": "no", "bank": ["no", "yes", "maybe"]}, "keywords": ["say no", "point out their mistake"], "can": "朋友叫你做啲唔啱嘅嘢，你應該點做呀？", "questionBank": ["MCQ: What should you do if a friend asks you to do something wrong?", "TF: You should do it because your friend asked you.", "Sort: Good response vs Not good", "Fill: If a friend asks you to do something wrong, say ____."]}, {"id": "c4f6", "unit": "Healthy Mind", "chapter": "My Friends", "topic": "Arguing calmly", "page": "pp.25–30", "facts": ["When you and a friend argue, stay calm and respect each other."], "good": ["Argue calmly", "Respect each other", "Listen to each other"], "bad": ["Shout at each other", "Fight", "Call each other names"], "why": "Arguing calmly and respecting each other solves problems without hurting the friendship.", "scenario": "You and your friend disagree about a game. What should you do?", "fill": {"text": "When you argue, stay ____.", "answer": "calm", "bank": ["calm", "loud", "angry"]}, "keywords": ["argue calmly", "respect each other"], "can": "同朋友鬧交嘅時候，要點樣處理呀？", "questionBank": ["MCQ: How should you argue with a friend?", "TF: Shouting is the best way to argue.", "Sort: Good way to argue vs Not good", "Fill: When you argue, stay ____."]}, {"id": "c4f7", "unit": "Healthy Mind", "chapter": "My Friends", "topic": "Saying sorry", "page": "pp.25–30", "facts": ["When you do something wrong to a friend, say sorry face to face, or write them a note."], "good": ["Say sorry face to face", "Write a note", "Say sorry right away"], "bad": ["Pretend nothing happened", "Blame your friend", "Wait for them to say sorry first"], "why": "A sincere sorry, face to face or in a note, helps heal the friendship.", "scenario": "You broke your friend's toy. What should you do?", "fill": {"text": "You can say sorry face to face or write a ____.", "answer": "note", "bank": ["note", "song", "list"]}, "keywords": ["face to face", "write a note"], "can": "整爛咗朋友嘅嘢，要點樣道歉呀？", "questionBank": ["MCQ: How can you say sorry to a friend?", "TF: Pretending nothing happened is a good way to say sorry.", "Sort: Good way to say sorry vs Not good", "Fill: You can say sorry face to face or write a ____."]}]}]}]};   /* embedded offline copy (auto-generated) */
+var CARDS = null;
+
+function loadCards(){
+  return fetch('data/cards.json')
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(d){ CARDS = d; })
+    .catch(function(){ CARDS = CARDS_FALLBACK; });
+}
+function allFacts(){
+  var out = [];
+  CARDS.units.forEach(function(u){ u.chapters.forEach(function(c){ c.facts.forEach(function(f){ out.push(f); }); }); });
+  return out;
+}
+function chapterById(id){
+  var found = null;
+  CARDS.units.forEach(function(u){ u.chapters.forEach(function(c){ if(c.id === id) found = c; }); });
+  return found;
+}
+function chapterOf(fact){
+  var found = null;
+  CARDS.units.forEach(function(u){ u.chapters.forEach(function(c){ c.facts.forEach(function(f){ if(f.id === fact.id) found = c; }); }); });
+  return found;
+}
+function unitOf(fact){
+  var found = null;
+  CARDS.units.forEach(function(u){ u.chapters.forEach(function(c){ c.facts.forEach(function(f){ if(f.id === fact.id) found = u; }); }); });
+  return found;
+}
+
+/* ---------- store (localStorage) ---------- */
+var STORE_KEY = 'mgq-quests-v1';
+var store = { mastery:{}, acc:{}, settings:{sound:true, timerMin:6, shuffle:true, mixFresh:true}, log:{totalStars:0, missions:0, bestStreak:0, lastChapter:''} };
+
+function storeLoad(){
+  try{
+    var raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return;
+    var d = JSON.parse(raw);
+    store.mastery = d.mastery || {};
+    store.acc = d.acc || {};
+    store.settings = Object.assign(store.settings, d.settings || {});
+    store.log = Object.assign(store.log, d.log || {});
+  }catch(e){ /* fresh start */ }
+}
+function storeSave(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }catch(e){}
+}
+function recordAnswer(factId, chapterId, firstTry, stars){
+  var a = store.acc[factId] || {a:0, c:0};
+  a.a += 1; if(firstTry) a.c += 1;
+  store.acc[factId] = a;
+  var m = store.mastery[chapterId] || {stars:0, plays:0};
+  m.stars += stars; m.plays += 1;
+  store.mastery[chapterId] = m;
+  store.log.totalStars += stars;
+  storeSave();
+}
+function accuracyOf(factId){
+  var a = store.acc[factId]; if(!a || !a.a) return null;
+  return a.c / a.a;
+}
+function chapterMastery(chapterId){
+  var m = store.mastery[chapterId];
+  if(!m || !m.plays) return 0;
+  return Math.min(100, Math.round(100 * m.stars / (m.plays * 3)));
+}
+function totalStarsEarned(){
+  var s = 0; Object.keys(store.mastery).forEach(function(k){ s += store.mastery[k].stars; });
+  return s;
+}
+
+/* ---------- rng helpers ---------- */
+function shuffle(arr){
+  var a = arr.slice();
+  for(var i = a.length - 1; i > 0; i--){
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+function sample(arr, n){
+  var s = shuffle(arr); return s.slice(0, Math.max(1, Math.min(n, s.length)));
+}
+
+/* ---------- audio: soft WebAudio SFX + TTS ---------- */
+var AudioX = {
+  ctx: null, muted: false,
+  ensure: function(){
+    if(!this.ctx){
+      try{
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if(AC) this.ctx = new AC();
+      }catch(e){ this.ctx = null; }
     }
-  ],
-
-  cards: [
-    /* ========== CH.1 Get Well Soon (≥8) ========== */
-    {
-      id: "c1-01",
-      chapter: "ch1",
-      topic: "When you are ill",
-      mode: "sort",
-      prompt: "Sort: What SHOULD you do when you are ill?",
-      buckets: ["Should ✅", "Should NOT ❌"],
-      items: [
-        { text: "See a doctor", bucket: 0 },
-        { text: "Take the right amount of medicine at the right time", bucket: 0 },
-        { text: "Rest and drink water", bucket: 0 },
-        { text: "Take medicine bought in a pharmacy without a doctor", bucket: 1 },
-        { text: "Take leftover medicine", bucket: 1 },
-        { text: "Do nothing but sleep", bucket: 1 }
-      ]
-    },
-    {
-      id: "c1-02",
-      chapter: "ch1",
-      topic: "Doctor vs Chinese medicine",
-      mode: "mcq",
-      prompt: "How does a doctor usually check your condition?",
-      choices: [
-        "With a stethoscope",
-        "By feeling your pulse by hand only",
-        "By asking your friends",
-        "By looking at your shoes"
-      ],
-      answer: 0,
-      tip: "A doctor uses a stethoscope. Chinese medicine practitioners feel the pulse by hand."
-    },
-    {
-      id: "c1-03",
-      chapter: "ch1",
-      topic: "Doctor vs Chinese medicine",
-      mode: "truefalse",
-      prompt: "Both a doctor and a Chinese medicine practitioner check your condition and prescribe medicine.",
-      answer: true,
-      why: "Yes — both check how you feel and prescribe the right medicine for you. Their tools and medicines are different."
-    },
-    {
-      id: "c1-04",
-      chapter: "ch1",
-      topic: "Visiting the doctor",
-      mode: "order",
-      prompt: "Put these steps in a good order when you visit the doctor:",
-      steps: [
-        "Tell the doctor how you feel",
-        "Listen carefully to the doctor's instructions",
-        "Follow the instructions at home"
-      ]
-    },
-    {
-      id: "c1-05",
-      chapter: "ch1",
-      topic: "Medicine types",
-      mode: "mcq",
-      prompt: "Which of these is a type of medicine you might take?",
-      choices: [
-        "Cough syrup",
-        "Video games",
-        "Pencil sharpeners",
-        "Football boots"
-      ],
-      answer: 0,
-      tip: "Medicine types include cough syrup, pills, Chinese powder, and Chinese herbs."
-    },
-    {
-      id: "c1-06",
-      chapter: "ch1",
-      topic: "Medicine label",
-      mode: "teachback",
-      prompt: "Teach-back: What should you check on a medicine label?",
-      reveal: [
-        "Ask the clinic if you are unsure",
-        "Do not take other people's medicine",
-        "Start date / how many days",
-        "Name of the medicine",
-        "Amount / dose and time",
-        "How to take it and any side effects"
-      ],
-      coachHint: "Say 3 things you check on a label."
-    },
-    {
-      id: "c1-07",
-      chapter: "ch1",
-      topic: "Taking medicine correctly",
-      mode: "sort",
-      prompt: "Sort: Correct or Wrong ways to take medicine?",
-      buckets: ["Correct ✅", "Wrong ❌"],
-      items: [
-        { text: "Take with water", bucket: 0 },
-        { text: "Take on time", bucket: 0 },
-        { text: "Follow the doctor's instructions", bucket: 0 },
-        { text: "Take the wrong amount", bucket: 1 },
-        { text: "Stop taking medicine without asking the doctor", bucket: 1 },
-        { text: "Take someone else's medicine", bucket: 1 }
-      ]
-    },
-    {
-      id: "c1-08",
-      chapter: "ch1",
-      topic: "Storing medicine",
-      mode: "mcq",
-      prompt: "Where should medicine be stored?",
-      choices: [
-        "Cool, dry place, away from sunlight, out of children's reach",
-        "Next to the toaster in the sun",
-        "In a child's toy box",
-        "In a wet bathroom window"
-      ],
-      answer: 0,
-      tip: "Cool, dry, away from sunlight, and out of children's reach."
-    },
-    {
-      id: "c1-09",
-      chapter: "ch1",
-      topic: "Getting better",
-      mode: "truefalse",
-      prompt: "To get better, you should see a doctor as soon as possible, take medicine as the doctor says, keep the home airy, rest, drink water, and eat healthy food.",
-      answer: true,
-      why: "All of these help your body get well again."
-    },
-    {
-      id: "c1-10",
-      chapter: "ch1",
-      topic: "Caring for patients",
-      mode: "mcq",
-      prompt: "How can you care for someone who is ill?",
-      choices: [
-        "Remind them to take medicine, call them, or send a card",
-        "Give them leftover medicine from last year",
-        "Ignore them so they rest alone forever",
-        "Ask them to go to school right away"
-      ],
-      answer: 0,
-      tip: "Remind medicine · call · send a card — kind actions help!"
-    },
-
-    /* ========== CH.2 Smoking / Drinking / Drugs (≥8) ========== */
-    {
-      id: "c2-01",
-      chapter: "ch2",
-      topic: "Smoking harms",
-      mode: "mcq",
-      prompt: "Which is a harm of smoking?",
-      choices: [
-        "Bad breath and yellow fingers/teeth",
-        "Stronger lungs forever",
-        "Better appetite only",
-        "Whiter teeth"
-      ],
-      answer: 0,
-      tip: "Smoking can cause bad breath, yellow fingers/teeth, poor appetite, weight loss, serious diseases, and reduced lung growth/functions."
-    },
-    {
-      id: "c2-02",
-      chapter: "ch2",
-      topic: "Smoking harms",
-      mode: "truefalse",
-      prompt: "Smoking can reduce lung growth and lung functions.",
-      answer: true,
-      why: "True — smoking can reduce lung growth and how well the lungs work, and can lead to serious diseases."
-    },
-    {
-      id: "c2-03",
-      chapter: "ch2",
-      topic: "Drinking harms",
-      mode: "sort",
-      prompt: "Sort: What can happen when people drink too much alcohol?",
-      buckets: ["Can happen ⚠️", "Not a fact ❌"],
-      items: [
-        { text: "Lose control and judgement / pass out", bucket: 0 },
-        { text: "Harm others or cause accidents", bucket: 0 },
-        { text: "Lose money or things", bucket: 0 },
-        { text: "Brain damage, heart failure, liver cancer, stomach bleeding", bucket: 0 },
-        { text: "Makes homework better", bucket: 1 },
-        { text: "Makes lungs grow faster", bucket: 1 }
-      ]
-    },
-    {
-      id: "c2-04",
-      chapter: "ch2",
-      topic: "Asked to drink",
-      mode: "mcq",
-      prompt: "If someone asks you to drink alcohol, what should you do?",
-      choices: [
-        "Say no — it harms health",
-        "Try a little to be polite",
-        "Drink if friends cheer",
-        "Hide and drink alone"
-      ],
-      answer: 0,
-      tip: "Say no. Drinking alcohol can harm your health."
-    },
-    {
-      id: "c2-05",
-      chapter: "ch2",
-      topic: "Drug abuse",
-      mode: "teachback",
-      prompt: "Teach-back: What is drug abuse?",
-      reveal: [
-        "Using drugs that may harm the body or mind",
-        "Not for treating an illness"
-      ],
-      coachHint: "Explain drug abuse in your own words."
-    },
-    {
-      id: "c2-06",
-      chapter: "ch2",
-      topic: "Long-term drug abuse",
-      mode: "mcq",
-      prompt: "Long-term drug abuse can harm…",
-      choices: [
-        "Yourself and others — health, work/studies, appearance; even death",
-        "Only your shoes",
-        "Only your homework folder",
-        "Nothing at all"
-      ],
-      answer: 0,
-      tip: "It can harm self and others, health, work/studies, appearance, and can even cause death."
-    },
-    {
-      id: "c2-07",
-      chapter: "ch2",
-      topic: "Stay away from drugs",
-      mode: "order",
-      prompt: "If someone offers you drugs, good steps are:",
-      steps: [
-        "Say no clearly",
-        "Get away / stay safe",
-        "Tell a trusted adult (teachers or parents)"
-      ]
-    },
-    {
-      id: "c2-08",
-      chapter: "ch2",
-      topic: "Help others stay safe",
-      mode: "sort",
-      prompt: "If you see others being offered drugs, what can you do?",
-      buckets: ["Good action ✅", "Not helpful ❌"],
-      items: [
-        { text: "Tell teachers or parents", bucket: 0 },
-        { text: "Call the police", bucket: 0 },
-        { text: "Run away to stay safe", bucket: 0 },
-        { text: "Try to stop them safely", bucket: 0 },
-        { text: "Join in so you fit in", bucket: 1 },
-        { text: "Keep it a secret forever", bucket: 1 }
-      ]
-    },
-    {
-      id: "c2-09",
-      chapter: "ch2",
-      topic: "Smoking harms",
-      mode: "truefalse",
-      prompt: "Smoking can cause poor appetite and weight loss.",
-      answer: true,
-      why: "Yes — smoking can lead to poor appetite, weight loss, and other serious health problems."
-    },
-
-    /* ========== CH.3 My Feelings (≥8) ========== */
-    {
-      id: "c3-01",
-      chapter: "ch3",
-      topic: "Positive & negative feelings",
-      mode: "sort",
-      prompt: "Sort these feelings into Positive or Negative:",
-      buckets: ["Positive 😊", "Negative 😟"],
-      items: [
-        { text: "Happy", bucket: 0 },
-        { text: "Touched", bucket: 0 },
-        { text: "Excited", bucket: 0 },
-        { text: "Sad", bucket: 1 },
-        { text: "Angry", bucket: 1 },
-        { text: "Scared", bucket: 1 }
-      ]
-    },
-    {
-      id: "c3-02",
-      chapter: "ch3",
-      topic: "Causes of sadness",
-      mode: "mcq",
-      prompt: "Which can make someone feel sad?",
-      choices: [
-        "Family arguing, losing a pet, bad results / disappointing parents, or being bullied",
-        "Eating a healthy snack",
-        "Reading a fun book with a friend",
-        "Finishing homework early"
-      ],
-      answer: 0,
-      tip: "Sadness can come from family arguments, losing a pet, bad results, disappointing parents, or bullying."
-    },
-    {
-      id: "c3-03",
-      chapter: "ch3",
-      topic: "Dealing with sadness",
-      mode: "mcq",
-      prompt: "Which set lists ways that can help when you feel sad?",
-      choices: [
-        "Cry, talk, music, exercise, draw, diary",
-        "Hit, throw things, refuse to eat",
-        "Smoke, drink, take leftover medicine",
-        "Keep it secret and never talk"
-      ],
-      answer: 0,
-      tip: "Helpful ways: cry, talk, music, exercise, draw, write in a diary."
-    },
-    {
-      id: "c3-04",
-      chapter: "ch3",
-      topic: "Losing temper",
-      mode: "truefalse",
-      prompt: "When we lose our temper, hitting/hurting, throwing/destroying things, or refusing to eat can hurt our health and make Mum unhappy.",
-      answer: true,
-      why: "Those actions can harm others, break things, and affect health — and Mum may feel unhappy."
-    },
-    {
-      id: "c3-05",
-      chapter: "ch3",
-      topic: "When angry",
-      mode: "mcq",
-      prompt: "When you feel angry, a helpful idea is to…",
-      choices: [
-        "Take a deep breath and wash your face",
-        "Hit something hard",
-        "Throw your books",
-        "Refuse to eat forever"
-      ],
-      answer: 0,
-      tip: "Deep breath · wash face — calm the body first."
-    },
-    {
-      id: "c3-06",
-      chapter: "ch3",
-      topic: "Negative feelings",
-      mode: "teachback",
-      prompt: "Teach-back: What can you do with negative feelings?",
-      reveal: [
-        "Think positively",
-        "Find ways to deal with them (talk, music, exercise, draw, diary…)"
-      ],
-      coachHint: "Name 2 ways to deal with a negative feeling."
-    },
-    {
-      id: "c3-07",
-      chapter: "ch3",
-      topic: "Positive feelings",
-      mode: "mcq",
-      prompt: "Which feeling is positive?",
-      choices: ["Excited", "Angry", "Scared", "Sad"],
-      answer: 0,
-      tip: "Happy, touched, and excited are positive feelings."
-    },
-    {
-      id: "c3-08",
-      chapter: "ch3",
-      topic: "Dealing with sadness",
-      mode: "order",
-      prompt: "A calm plan when you feel sad could be:",
-      steps: [
-        "Notice you feel sad",
-        "Choose a helpful way (talk, music, draw…)",
-        "Feel a bit better and keep going"
-      ]
-    },
-    {
-      id: "c3-09",
-      chapter: "ch3",
-      topic: "Negative feelings",
-      mode: "truefalse",
-      prompt: "It is okay to have negative feelings — we can think positively and find ways to deal with them.",
-      answer: true,
-      why: "Feelings are normal. We can think positively and use healthy ways to cope."
-    },
-
-    /* ========== CH.4 My Friends (≥8) ========== */
-    {
-      id: "c4-01",
-      chapter: "ch4",
-      topic: "Friend activities",
-      mode: "mcq",
-      prompt: "Which is an activity friends might enjoy together?",
-      choices: [
-        "Reading, football, games, or a birthday party",
-        "Taking other people's medicine",
-        "Smoking together",
-        "Hiding when someone needs help"
-      ],
-      answer: 0,
-      tip: "Friends may read, play football, play games, or celebrate birthdays together."
-    },
-    {
-      id: "c4-02",
-      chapter: "ch4",
-      topic: "Sharing",
-      mode: "truefalse",
-      prompt: "Friends can share food, books, toys, and happy or sad things.",
-      answer: true,
-      why: "Yes — sharing food, books, toys, and feelings helps friendships."
-    },
-    {
-      id: "c4-03",
-      chapter: "ch4",
-      topic: "Care phrases",
-      mode: "mcq",
-      prompt: "Which phrase shows you care about a friend?",
-      choices: [
-        "I'm here to listen / It must be hard for you / I'm here for you",
-        "I don't care about your feelings",
-        "Stop talking now",
-        "Your problem is silly"
-      ],
-      answer: 0,
-      tip: "Caring phrases: “I'm here to listen”, “It must be hard for you”, “I'm here for you”."
-    },
-    {
-      id: "c4-04",
-      chapter: "ch4",
-      topic: "Getting along",
-      mode: "truefalse",
-      prompt: "To get along with friends: share when needed, help each other, and care when a friend is ill.",
-      answer: true,
-      why: "Sharing, helping, and caring when someone is ill help friendships stay strong."
-    },
-    {
-      id: "c4-05",
-      chapter: "ch4",
-      topic: "Wrong request",
-      mode: "mcq",
-      prompt: "If a friend asks you to do something wrong, you should…",
-      choices: [
-        "Say no and point out the mistakes",
-        "Always say yes to stay friends",
-        "Do it and hide it",
-        "Blame someone else"
-      ],
-      answer: 0,
-      tip: "Say no. Point out mistakes kindly and clearly."
-    },
-    {
-      id: "c4-06",
-      chapter: "ch4",
-      topic: "When friends argue",
-      mode: "order",
-      prompt: "When friends argue, a good way is:",
-      steps: [
-        "Stay calm",
-        "Talk respectfully",
-        "Try to solve the problem together"
-      ]
-    },
-    {
-      id: "c4-07",
-      chapter: "ch4",
-      topic: "Saying sorry",
-      mode: "sort",
-      prompt: "Good ways to say sorry:",
-      buckets: ["Good way ✅", "Not helpful ❌"],
-      items: [
-        { text: "Say sorry face to face", bucket: 0 },
-        { text: "Write a note", bucket: 0 },
-        { text: "Never admit a mistake", bucket: 1 },
-        { text: "Shout louder", bucket: 1 }
-      ]
-    },
-    {
-      id: "c4-08",
-      chapter: "ch4",
-      topic: "Care phrases",
-      mode: "teachback",
-      prompt: "Teach-back: Say one caring phrase you can use with a friend.",
-      reveal: [
-        "I'm here to listen",
-        "It must be hard for you",
-        "I'm here for you"
-      ],
-      coachHint: "Ask Merlin to say one caring phrase out loud."
-    },
-    {
-      id: "c4-09",
-      chapter: "ch4",
-      topic: "Getting along",
-      mode: "mcq",
-      prompt: "When a friend is ill, a kind friend will…",
-      choices: [
-        "Care for them",
-        "Ignore them",
-        "Laugh at them",
-        "Take their medicine"
-      ],
-      answer: 0,
-      tip: "Care when a friend is ill — that is part of getting along."
-    }
-  ],
-
-  /** Exactly 2 oral questions for Parent Coach (rotate from bank by weak topics) */
-  oralBank: [
-    { chapter: "ch1", q: "Tell me three things you SHOULD do when you are ill." },
-    { chapter: "ch1", q: "What should you check on a medicine label before taking it?" },
-    { chapter: "ch1", q: "Where should medicine be stored at home?" },
-    { chapter: "ch2", q: "Name two harms of smoking." },
-    { chapter: "ch2", q: "What should you say if someone asks you to drink alcohol? Why?" },
-    { chapter: "ch2", q: "What is drug abuse? What can you do if someone offers drugs?" },
-    { chapter: "ch3", q: "Name two positive and two negative feelings." },
-    { chapter: "ch3", q: "What can you do when you feel sad or angry?" },
-    { chapter: "ch3", q: "What happens if we lose our temper in a harmful way?" },
-    { chapter: "ch4", q: "Say one caring phrase you can use with a friend." },
-    { chapter: "ch4", q: "What should you do if a friend asks you to do something wrong?" },
-    { chapter: "ch4", q: "How can you say sorry after an argument?" }
-  ],
-
-  coachLines: [
-    "Mission time! Short brain boost — you've got this!",
-    "Warm-up complete. Ready for a quick quest?",
-    "Stars await! One card at a time.",
-    "Deep breath… then tap Start!",
-    "You're building strong memory muscles!",
-    "Nice focus — keep going!",
-    "Almost there — finish strong!",
-    "Wow! That was brave thinking!",
-    "Retry only this card — no worry!",
-    "Mission done! High five!"
-  ]
+    if(this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+  },
+  tone: function(freq, dur, type, gainVal, when){
+    if(this.muted || !this.ctx) return;
+    var t = this.ctx.currentTime + (when || 0);
+    var o = this.ctx.createOscillator(), g = this.ctx.createGain();
+    o.type = type || 'sine'; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(gainVal || 0.16, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(this.ctx.destination);
+    o.start(t); o.stop(t + dur + 0.05);
+  },
+  tap: function(){ this.tone(720, 0.08, 'sine', 0.10); },
+  correct: function(){ this.tone(660, 0.16, 'sine', 0.16); this.tone(880, 0.20, 'sine', 0.14, 0.10); },
+  wrong: function(){ this.tone(233, 0.26, 'triangle', 0.12); this.tone(196, 0.30, 'triangle', 0.10, 0.12); },
+  pair: function(){ this.tone(880, 0.12, 'sine', 0.14); },
+  streak: function(n){
+    var base = 523, self = this;
+    [0,1,2,3].forEach(function(i){ if(i < n) self.tone(base * Math.pow(1.26, i), 0.14, 'sine', 0.13, i * 0.08); });
+  },
+  complete: function(){
+    var self = this;
+    [523,659,784,1046].forEach(function(f,i){ self.tone(f, 0.22, 'sine', 0.15, i * 0.13); });
+    self.tone(1318, 0.4, 'sine', 0.13, 0.55);
+  },
+  speak: function(text){
+    if(this.muted) return;
+    try{
+      if(!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.92; u.pitch = 1.05; u.volume = 0.95;
+      u.lang = 'en-GB';
+      var v = window.speechSynthesis.getVoices().filter(function(v){ return /en/i.test(v.lang); })[0];
+      if(v) u.voice = v;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  },
+  stopSpeak: function(){ try{ window.speechSynthesis && window.speechSynthesis.cancel(); }catch(e){} }
 };
 
-</script>
-  <script>
-/**
- * Merlin GS Quests — ADHD-friendly short missions (static, offline)
- */
-(function () {
-  "use strict";
+function toast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove('show'); }, 2200);
+}
 
-  const STORAGE_KEY = "merlin_gs_quests_v1";
-  const MISSION_SECS = 6 * 60; // ~6 min visible timer
-  const MIX_SIZE_MIN = 5;
-  const MIX_SIZE_MAX = 8;
-
-  const MODE_LABELS = {
-    mcq: "Multiple Choice",
-    truefalse: "True / False + Why",
-    sort: "Sort into Buckets",
-    order: "Order the Steps",
-    teachback: "Teach-Back"
-  };
-
-  /** @type {{stars:number,streak:number,lastPlayDate:string|null,history:Array,cardStats:Object}} */
-  let progress = loadProgress();
-
-  let state = {
-    screen: "home",
-    chapterId: null,
-    isMix: false,
-    queue: [],
-    index: 0,
-    correct: 0,
-    answered: 0,
-    retryIds: [],
-    timerLeft: MISSION_SECS,
-    timerId: null,
-    sortPicked: null,
-    sortMap: {},
-    orderSteps: [],
-    feedback: null,
-    awaitingContinue: false,
-    sessionWeakTopics: [],
-    coachLineIdx: 0
-  };
-
-  const $ = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
-
-  function loadProgress() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) return JSON.parse(raw);
-    } catch (_) {}
-    return {
-      stars: 0,
-      streak: 0,
-      lastPlayDate: null,
-      history: [],
-      cardStats: {} // id -> { attempts, correct, lastWrong }
-    };
+/* ---------- confetti (light) ---------- */
+function confetti(n){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var colors = ['#FFC53D','#FF7A59','#7C6BF0','#2BAE8A','#FF9BC0'];
+  for(var i = 0; i < (n || 26); i++){
+    var el = document.createElement('div');
+    el.className = 'confetti-bit';
+    el.style.left = (Math.random() * 100) + 'vw';
+    el.style.background = pick(colors);
+    el.style.animationDelay = (Math.random() * 0.7) + 's';
+    el.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+    document.body.appendChild(el);
+    (function(node){ setTimeout(function(){ node.remove(); }, 3400); })(el);
   }
-
-  function saveProgress() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-    } catch (_) {}
+}
+function starBurst(x, y){
+  var b = document.createElement('div');
+  b.className = 'burst';
+  b.style.left = x + 'px'; b.style.top = y + 'px';
+  var em = ['⭐','✨','🌟'];
+  for(var i = 0; i < 6; i++){
+    var s = document.createElement('span');
+    s.textContent = pick(em);
+    var ang = Math.random() * Math.PI * 2, dist = 40 + Math.random() * 55;
+    s.style.setProperty('--dx', (Math.cos(ang) * dist) + 'px');
+    s.style.setProperty('--dy', (Math.sin(ang) * dist - 26) + 'px');
+    s.style.left = '0px'; s.style.top = '0px';
+    b.appendChild(s);
   }
+  document.body.appendChild(b);
+  setTimeout(function(){ b.remove(); }, 850);
+}
 
-  function todayStr() {
-    const d = new Date();
-    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+/*__JS_CORE_DONE__*/
+
+/* ================================================================
+   ENGINE: question variants, missions, timer
+   ================================================================ */
+
+/* supported interaction types per card */
+function typesFor(f){
+  var t = [];
+  if(f.good && f.good.length) t.push('mcq','tf','sort','mistake','teach');
+  if(f.scenario) t.push('scenario');
+  if(f.fill) t.push('fill');
+  if(f.steps && f.steps.length >= 2) t.push('order');
+  if(f.pairs && f.pairs.length >= 2) t.push('match');
+  return t;
+}
+/* global distractor pool from all other cards */
+function globalPool(exceptId){
+  var out = [];
+  allFacts().forEach(function(f){
+    if(f.id === exceptId) return;
+    (f.good||[]).forEach(function(s){ out.push(s); });
+    (f.bad||[]).forEach(function(s){ out.push(s); });
+  });
+  return out;
+}
+var _poolCache = null;
+function pool(){
+  if(!_poolCache) _poolCache = globalPool('');
+  return _poolCache;
+}
+
+/* pick 3 unique distractors around a correct answer */
+function makeOptions(correct, fromSame, poolArr, n){
+  var opts = [{ t:correct, ok:true }];
+  var used = {};
+  used[correct] = true;
+  var cands = shuffle(fromSame.concat(poolArr));
+  for(var i = 0; i < cands.length && opts.length < n; i++){
+    var c = cands[i];
+    if(!used[c]){ used[c] = true; opts.push({ t:c, ok:false }); }
   }
+  return shuffle(opts);
+}
+function optionOrderKey(opts){
+  var s = 0;
+  opts.forEach(function(o,i){ if(o.ok) s = i; });
+  return s;
+}
 
-  function updateStreakOnStart() {
-    const t = todayStr();
-    if (progress.lastPlayDate === t) return;
-    const y = new Date();
-    y.setDate(y.getDate() - 1);
-    const yStr = y.getFullYear() + "-" + String(y.getMonth() + 1).padStart(2, "0") + "-" + String(y.getDate()).padStart(2, "0");
-    if (progress.lastPlayDate === yStr) progress.streak += 1;
-    else progress.streak = 1;
-    progress.lastPlayDate = t;
-    saveProgress();
+var S = {
+  mode:'chapter', chapterId:null, cards:[], idx:0,
+  stars:0, streak:0, best:0, startTime:0, timeLeft:0, timerId:null,
+  factState:{}, lastOrder:{}, lastType:{}, finished:false, exitEarly:false
+};
+
+function fmtTime(sec){
+  var m = Math.floor(sec/60), s = sec%60;
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+/* ---------- mission builder ---------- */
+function buildMission(mode, chapterId){
+  S = { mode:mode, chapterId:chapterId||null, cards:[], idx:0, stars:0, streak:0, best:0,
+        startTime:Date.now(), timeLeft:0, timerId:null, factState:{}, lastOrder:{}, lastType:{},
+        finished:false, exitEarly:false };
+  if(mode === 'lightning'){
+    var facts = shuffle(allFacts()).slice(0, 10);
+    S.cards = facts.map(function(f){ return { fact:f, type:'mcq' }; });
+    S.timeLeft = 60;
+    return;
   }
-
-  function shuffle(arr) {
-    const a = arr.slice();
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
+  var n = 6 + Math.floor(Math.random() * 3);
+  if(mode === 'chapter'){
+    var ch = chapterById(chapterId);
+    var fs = shuffle(ch.facts).slice(0, Math.min(n, ch.facts.length));
+    fs.forEach(function(f){ S.cards.push({ fact:f, type:pickType(f) }); });
+  } else if(mode === 'mix'){
+    var all = allFacts();
+    var chosen = weightedMix(all, Math.min(n, all.length));
+    chosen.forEach(function(f){ S.cards.push({ fact:f, type:pickType(f) }); });
+  }
+  S.timeLeft = store.settings.timerMin * 60;
+}
+function pickType(f){
+  var ts = typesFor(f);
+  if(ts.length <= 1) return ts[0];
+  var last = S.lastType[f.id];
+  var opts = ts.filter(function(t){ return t !== last; });
+  var t = pick(opts.length ? opts : ts);
+  S.lastType[f.id] = t;
+  return t;
+}
+function weightedMix(facts, n){
+  var w = facts.map(function(f){
+    var a = accuracyOf(f.id);
+    if(a === null) return 1;
+    return 1 / (a + 0.12);            /* weaker topics get heavier weight */
+  });
+  var total = w.reduce(function(x,y){ return x+y; }, 0);
+  var chosen = [];
+  var picked = {};
+  for(var k = 0; k < n; k++){
+    var r = Math.random() * total;
+    var acc = 0, sel = -1;
+    for(var i = 0; i < facts.length; i++){
+      if(picked[facts[i].id]) continue;
+      acc += w[i];
+      if(r <= acc){ sel = i; break; }
     }
-    return a;
+    if(sel < 0){ for(var j = 0; j < facts.length; j++){ if(!picked[facts[j].id]){ sel = j; break; } } }
+    if(sel < 0) break;
+    chosen.push(facts[sel]); picked[facts[sel].id] = true;
   }
-
-  function cardsForChapter(chId) {
-    return window.GS_CARDS.cards.filter((c) => c.chapter === chId);
-  }
-
-  function weakScore(cardId) {
-    const s = progress.cardStats[cardId];
-    if (!s || s.attempts === 0) return 0.5; // unseen = mild priority
-    const rate = s.correct / s.attempts;
-    return 1 - rate + (s.lastWrong ? 0.3 : 0);
-  }
-
-  function buildMix() {
-    const all = window.GS_CARDS.cards.slice();
-    const scored = all
-      .map((c) => ({ c, score: weakScore(c.id) + Math.random() * 0.2 }))
-      .sort((a, b) => b.score - a.score);
-    const n = MIX_SIZE_MIN + Math.floor(Math.random() * (MIX_SIZE_MAX - MIX_SIZE_MIN + 1));
-    // diversify chapters a bit
-    const picked = [];
-    const seenCh = {};
-    for (const { c } of scored) {
-      if (picked.length >= n) break;
-      const count = seenCh[c.chapter] || 0;
-      if (count >= 3 && picked.length < n - 1) continue;
-      picked.push(c);
-      seenCh[c.chapter] = count + 1;
+  /* spread: if a chapter is missing and we have room, swap one in */
+  var chs = {};
+  CARDS.units.forEach(function(u){ u.chapters.forEach(function(c){ chs[c.id] = c.facts; }); });
+  var present = {};
+  chosen.forEach(function(f){ present[chapterOf(f).id] = true; });
+  Object.keys(chs).forEach(function(cid){
+    if(present[cid] || chosen.length >= n) return;
+    var spare = null, idx = -1;
+    for(var i = 0; i < chosen.length; i++){
+      var cf = chapterOf(chosen[i]).id;
+      if(chosen.filter(function(x){ return chapterOf(x).id === cf; }).length > 1){ spare = chosen[i]; idx = i; break; }
     }
-    while (picked.length < MIX_SIZE_MIN && scored.length) {
-      const next = scored.find((x) => !picked.includes(x.c));
-      if (!next) break;
-      picked.push(next.c);
+    if(spare){
+      var alt = chs[cid].filter(function(f){ return !picked[f.id]; });
+      if(alt.length){ chosen[idx] = alt[0]; present[cid] = true; }
     }
-    return shuffle(picked).slice(0, n);
-  }
+  });
+  return chosen;
+}
 
-  function coachLine(kind) {
-    const lines = window.GS_CARDS.coachLines;
-    if (kind === "start") return lines[0];
-    if (kind === "retry") return lines[8];
-    if (kind === "done") return lines[9];
-    if (kind === "cheer") return lines[7];
-    state.coachLineIdx = (state.coachLineIdx + 1) % lines.length;
-    return lines[state.coachLineIdx];
+/* ---------- question builders ---------- */
+function buildQuestion(f, type){
+  switch(type){
+    case 'mcq':      return qMcq(f, false);
+    case 'scenario': return qMcq(f, true);
+    case 'mistake':  return qMistake(f);
+    case 'tf':       return qTf(f);
+    case 'sort':     return qSort(f);
+    case 'order':    return qOrder(f);
+    case 'match':    return qMatch(f);
+    case 'fill':     return qFill(f);
+    case 'teach':    return qTeach(f);
   }
-
-  function setCoach(text) {
-    const el = $("#coachLine");
-    if (el) el.textContent = text;
+}
+function freshOptions(f, correctList, wrongList){
+  var correct = pick(correctList);
+  var n = 4;
+  var same = wrongList.filter(function(w){ return w !== correct; });
+  var opts = makeOptions(correct, same, pool(), n);
+  var key = optionOrderKey(opts);
+  var tries = 0;
+  while(S.lastOrder[f.id] === key && tries < 8){
+    opts = makeOptions(correct, same, pool(), n);
+    key = optionOrderKey(opts); tries++;
   }
+  S.lastOrder[f.id] = key;
+  return opts;
+}
+function qMcq(f, isScenario){
+  var opts = freshOptions(f, f.good, f.bad);
+  var stem, sub = null;
+  if(isScenario){ stem = f.scenario; sub = 'What is the best thing to do?'; }
+  else if(Math.random() < 0.5){ stem = pick(['Which should you do?','Which is a good idea?','Pick the right choice.']); }
+  else { stem = pick(['Which should you NOT do?','Which is NOT a good idea?','Pick the wrong choice.']);
+         opts = opts.map(function(o){ return { t:o.t, ok:!o.ok }; }); }
+  return { type:'mcq', stem:stem, sub:sub, opts:opts, why:f.why };
+}
+function qMistake(f){
+  var opts = freshOptions(f, f.bad, f.good);
+  var stem = f.scenario || 'Find the mistake in this scene.';
+  return { type:'mcq', stem:stem, sub:'Which one is the mistake?', opts:opts, why:f.why };
+}
+function qTf(f){
+  var fromGood = Math.random() < 0.5;
+  var list = fromGood ? f.good : f.bad;
+  var st = pick(list);
+  return { type:'tf', stem:st, answer:fromGood, why:f.why };
+}
+function qSort(f){
+  var lbl = f.buckets || ['Good idea', 'Not a good idea'];
+  var items = [];
+  f.good.forEach(function(g){ items.push({ t:g, target:0 }); });
+  f.bad.forEach(function(b){ items.push({ t:b, target:1 }); });
+  return { type:'sort', stem:'Tap each card, then choose its bucket.', labels:lbl, items:shuffle(items), why:f.why };
+}
+function qOrder(f){
+  return { type:'order', stem:'Tap the steps in the right order.', steps:f.steps, why:f.why };
+}
+function qMatch(f){
+  var pairs = f.pairs.length > 4 ? sample(f.pairs, 4) : f.pairs;
+  var left = pairs.map(function(p){ return p[0]; });
+  var right = shuffle(pairs.map(function(p){ return p[1]; }));
+  var map = {};
+  pairs.forEach(function(pr){ map[pr[1]] = pr[0]; });
+  return { type:'match', stem:'Tap a card on each side to match them.', left:left, right:right, map:map, why:f.why };
+}
+function qFill(f){
+  return { type:'fill', stem:f.fill.text, answer:f.fill.answer, bank:shuffle(f.fill.bank.slice()), why:f.why };
+}
+function qTeach(f){
+  var distract = sample(f.bad.filter(function(b){ return f.keywords.indexOf(b) < 0; }), 2);
+  var bank = shuffle(f.keywords.slice().concat(distract));
+  return { type:'teach', stem:'Read or listen, then tap the words you remember.', facts:f.facts.slice(), bank:bank, answers:f.keywords.slice(), why:f.why };
+}
 
-  function showScreen(name) {
-    state.screen = name;
-    $$(".screen").forEach((s) => s.classList.toggle("active", s.dataset.screen === name));
+/* ---------- session flow ---------- */
+function currentCard(){ return S.cards[S.idx]; }
+function cardProgress(){
+  var d = document.getElementById('dots');
+  d.innerHTML = '';
+  S.cards.forEach(function(c, i){
+    var s = document.createElement('span');
+    if(i < S.idx) s.className = 'done';
+    if(i === S.idx) s.className = 'now';
+    d.appendChild(s);
+  });
+}
+function updateHud(){
+  document.getElementById('stars-text').textContent = S.stars;
+  document.getElementById('streak-text').textContent = S.streak;
+  document.getElementById('timer-text').textContent = fmtTime(S.timeLeft);
+  var tb = document.getElementById('timer-bar');
+  var total = S.mode === 'lightning' ? 60 : store.settings.timerMin * 60;
+  tb.style.width = Math.max(0, Math.round(100 * S.timeLeft / total)) + '%';
+  var el = document.getElementById('stat-timer');
+  el.classList.toggle('warn', S.timeLeft <= 60);
+  var flame = document.getElementById('stat-streak');
+  flame.classList.toggle('flame-hot', S.streak >= 3);
+}
+function startTimer(){
+  clearInterval(S.timerId);
+  updateHud();
+  S.timerId = setInterval(function(){
+    S.timeLeft -= 1;
+    if(S.timeLeft <= 0){ S.timeLeft = 0; updateHud(); endMission('time'); return; }
+    updateHud();
+  }, 1000);
+}
+function recordCorrect(){
+  var c = currentCard();
+  var st = S.factState[c.fact.id] || { attempts:0 };
+  var firstTry = st.attempts === 0;
+  var stars = S.mode === 'lightning' ? 1 : Math.max(1, 3 - st.attempts);
+  S.stars += stars;
+  if(firstTry){ S.streak += 1; S.best = Math.max(S.best, S.streak); }
+  else { S.streak = 0; }
+  recordAnswer(c.fact.id, chapterOf(c.fact).id, firstTry, stars);
+  return { stars:stars, firstTry:firstTry };
+}
+function onWrong(){
+  var c = currentCard();
+  var st = S.factState[c.fact.id] || { attempts:0 };
+  st.attempts += 1;
+  S.factState[c.fact.id] = st;
+  S.streak = 0;
+  updateHud();
+}
+function advance(){
+  S.idx += 1;
+  if(S.idx >= S.cards.length){ endMission('done'); return; }
+  renderQuestion();
+}
+function endMission(reason){
+  if(S.finished) return;
+  S.finished = true;
+  clearInterval(S.timerId);
+  AudioX.stopSpeak();
+  if(reason === 'time') toast('Time is up — great job!');
+  else if(reason === 'early') toast('Good quest! Come back for more.');
+  store.log.missions += 1;
+  store.log.bestStreak = Math.max(store.log.bestStreak, S.best);
+  if(S.mode === 'chapter') store.log.lastChapter = S.chapterId;
+  storeSave();
+  var ratio = S.cards.length ? S.stars / (S.cards.length * 3) : 0;
+  if(ratio >= 0.6) confetti(30);
+  AudioX.complete();
+  renderDone(reason);
+}
+
+/*__JS_ENGINE_DONE__*/
+
+/* ================================================================
+   UI: router, renderers, interactions
+   ================================================================ */
+var $ = function(id){ return document.getElementById(id); };
+
+/* ---------- view router ---------- */
+var views = ['view-home','view-play','view-done','view-parent'];
+function go(name){
+  views.forEach(function(v){ $(v).classList.toggle('hidden', v !== name); });
+  window.scrollTo(0,0);
+  if(name === 'view-home'){ renderHome(); updateSoundIcon(); }
+  if(name === 'view-parent') renderParent();
+}
+function router(){
+  var h = location.hash;
+  if(h === '#/parent') go('view-parent');
+  else go('view-home');
+}
+
+/* ---------- mascot ---------- */
+var PRAISE = ['Awesome, Merlin!','Brain boost!','You got it!','Super star!','Nailed it!','Woo-hoo!'];
+var ENCOURAGE = ['Almost! Try again.','You have got this!','Take a deep breath.','Look again, you can do it.'];
+var INTROS = ['Try this one!','Short mission, big brain!','You are doing great.','One card at a time!'];
+function mascotSay(text){
+  var b = $('mascot-bubble');
+  b.classList.remove('hidden');
+  $('mascot-text').textContent = text;
+  clearTimeout(mascotSay._t);
+  mascotSay._t = setTimeout(function(){ b.classList.add('hidden'); }, 3000);
+}
+
+/* ---------- icon snippets ---------- */
+var ICON = {
+  soundOn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor" stroke="none"/><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></svg>',
+  soundOff: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor" stroke="none"/><path d="M16 9l5 6M21 9l-5 6"/></svg>',
+  star: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 5.9 6.6 1-4.7 4.6 1.1 6.5-5.9-3.1-5.9 3.1 1.1-6.5L2.5 9.4l6.6-1z"/></svg>',
+  read: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor" stroke="none"/><path d="M16.5 8.5a5 5 0 010 7"/></svg>'
+};
+
+/* ---------- home ---------- */
+function updateSoundIcon(){
+  $('btn-sound').innerHTML = store.settings.sound ? ICON.soundOn : ICON.soundOff;
+}
+function renderHome(){
+  var list = $('chapter-list');
+  list.innerHTML = '';
+  var chapters = [];
+  CARDS.units.forEach(function(u){ u.chapters.forEach(function(c){ chapters.push(c); }); });
+  if(store.settings.shuffle) chapters = shuffle(chapters);
+  chapters.forEach(function(c){
+    var mastery = chapterMastery(c.id);
+    var stars = (store.mastery[c.id] && store.mastery[c.id].stars) || 0;
+    var el = document.createElement('button');
+    el.className = 'chap';
+    el.setAttribute('data-action','start-chapter');
+    el.setAttribute('data-id', c.id);
+    el.innerHTML =
+      '<span class="tile" style="background:' + c.color + '">' + c.emoji + '</span>' +
+      '<span class="info"><b>' + c.title + '</b><span class="pages">' + c.pages + ' · ' + c.facts.length + ' cards</span>' +
+      '<span class="meter"><i style="width:' + mastery + '%"></i></span>' +
+      '<span class="meter-label"><span>' + mastery + '% master</span><span class="stars">' + ICON.star + ' ' + stars + '</span></span></span>';
+    el.addEventListener('click', function(){ startChapter(c.id); });
+    list.appendChild(el);
+  });
+  $('total-stars-note').textContent = ICON.star + ' ' + totalStarsEarned() + ' stars so far';
+  var shuffleChip = $('chip-shuffle');
+  shuffleChip.classList.toggle('on', store.settings.shuffle);
+  $('lbl-shuffle').textContent = store.settings.shuffle ? 'Shuffle chapters' : 'Fixed order';
+  var mixChip = $('chip-mix');
+  mixChip.classList.toggle('on', store.settings.mixFresh);
+  $('lbl-mix').textContent = store.settings.mixFresh ? 'Smart Mix' : 'Fresh Mix';
+  $('lbl-timer').textContent = store.settings.timerMin + ' min';
+}
+
+/* ---------- done ---------- */
+function renderDone(reason){
+  var titles = { done:'Quest complete!', time:'Time is up!', early:'Nice job!' };
+  var subs = { done:'Short mission finished. Brain boost complete!', time:'The timer ran out — you still did great!', early:'Every card counts. Come back soon!' };
+  $('done-title').textContent = titles[reason] || titles.done;
+  $('done-sub').textContent = subs[reason] || subs.done;
+  $('done-emoji').textContent = S.stars >= S.cards.length * 2 ? '🌟' : '⭐';
+  $('done-stars').textContent = S.stars;
+  $('done-streak').textContent = S.best;
+  $('done-time').textContent = fmtTime(Math.max(1, Math.round((Date.now() - S.startTime) / 1000)));
+  $('done-cards').textContent = S.cards.length;
+  var mm = $('mastery-move');
+  if(S.mode === 'chapter'){
+    var c = chapterById(S.chapterId);
+    mm.innerHTML = '<b>Chapter progress</b>' + c.title + ' is now <b>' + chapterMastery(c.id) + '%</b> mastered. Keep collecting stars!';
+  } else {
+    mm.innerHTML = '<b>Nice session</b>You earned <b>' + S.stars + '</b> stars this session. Total: <b>' + totalStarsEarned() + '</b>.';
   }
+  go('view-done');
+}
 
-  function renderStats() {
-    $("#statStars").textContent = "⭐ " + progress.stars;
-    $("#statStreak").textContent = "🔥 " + progress.streak;
-  }
+/* ---------- parent coach ---------- */
+function renderParent(){
+  var body = $('parent-body');
+  var html = '';
+  html += '<div class="panel"><h3>' + ICON.star + ' Session summary</h3>' +
+    '<div class="stats-grid">' +
+    '<div class="stat-card"><b>' + store.log.missions + '</b><small>missions played</small></div>' +
+    '<div class="stat-card"><b>' + store.log.bestStreak + '</b><small>best streak</small></div>' +
+    '<div class="stat-card"><b>' + totalStarsEarned() + '</b><small>stars earned</small></div>' +
+    '<div class="stat-card"><b>' + Object.keys(store.acc).length + '</b><small>cards practised</small></div>' +
+    '</div></div>';
 
-  function renderHome() {
-    stopTimer();
-    renderStats();
-    setCoach(coachLine("idle"));
-    const grid = $("#questGrid");
-    grid.innerHTML = "";
-    window.GS_CARDS.chapters.forEach((ch) => {
-      const cards = cardsForChapter(ch.id);
-      const btn = document.createElement("button");
-      btn.className = "quest-card";
-      btn.style.color = ch.color;
-      btn.innerHTML =
-        '<span class="emoji">' + ch.emoji + "</span>" +
-        '<span class="q-title">Ch.' + ch.num + " · " + ch.title + "</span>" +
-        '<span class="q-blurb">' + ch.blurb + "</span>" +
-        '<span class="q-meta">' + cards.length + " cards · ~6 min</span>";
-      btn.addEventListener("click", () => startMission(ch.id, false));
-      grid.appendChild(btn);
+  /* weak topics */
+  var weak = [];
+  Object.keys(store.acc).forEach(function(fid){
+    var a = store.acc[fid];
+    weak.push({ fid:fid, acc:a.c / a.a, tries:a.a });
+  });
+  weak.sort(function(x,y){ return x.acc - y.acc || y.tries - x.tries; });
+  var weakTop = weak.slice(0, 4);
+
+  html += '<div class="panel"><h3>Weakest topics</h3>';
+  if(weakTop.length){
+    weakTop.forEach(function(w){
+      var f = null;
+      allFacts().forEach(function(x){ if(x.id === w.fid) f = x; });
+      if(!f) return;
+      var pct = Math.round(w.acc * 100);
+      html += '<div class="weak-row"><span class="dot">' + pct + '%</span>' +
+        '<span class="t">' + f.topic + '<small>' + f.chapter + '</small></span>' +
+        '<span class="p">' + w.tries + ' tries</span></div>';
     });
-    const mix = document.createElement("button");
-    mix.className = "quest-card mix-card";
-    mix.innerHTML =
-      '<span class="emoji">🎲</span><div>' +
-      '<div class="q-title">Today\'s Mix</div>' +
-      '<div class="q-blurb">5–8 random / weak cards · short brain boost</div></div>';
-    mix.addEventListener("click", () => startMission(null, true));
-    grid.appendChild(mix);
-    showScreen("home");
+  } else {
+    html += '<p style="font-size:13.5px;color:var(--ink-soft);font-weight:600">No data yet — play a few missions first and weak topics will appear here.</p>';
   }
+  html += '</div>';
 
-  function pickChapterQueue(chapterId) {
-    const all = shuffle(cardsForChapter(chapterId));
-    const n = Math.min(all.length, MIX_SIZE_MIN + Math.floor(Math.random() * (MIX_SIZE_MAX - MIX_SIZE_MIN + 1)));
-    // Prefer mixed modes
-    const byMode = {};
-    all.forEach((c) => {
-      (byMode[c.mode] = byMode[c.mode] || []).push(c);
-    });
-    const picked = [];
-    const modes = shuffle(Object.keys(byMode));
-    // round-robin modes
-    let guard = 0;
-    while (picked.length < n && guard < 100) {
-      guard++;
-      for (const m of modes) {
-        if (picked.length >= n) break;
-        const list = byMode[m];
-        if (list && list.length) picked.push(list.shift());
-      }
-    }
-    return shuffle(picked);
+  /* exactly 2 oral questions from weakest */
+  var oralPool = weakTop.length >= 2 ? weakTop : [];
+  var oralFacts = [];
+  oralPool.slice(0,2).forEach(function(w){
+    allFacts().forEach(function(x){ if(x.id === w.fid && oralFacts.indexOf(x) < 0) oralFacts.push(x); });
+  });
+  if(oralFacts.length < 2){
+    var extras = shuffle(allFacts());
+    extras.forEach(function(f){ if(oralFacts.length < 2 && oralFacts.indexOf(f) < 0) oralFacts.push(f); });
   }
+  html += '<div class="panel"><h3>Ask aloud — exactly 2 oral questions</h3><p style="font-size:13px;color:var(--ink-soft);font-weight:600;margin-bottom:4px">Ask these out loud after the session, one at a time. Praise every try — no marks needed.</p>';
+  oralFacts.forEach(function(f){
+    html += '<div class="oral-q"><div class="q">' + (f.scenario || f.fact) + '</div>' +
+      '<div class="a">Answer: ' + f.facts[0] + '</div>' +
+      (f.can ? '<div class="can">廣東話：' + f.can + '</div>' : '') +
+      '</div>';
+  });
+  html += '<div class="zh-tip">同Merlin用廣東話傾下呢兩條問題就夠喇。答啱就讚吓佢，答錯就一齊喺課本度搵答案，唔好俾壓力。Short missions every day beats one long session!</div></div>';
 
-  function startMission(chapterId, isMix) {
-    updateStreakOnStart();
-    let queue;
-    if (isMix) queue = buildMix();
-    else queue = pickChapterQueue(chapterId);
+  html += '<div class="btn-row"><button class="btn btn-ghost" data-action="go-home">Back</button>' +
+    '<button class="btn btn-ghost" data-action="reset-progress" style="color:var(--bad)">Reset progress</button></div>';
+  body.innerHTML = html;
+}
 
-    state.chapterId = chapterId;
-    state.isMix = isMix;
-    state.queue = queue;
-    state.index = 0;
-    state.correct = 0;
-    state.answered = 0;
-    state.retryIds = [];
-    state.sessionWeakTopics = [];
-    state.timerLeft = MISSION_SECS;
-    state.feedback = null;
-    state.awaitingContinue = false;
+/* ---------- question renderers ---------- */
+function qarea(){
+  var a = $('qarea');
+  a.innerHTML = '';
+  return a;
+}
+function tagLabel(type){
+  var map = { mcq:'Pick one', scenario:'What would you do?', mistake:'Spot the mistake', tf:'True or False',
+    sort:'Sort it', order:'Order the steps', match:'Match the pairs', fill:'Fill the blank', teach:'Read & remember' };
+  return map[type] || 'Question';
+}
+function readBtn(text, facts){
+  var b = document.createElement('button');
+  b.className = 'icon-btn read-btn';
+  b.innerHTML = ICON.read;
+  b.setAttribute('aria-label','Read aloud');
+  b.style.width = '44px';
+  b.addEventListener('click', function(){
+    AudioX.ensure();
+    AudioX.speak(text + (facts ? ' ' + facts.join('. ') : ''));
+  });
+  return b;
+}
+function nextBtn(instant){
+  var row = document.createElement('div');
+  row.className = 'next-row';
+  var b = document.createElement('button');
+  b.className = 'btn btn-primary';
+  b.textContent = S.idx >= S.cards.length - 1 ? 'Finish' : 'Next card';
+  b.addEventListener('click', function(){
+    if(S.mode === 'lightning'){ advance(); return; }
+    advance();
+  });
+  row.appendChild(b);
+  return row;
+}
+function whyBox(q){
+  var w = document.createElement('div');
+  w.className = 'why';
+  w.innerHTML = '<b>Why?</b>' + q.why;
+  return w;
+}
+function celebrate(el, q){
+  AudioX.correct();
+  if(S.streak >= 3 && S.streak % 2 === 0) AudioX.streak(Math.min(S.streak, 4));
+  var r = el.getBoundingClientRect();
+  starBurst(r.left + r.width/2, r.top + r.height/2);
+  if(S.streak >= 5) mascotSay('On fire! Keep going! 🔥');
+  else mascotSay(S.streak >= 3 ? 'Streak ' + S.streak + ' — brain boost!' : pick(PRAISE));
+  var wrap = qarea();
+  wrap.appendChild(q._qcard);
+  q._qcard.appendChild(whyBox(q));
+  q._qcard.appendChild(nextBtn());
+  if(S.mode === 'lightning') setTimeout(function(){ advance(); }, 900);
+}
+function fail(el, q){
+  AudioX.wrong();
+  el.classList.remove('ok');
+  el.classList.add('no');
+  setTimeout(function(){ el.classList.remove('no'); }, 500);
+  onWrong();
+  mascotSay(pick(ENCOURAGE));
+  updateHud();
+}
 
-    const title = isMix
-      ? "Today's Mix"
-      : window.GS_CARDS.chapters.find((c) => c.id === chapterId).title;
-    $("#missionTitle").textContent = (isMix ? "🎲 " : "🚀 ") + title;
-    setCoach(coachLine("start"));
-    startTimer();
-    showScreen("mission");
-    renderCard();
+/* --- mcq / scenario / mistake --- */
+function renderMcq(q){
+  var a = qarea();
+  var card = document.createElement('div');
+  card.className = 'qcard';
+  q._qcard = card;
+  card.innerHTML = '<div class="q-tag">' + tagLabel(q.type) + '</div>';
+  var p = document.createElement('div');
+  p.className = 'prompt';
+  p.textContent = q.stem;
+  card.appendChild(p);
+  if(q.sub){
+    var s = document.createElement('div');
+    s.className = 'prompt-sub';
+    s.textContent = q.sub;
+    card.appendChild(s);
   }
-
-  function startTimer() {
-    stopTimer();
-    updateTimerUI();
-    state.timerId = setInterval(() => {
-      state.timerLeft -= 1;
-      updateTimerUI();
-      if (state.timerLeft <= 0) {
-        stopTimer();
-        finishMission(true);
-      }
-    }, 1000);
-  }
-
-  function stopTimer() {
-    if (state.timerId) {
-      clearInterval(state.timerId);
-      state.timerId = null;
-    }
-  }
-
-  function updateTimerUI() {
-    const m = Math.floor(Math.max(0, state.timerLeft) / 60);
-    const s = Math.max(0, state.timerLeft) % 60;
-    const el = $("#timerDisplay");
-    el.textContent = "⏱ " + m + ":" + String(s).padStart(2, "0");
-    el.classList.toggle("warn", state.timerLeft <= 60);
-  }
-
-  function renderProgressDots() {
-    const wrap = $("#progressDots");
-    wrap.innerHTML = "";
-    state.queue.forEach((card, i) => {
-      const d = document.createElement("span");
-      d.className = "dot";
-      if (i < state.index) d.classList.add("done");
-      if (i === state.index) d.classList.add("now");
-      if (state.retryIds.includes(card.id) && i === state.index) d.classList.add("retry");
-      wrap.appendChild(d);
-    });
-  }
-
-  function currentCard() {
-    return state.queue[state.index];
-  }
-
-  function renderCard() {
-    const card = currentCard();
-    if (!card) {
-      finishMission(false);
-      return;
-    }
-    state.feedback = null;
-    state.awaitingContinue = false;
-    state.sortPicked = null;
-    state.sortMap = {};
-    renderProgressDots();
-
-    const area = $("#playArea");
-    area.innerHTML = "";
-
-    const mode = document.createElement("div");
-    mode.className = "mode-tag";
-    mode.textContent = MODE_LABELS[card.mode] || card.mode;
-    area.appendChild(mode);
-
-    const topic = document.createElement("div");
-    topic.className = "topic-tag";
-    topic.textContent = "Topic: " + card.topic;
-    area.appendChild(topic);
-
-    const h2 = document.createElement("h2");
-    h2.textContent = card.prompt;
-    area.appendChild(h2);
-
-    const body = document.createElement("div");
-    body.id = "cardBody";
-    area.appendChild(body);
-
-    const fb = document.createElement("div");
-    fb.id = "feedbackBox";
-    fb.className = "hidden";
-    area.appendChild(fb);
-
-    const actions = document.createElement("div");
-    actions.className = "btn-row";
-    actions.id = "cardActions";
-    area.appendChild(actions);
-
-    if (card.mode === "mcq") renderMcq(card, body, actions);
-    else if (card.mode === "truefalse") renderTF(card, body, actions);
-    else if (card.mode === "sort") renderSort(card, body, actions);
-    else if (card.mode === "order") renderOrder(card, body, actions);
-    else if (card.mode === "teachback") renderTeachback(card, body, actions);
-  }
-
-  function showFeedback(ok, msg) {
-    const fb = $("#feedbackBox");
-    fb.className = "feedback " + (ok ? "ok" : "bad");
-    fb.textContent = msg;
-    fb.classList.remove("hidden");
-  }
-
-  function recordAttempt(card, ok) {
-    if (!progress.cardStats[card.id]) {
-      progress.cardStats[card.id] = { attempts: 0, correct: 0, lastWrong: false };
-    }
-    const st = progress.cardStats[card.id];
-    st.attempts += 1;
-    if (ok) {
-      st.correct += 1;
-      st.lastWrong = false;
-    } else {
-      st.lastWrong = true;
-      if (!state.sessionWeakTopics.includes(card.topic)) {
-        state.sessionWeakTopics.push(card.topic);
-      }
-    }
-    saveProgress();
-  }
-
-  function onCorrect(card, extraMsg) {
-    recordAttempt(card, true);
-    state.correct += 1;
-    state.answered += 1;
-    state.awaitingContinue = true;
-    showFeedback(true, extraMsg || "🎉 Yes! Great thinking!");
-    setCoach(coachLine("cheer"));
-    const actions = $("#cardActions");
-    actions.innerHTML = "";
-    const btn = document.createElement("button");
-    btn.className = "btn-primary";
-    btn.textContent = "Next →";
-    btn.addEventListener("click", nextCard);
-    actions.appendChild(btn);
-    burstConfetti();
-  }
-
-  function onWrong(card, tip) {
-    recordAttempt(card, false);
-    state.answered += 1;
-    state.awaitingContinue = true;
-    // Retry this card only: insert a copy after current if not already queued as immediate retry
-    const already = state.queue.slice(state.index + 1).some((c) => c.id === card.id);
-    if (!already) {
-      state.queue.splice(state.index + 1, 0, card);
-      state.retryIds.push(card.id);
-    }
-    showFeedback(false, "💪 Almost! Let's try this one again. " + (tip || ""));
-    setCoach(coachLine("retry"));
-    const actions = $("#cardActions");
-    actions.innerHTML = "";
-    const btn = document.createElement("button");
-    btn.className = "btn-teal";
-    btn.textContent = "Retry this card →";
-    btn.addEventListener("click", nextCard);
-    actions.appendChild(btn);
-  }
-
-  function nextCard() {
-    state.index += 1;
-    if (state.index >= state.queue.length) finishMission(false);
-    else renderCard();
-  }
-
-  /* —— Modes —— */
-  function renderMcq(card, body, actions) {
-    const wrap = document.createElement("div");
-    wrap.className = "choices";
-    card.choices.forEach((text, i) => {
-      const b = document.createElement("button");
-      b.className = "choice-btn";
-      b.textContent = text;
-      b.addEventListener("click", () => {
-        if (state.awaitingContinue) return;
-        $$(".choice-btn", wrap).forEach((x) => (x.disabled = true));
-        if (i === card.answer) {
-          b.classList.add("correct");
-          onCorrect(card);
-        } else {
-          b.classList.add("wrong");
-          $$(".choice-btn", wrap)[card.answer].classList.add("correct");
-          onWrong(card, card.tip || "");
-        }
-      });
-      wrap.appendChild(b);
-    });
-    body.appendChild(wrap);
-  }
-
-  function renderTF(card, body, actions) {
-    const row = document.createElement("div");
-    row.className = "tf-row";
-    ["True", "False"].forEach((label, idx) => {
-      const b = document.createElement("button");
-      b.className = "tf-btn " + (idx === 0 ? "tf-true" : "tf-false");
-      b.textContent = idx === 0 ? "✅ True" : "❌ False";
-      b.addEventListener("click", () => {
-        if (state.awaitingContinue) return;
-        const val = idx === 0;
-        $$("button", row).forEach((x) => (x.disabled = true));
-        const why = document.createElement("div");
-        why.className = "why-box";
-        why.textContent = "Why: " + card.why;
-        body.appendChild(why);
-        if (val === card.answer) onCorrect(card, "🎉 Correct! Check the Why box.");
-        else onWrong(card, "Read the Why box, then retry.");
-      });
-      row.appendChild(b);
-    });
-    body.appendChild(row);
-  }
-
-  function renderSort(card, body, actions) {
-    const pool = document.createElement("div");
-    pool.className = "chip-pool";
-    pool.id = "chipPool";
-
-    const buckets = document.createElement("div");
-    buckets.className = "buckets";
-    card.buckets.forEach((name, bi) => {
-      const buck = document.createElement("div");
-      buck.className = "bucket";
-      buck.dataset.bucket = String(bi);
-      const h = document.createElement("h3");
-      h.textContent = name;
-      buck.appendChild(h);
-      const drop = document.createElement("div");
-      drop.className = "chip-pool";
-      drop.dataset.drop = String(bi);
-      buck.appendChild(drop);
-      buck.addEventListener("click", () => {
-        if (state.sortPicked == null || state.awaitingContinue) return;
-        placeChip(state.sortPicked, bi, card);
-      });
-      buckets.appendChild(buck);
-    });
-
-    const items = shuffle(card.items.map((it, i) => ({ ...it, _i: i })));
-    items.forEach((it) => {
-      const chip = document.createElement("button");
-      chip.className = "chip";
-      chip.textContent = it.text;
-      chip.dataset.idx = String(it._i);
-      chip.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (state.awaitingContinue) return;
-        // if already in a bucket, allow re-pick
-        $$(".chip").forEach((c) => c.classList.remove("picked"));
-        chip.classList.add("picked");
-        state.sortPicked = it._i;
-      });
-      pool.appendChild(chip);
-    });
-
-    const hint = document.createElement("p");
-    hint.className = "topic-tag";
-    hint.textContent = "Tap a chip, then tap a bucket.";
-    body.appendChild(hint);
-    body.appendChild(pool);
-    body.appendChild(buckets);
-
-    const check = document.createElement("button");
-    check.className = "btn-primary";
-    check.textContent = "Check ✓";
-    check.addEventListener("click", () => checkSort(card));
-    actions.appendChild(check);
-  }
-
-  function placeChip(idx, bucket, card) {
-    state.sortMap[idx] = bucket;
-    state.sortPicked = null;
-    // re-render chip positions
-    const cardItems = card.items;
-    const pool = $("#chipPool");
-    $$(".bucket .chip-pool[data-drop]").forEach((d) => (d.innerHTML = ""));
-    pool.innerHTML = "";
-    cardItems.forEach((it, i) => {
-      const chip = document.createElement("button");
-      chip.className = "chip" + (state.sortMap[i] != null ? " in-bucket" : "");
-      chip.textContent = it.text;
-      chip.dataset.idx = String(i);
-      chip.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (state.awaitingContinue) return;
-        $$(".chip").forEach((c) => c.classList.remove("picked"));
-        chip.classList.add("picked");
-        state.sortPicked = i;
-      });
-      if (state.sortMap[i] != null) {
-        const drop = $('[data-drop="' + state.sortMap[i] + '"]');
-        drop.appendChild(chip);
+  card.appendChild(readBtn(q.stem + '. ' + q.opts.map(function(o){ return o.t; }).join('. ')));
+  q.opts.forEach(function(o, i){
+    var b = document.createElement('button');
+    b.className = 'opt';
+    b.textContent = o.t;
+    b.addEventListener('click', function(){
+      if(b.disabled) return;
+      AudioX.ensure();
+      if(o.ok){
+        recordCorrect(); updateHud();
+        b.classList.add('ok'); b.disabled = true;
+        q.opts.forEach(function(x, j){ if(j !== i){ card.querySelectorAll('.opt')[j].disabled = true; } });
+        celebrate(b, q);
       } else {
-        pool.appendChild(chip);
+        fail(b, q);
+        b.disabled = true;
+        if(S.mode === 'lightning') setTimeout(function(){ advance(); }, 900);
       }
     });
-  }
+    card.appendChild(b);
+  });
+  a.appendChild(card);
+}
 
-  function checkSort(card) {
-    if (state.awaitingContinue) return;
-    const allPlaced = card.items.every((_, i) => state.sortMap[i] != null);
-    if (!allPlaced) {
-      showFeedback(false, "Put every chip into a bucket first!");
-      $("#feedbackBox").className = "feedback cheer";
+/* --- true / false --- */
+function renderTf(q){
+  var a = qarea();
+  var card = document.createElement('div');
+  card.className = 'qcard';
+  q._qcard = card;
+  card.innerHTML = '<div class="q-tag">True or False</div>';
+  var p = document.createElement('div');
+  p.className = 'prompt';
+  p.textContent = q.stem;
+  card.appendChild(p);
+  card.appendChild(readBtn('True or false? ' + q.stem));
+  var row = document.createElement('div');
+  row.className = 'tf-row';
+  [['TRUE','✔'],['FALSE','✘']].forEach(function(pair){
+    var b = document.createElement('button');
+    b.className = 'tf-btn';
+    b.textContent = pair[1] + ' ' + pair[0];
+    b.addEventListener('click', function(){
+      if(b.disabled) return;
+      AudioX.ensure();
+      var isTrue = pair[0] === 'TRUE';
+      if(isTrue === q.answer){
+        recordCorrect(); updateHud();
+        b.classList.add('ok'); b.disabled = true;
+        row.querySelectorAll('.tf-btn').forEach(function(x){ x.disabled = true; });
+        celebrate(b, q);
+      } else {
+        fail(b, q);
+        b.disabled = true;
+      }
+    });
+    row.appendChild(b);
+  });
+  card.appendChild(row);
+  a.appendChild(card);
+}
+
+/* --- sort --- */
+function renderSort(q){
+  var a = qarea();
+  var card = document.createElement('div');
+  card.className = 'qcard';
+  q._qcard = card;
+  card.innerHTML = '<div class="q-tag">Sort it</div><div class="prompt">' + q.stem + '</div>';
+  var buckets = document.createElement('div');
+  buckets.className = 'buckets';
+  var cols = [];
+  q.labels.forEach(function(l, i){
+    var col = document.createElement('div');
+    col.className = 'bucket';
+    col.innerHTML = '<h4>' + l + '</h4>';
+    buckets.appendChild(col);
+    cols.push(col);
+  });
+  var items = {};
+  q.items.forEach(function(it){
+    var b = document.createElement('button');
+    b.className = 'chip-item';
+    b.textContent = it.t;
+    b.dataset.id = it.t;
+    b.dataset.slot = 'none';
+    b.addEventListener('click', function(){
+      AudioX.tap();
+      b.classList.remove('bad');
+      var slot = b.dataset.slot;
+      if(slot === 'none'){ cols[0].appendChild(b); b.dataset.slot = '0'; b.className = 'chip-item selA'; }
+      else if(slot === '0'){ cols[1].appendChild(b); b.dataset.slot = '1'; b.className = 'chip-item selB'; }
+      else { b.remove(); b.dataset.slot = 'none'; }
+      // if removed from a column, put it back into the pool row
+      if(b.dataset.slot === 'none'){ itemPool.appendChild(b); b.className = 'chip-item'; }
+    });
+    items[it.t] = { it:it, el:b };
+  });
+  var pool = document.createElement('div');
+  pool.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;margin-top:12px';
+  var itemPool = pool;
+  q.items.forEach(function(it){ pool.appendChild(items[it.t].el); });
+  card.appendChild(pool);
+  card.appendChild(buckets);
+  var check = document.createElement('button');
+  check.className = 'btn btn-primary check-row';
+  check.textContent = 'Check';
+  check.addEventListener('click', function(){
+    var wrong = false;
+    q.items.forEach(function(it){
+      var b = items[it.t].el;
+      var slot = parseInt(b.dataset.slot, 10);
+      if(isNaN(slot) || slot !== it.target){
+        if(!b.dataset.shook){
+          b.dataset.shook = '1';
+          b.classList.add('bad');
+          setTimeout(function(){
+            b.classList.add('shake');
+            setTimeout(function(){ b.classList.remove('shake'); b.dataset.shook = ''; }, 500);
+          }, 40);
+        } else {
+          b.classList.add('bad');
+        }
+        wrong = true;
+      }
+    });
+    if(wrong){
+      AudioX.wrong(); onWrong(); updateHud();
+      mascotSay(pick(ENCOURAGE) + ' Tap the red cards to move them.');
       return;
     }
-    const ok = card.items.every((it, i) => state.sortMap[i] === it.bucket);
-    if (ok) onCorrect(card, "🎉 Perfect sorting!");
-    else onWrong(card, "Some chips are in the wrong bucket.");
-  }
+    recordCorrect(); updateHud();
+    check.disabled = true;
+    celebrate(check, q);
+  });
+  card.appendChild(check);
+  a.appendChild(card);
+}
 
-  function renderOrder(card, body, actions) {
-    // Start shuffled
-    state.orderSteps = shuffle(card.steps.map((t, i) => ({ text: t, correctIndex: i })));
-    const list = document.createElement("div");
-    list.className = "order-list";
-    list.id = "orderList";
-    body.appendChild(list);
-    drawOrderList();
-
-    const check = document.createElement("button");
-    check.className = "btn-primary";
-    check.textContent = "Check order ✓";
-    check.addEventListener("click", () => {
-      if (state.awaitingContinue) return;
-      const ok = state.orderSteps.every((s, i) => s.correctIndex === i);
-      if (ok) onCorrect(card, "🎉 Right order!");
-      else onWrong(card, "Try moving the steps with ▲ ▼.");
+/* --- order --- */
+function renderOrder(q){
+  var a = qarea();
+  var card = document.createElement('div');
+  card.className = 'qcard';
+  q._qcard = card;
+  card.innerHTML = '<div class="q-tag">Order the steps</div><div class="prompt">' + q.stem + '</div>';
+  var src = document.createElement('div');
+  src.className = 'order-src';
+  var srcPool = shuffle(q.steps.map(function(s){ return s; }));
+  var slots = [];
+  var answer = [];
+  srcPool.forEach(function(s){
+    var b = document.createElement('button');
+    b.textContent = s;
+    b.dataset.t = s;
+    b.addEventListener('click', function(){
+      if(b.disabled) return;
+      AudioX.tap();
+      if(answer.length >= q.steps.length) return;
+      b.disabled = true;
+      answer.push(s);
+      slots[answer.length - 1].querySelector('.txt').textContent = (answer.length) + '. ' + s;
+      slots[answer.length - 1].querySelector('button').disabled = false;
     });
-    actions.appendChild(check);
-  }
-
-  function drawOrderList() {
-    const list = $("#orderList");
-    list.innerHTML = "";
-    state.orderSteps.forEach((step, i) => {
-      const row = document.createElement("div");
-      row.className = "order-item";
-      const num = document.createElement("strong");
-      num.textContent = i + 1 + ".";
-      const span = document.createElement("span");
-      span.textContent = step.text;
-      const ctrl = document.createElement("div");
-      ctrl.className = "order-controls";
-      const up = document.createElement("button");
-      up.textContent = "▲";
-      up.disabled = i === 0 || state.awaitingContinue;
-      up.addEventListener("click", () => {
-        if (i === 0) return;
-        [state.orderSteps[i - 1], state.orderSteps[i]] = [state.orderSteps[i], state.orderSteps[i - 1]];
-        drawOrderList();
+    src.appendChild(b);
+  });
+  card.appendChild(src);
+  var slotWrap = document.createElement('div');
+  slotWrap.className = 'order-slots';
+  q.steps.forEach(function(_, i){
+    var slot = document.createElement('div');
+    slot.className = 'order-slot';
+    slot.innerHTML = '<span class="n">' + (i + 1) + '</span><span class="txt"></span><button disabled aria-label="remove">✕</button>';
+    slot.querySelector('button').addEventListener('click', function(){
+      var idx = parseInt(slot.querySelector('.n').textContent, 10) - 1;
+      if(idx < 0 || idx >= answer.length) return;
+      var s = answer[idx];
+      answer.splice(idx, 1);
+      // refill slots
+      srcPool.forEach(function(x){
+        var el = src.querySelector('[data-t="' + x + '"]');
+        if(el && el.dataset.t === s && el.disabled){ el.disabled = false; }
       });
-      const down = document.createElement("button");
-      down.textContent = "▼";
-      down.disabled = i === state.orderSteps.length - 1 || state.awaitingContinue;
-      down.addEventListener("click", () => {
-        if (i >= state.orderSteps.length - 1) return;
-        [state.orderSteps[i + 1], state.orderSteps[i]] = [state.orderSteps[i], state.orderSteps[i + 1]];
-        drawOrderList();
-      });
-      ctrl.appendChild(up);
-      ctrl.appendChild(down);
-      row.appendChild(num);
-      row.appendChild(span);
-      row.appendChild(ctrl);
-      list.appendChild(row);
+      src.querySelectorAll('button').forEach(function(bb){ if(bb.dataset.t === s) bb.disabled = false; });
+      renderSlots();
+    });
+    slotWrap.appendChild(slot);
+    slots.push(slot);
+  });
+  function renderSlots(){
+    slots.forEach(function(slot, i){
+      slot.querySelector('.txt').textContent = i < answer.length ? (i + 1) + '. ' + answer[i] : '';
     });
   }
-
-  function renderTeachback(card, body, actions) {
-    const hint = document.createElement("p");
-    hint.className = "topic-tag";
-    hint.textContent = "Say your answer out loud (or to Mum/Dad), then reveal!";
-    body.appendChild(hint);
-
-    const revealBox = document.createElement("div");
-    revealBox.id = "revealBox";
-    revealBox.className = "hidden";
-    body.appendChild(revealBox);
-
-    const revealBtn = document.createElement("button");
-    revealBtn.className = "btn-secondary";
-    revealBtn.textContent = "Reveal answers 👀";
-    revealBtn.addEventListener("click", () => {
-      const ul = document.createElement("ul");
-      ul.className = "reveal-list";
-      card.reveal.forEach((line) => {
-        const li = document.createElement("li");
-        li.textContent = line;
-        ul.appendChild(li);
-      });
-      revealBox.innerHTML = "";
-      revealBox.appendChild(ul);
-      revealBox.classList.remove("hidden");
-      revealBtn.disabled = true;
-    });
-    actions.appendChild(revealBtn);
-
-    const gotIt = document.createElement("button");
-    gotIt.className = "btn-primary";
-    gotIt.textContent = "I said it! ⭐";
-    gotIt.addEventListener("click", () => {
-      if (state.awaitingContinue) return;
-      // Teach-back counts as correct when child confirms (oral practice)
-      onCorrect(card, "🌟 Awesome teach-back!");
-    });
-    actions.appendChild(gotIt);
-
-    const needHelp = document.createElement("button");
-    needHelp.className = "btn-ghost";
-    needHelp.textContent = "Need another try";
-    needHelp.addEventListener("click", () => {
-      if (state.awaitingContinue) return;
-      onWrong(card, card.coachHint || "Reveal, practice, then try again!");
-    });
-    actions.appendChild(needHelp);
-  }
-
-  function finishMission(timedOut) {
-    stopTimer();
-    const totalUnique = new Set(state.queue.map((c) => c.id)).size;
-    const accuracy = state.answered ? Math.round((state.correct / state.answered) * 100) : 0;
-    let starsEarned = 1;
-    if (accuracy >= 60) starsEarned = 2;
-    if (accuracy >= 85) starsEarned = 3;
-    if (timedOut && state.answered === 0) starsEarned = 1;
-    progress.stars += starsEarned;
-    progress.history.push({
-      date: todayStr(),
-      chapterId: state.chapterId,
-      isMix: state.isMix,
-      correct: state.correct,
-      answered: state.answered,
-      accuracy,
-      weakTopics: state.sessionWeakTopics.slice(),
-      timedOut: !!timedOut
-    });
-    if (progress.history.length > 30) progress.history = progress.history.slice(-30);
-    saveProgress();
-    renderStats();
-
-    const res = $("#resultsArea");
-    res.innerHTML =
-      '<div class="big-emoji">' + (timedOut ? "⏰" : "🏆") + "</div>" +
-      "<h2>" + (timedOut ? "Time's up — great effort!" : "Mission complete!") + "</h2>" +
-      '<div class="star-row">' + "⭐".repeat(starsEarned) + "☆".repeat(3 - starsEarned) + "</div>" +
-      "<p>You got <strong>" + state.correct + "</strong> right out of <strong>" + state.answered +
-      "</strong> tries (" + accuracy + "%). Cards in this mission: " + totalUnique + ".</p>";
-
-    setCoach(coachLine("done"));
-    burstConfetti();
-    showScreen("results");
-  }
-
-  /** Parent Coach: accuracy, weak topics, exactly 2 oral questions */
-  function renderCoach() {
-    stopTimer();
-    setCoach("Parent Coach — 60-second briefing for Mo");
-    renderStats();
-
-    const hist = progress.history;
-    const recent = hist.slice(-5);
-    let totalC = 0, totalA = 0;
-    const weakCount = {};
-    recent.forEach((h) => {
-      totalC += h.correct;
-      totalA += h.answered;
-      (h.weakTopics || []).forEach((t) => {
-        weakCount[t] = (weakCount[t] || 0) + 1;
-      });
-    });
-    // also from cardStats
-    Object.keys(progress.cardStats).forEach((id) => {
-      const st = progress.cardStats[id];
-      if (st.lastWrong) {
-        const card = window.GS_CARDS.cards.find((c) => c.id === id);
-        if (card) weakCount[card.topic] = (weakCount[card.topic] || 0) + 1;
-      }
-    });
-
-    const accuracy = totalA ? Math.round((totalC / totalA) * 100) : 0;
-    const weakTopics = Object.entries(weakCount)
-      .sort((a, b) => b[1] - a[1])
-      .map(([t]) => t)
-      .slice(0, 5);
-
-    const oral = pickTwoOral(weakTopics);
-
-    const panel = $("#coachPanel");
-    panel.innerHTML =
-      "<h2>🧭 Parent Coach</h2>" +
-      '<p class="note">Quick briefing for Mo — no tutor mode needed. Short missions / brain boost only.</p>' +
-      '<div class="stat-grid">' +
-      '<div class="stat-box"><div class="num">' + accuracy + '%</div><div class="lbl">Recent accuracy</div></div>' +
-      '<div class="stat-box"><div class="num">' + progress.streak + '</div><div class="lbl">Day streak</div></div>' +
-      '<div class="stat-box"><div class="num">' + progress.stars + '</div><div class="lbl">Total stars</div></div>' +
-      '<div class="stat-box"><div class="num">' + hist.length + '</div><div class="lbl">Missions done</div></div>' +
-      "</div>" +
-      "<h3>Weak topics</h3>" +
-      (weakTopics.length
-        ? '<ul class="weak-list">' + weakTopics.map((t) => "<li>" + escapeHtml(t) + "</li>").join("") + "</ul>"
-        : '<p class="note">No weak topics yet — play a mission first!</p>') +
-      "<h3>Exactly 2 oral questions</h3>" +
-      '<ul class="oral-list">' +
-      oral.map((q) => "<li>" + escapeHtml(q) + "</li>").join("") +
-      "</ul>";
-
-    showScreen("coach");
-  }
-
-  function pickTwoOral(weakTopics) {
-    const bank = window.GS_CARDS.oralBank.slice();
-    // Prefer questions matching weak chapter topics
-    const weakChapters = new Set();
-    weakTopics.forEach((topic) => {
-      const card = window.GS_CARDS.cards.find((c) => c.topic === topic);
-      if (card) weakChapters.add(card.chapter);
-    });
-    const preferred = bank.filter((o) => weakChapters.has(o.chapter));
-    const rest = bank.filter((o) => !weakChapters.has(o.chapter));
-    const pool = shuffle(preferred.concat(shuffle(rest)));
-    const picked = [];
-    const usedCh = new Set();
-    for (const o of pool) {
-      if (picked.length >= 2) break;
-      // try diversify chapters
-      if (picked.length === 1 && usedCh.has(o.chapter) && pool.length > 2) continue;
-      picked.push(o.q);
-      usedCh.add(o.chapter);
-    }
-    while (picked.length < 2 && pool.length) {
-      const q = pool[picked.length % pool.length].q;
-      if (!picked.includes(q)) picked.push(q);
-      else picked.push(bank[(picked.length * 3) % bank.length].q);
-    }
-    return picked.slice(0, 2);
-  }
-
-  function escapeHtml(s) {
-    return String(s)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
-  }
-
-  function burstConfetti() {
-    const layer = document.createElement("div");
-    layer.className = "confetti-burst";
-    const colors = ["#FF6B6B", "#4ECDC4", "#FFE66D", "#A78BFA", "#6BCB77", "#FF8E53"];
-    for (let i = 0; i < 28; i++) {
-      const p = document.createElement("div");
-      p.className = "confetti-piece";
-      p.style.left = Math.random() * 100 + "%";
-      p.style.background = colors[i % colors.length];
-      p.style.animationDelay = Math.random() * 0.3 + "s";
-      p.style.animationDuration = 1 + Math.random() * 0.8 + "s";
-      layer.appendChild(p);
-    }
-    document.body.appendChild(layer);
-    setTimeout(() => layer.remove(), 2000);
-  }
-
-  function bindNav() {
-    $("#btnHome").addEventListener("click", () => {
-      stopTimer();
-      renderHome();
-    });
-    $("#btnCoach").addEventListener("click", renderCoach);
-    $("#btnBackHome").addEventListener("click", renderHome);
-    $("#btnResultsHome").addEventListener("click", renderHome);
-    $("#btnResultsCoach").addEventListener("click", renderCoach);
-    $("#btnCoachHome").addEventListener("click", renderHome);
-    $("#btnQuitMission").addEventListener("click", () => {
-      if (confirm("Leave this mission? Progress so far is saved.")) {
-        stopTimer();
-        renderHome();
-      }
-    });
-  }
-
-  function init() {
-    if (!window.GS_CARDS) {
-      document.body.innerHTML = "<p style='padding:2rem;font-family:sans-serif'>Missing data/cards.js</p>";
+  card.appendChild(slotWrap);
+  var check = document.createElement('button');
+  check.className = 'btn btn-primary check-row';
+  check.textContent = 'Check';
+  check.addEventListener('click', function(){
+    var ok = answer.length === q.steps.length && q.steps.every(function(s, i){ return answer[i] === s; });
+    if(!ok){
+      AudioX.wrong(); onWrong(); updateHud();
+      mascotSay(pick(ENCOURAGE));
+      toast('Try the order again!');
+      answer = [];
+      slots.forEach(function(slot){ slot.querySelector('.txt').textContent = ''; slot.querySelector('button').disabled = true; });
+      src.querySelectorAll('button').forEach(function(bb){ bb.disabled = false; });
       return;
     }
-    bindNav();
-    renderHome();
-  }
+    recordCorrect(); updateHud();
+    check.disabled = true;
+    celebrate(check, q);
+  });
+  card.appendChild(check);
+  a.appendChild(card);
+}
 
-  document.addEventListener("DOMContentLoaded", init);
-})();
+/* --- match --- */
+function renderMatch(q){
+  var a = qarea();
+  var card = document.createElement('div');
+  card.className = 'qcard';
+  q._qcard = card;
+  card.innerHTML = '<div class="q-tag">Match the pairs</div><div class="prompt">' + q.stem + '</div>';
+  var wrap = document.createElement('div');
+  wrap.className = 'pairs';
+  var leftCol = document.createElement('div');
+  leftCol.className = 'pair-col';
+  leftCol.innerHTML = '<h5>Words</h5>';
+  var rightCol = document.createElement('div');
+  rightCol.className = 'pair-col';
+  rightCol.innerHTML = '<h5>Match</h5>';
+  wrap.appendChild(leftCol); wrap.appendChild(rightCol);
+  var sel = null, matched = 0, btnMap = {};
+  q.left.forEach(function(l, i){
+    var b = document.createElement('button');
+    b.className = 'pair-item';
+    b.textContent = l;
+    b.addEventListener('click', function(){
+      if(b.classList.contains('ok')) return;
+      AudioX.tap();
+      if(sel){ sel.classList.remove('sel'); }
+      sel = b; b.classList.add('sel');
+    });
+    leftCol.appendChild(b); btnMap[l] = b;
+  });
+  q.right.forEach(function(r){
+    var b = document.createElement('button');
+    b.className = 'pair-item';
+    b.textContent = r;
+    b.addEventListener('click', function(){
+      if(b.classList.contains('ok') || !sel) return;
+      AudioX.ensure();
+      if(q.map[r] === sel.textContent){
+        b.classList.add('ok'); sel.classList.add('ok'); sel.classList.remove('sel');
+        matched += 1; sel = null;
+        AudioX.pair();
+        if(matched === q.left.length){
+          recordCorrect(); updateHud();
+          celebrate(b, q);
+        }
+      } else {
+        b.classList.add('bad'); sel.classList.add('bad');
+        var s2 = sel; sel = null;
+        setTimeout(function(){ b.classList.remove('bad'); s2.classList.remove('bad'); }, 500);
+        onWrong(); updateHud();
+        AudioX.wrong();
+      }
+    });
+    rightCol.appendChild(b);
+  });
+  card.appendChild(wrap);
+  a.appendChild(card);
+}
+
+/* --- fill --- */
+function renderFill(q){
+  var a = qarea();
+  var card = document.createElement('div');
+  card.className = 'qcard';
+  q._qcard = card;
+  card.innerHTML = '<div class="q-tag">Fill the blank</div>';
+  var p = document.createElement('div');
+  p.className = 'prompt';
+  p.textContent = q.stem.split('____')[0].trim();
+  card.appendChild(p);
+  var sent = document.createElement('div');
+  sent.className = 'fill-sent';
+  sent.innerHTML = q.stem.replace('____', '<u id="blank"></u>');
+  card.appendChild(sent);
+  card.appendChild(readBtn(q.stem.replace('____','...')));
+  var bank = document.createElement('div');
+  bank.className = 'fill-bank';
+  var chosen = null;
+  q.bank.forEach(function(w){
+    var b = document.createElement('button');
+    b.textContent = w;
+    b.addEventListener('click', function(){
+      AudioX.tap();
+      chosen = w;
+      $('blank').textContent = w;
+      bank.querySelectorAll('button').forEach(function(x){ x.style.opacity = 1; });
+      b.style.opacity = 0.45;
+    });
+    bank.appendChild(b);
+  });
+  card.appendChild(bank);
+  var check = document.createElement('button');
+  check.className = 'btn btn-primary check-row';
+  check.textContent = 'Check';
+  check.addEventListener('click', function(){
+    if(!chosen){ toast('Tap a word first!'); return; }
+    if(chosen.toLowerCase() === q.answer.toLowerCase()){
+      recordCorrect(); updateHud();
+      $('blank').style.background = '#DFF5E7';
+      check.disabled = true;
+      celebrate(check, q);
+    } else {
+      fail(check, q);
+      $('blank').style.background = '#FDE2E8';
+      setTimeout(function(){ $('blank').style.background = ''; }, 700);
+    }
+  });
+  card.appendChild(check);
+  a.appendChild(card);
+}
+
+/* --- teach-back --- */
+function renderTeach(q){
+  var a = qarea();
+  var card = document.createElement('div');
+  card.className = 'qcard';
+  q._qcard = card;
+  card.innerHTML = '<div class="q-tag">Read &amp; remember</div><div class="prompt">' + q.stem + '</div>';
+  var rec = document.createElement('div');
+  rec.className = 'recall';
+  var factsBox = document.createElement('div');
+  factsBox.className = 'facts';
+  var ul = document.createElement('ul');
+  q.facts.forEach(function(f){ var li = document.createElement('li'); li.textContent = f; ul.appendChild(li); });
+  factsBox.appendChild(ul);
+  var readRow = document.createElement('div');
+  readRow.className = 'read-btn';
+  readRow.appendChild(readBtn(q.facts.join('. ')));
+  var ready = document.createElement('button');
+  ready.className = 'btn btn-gold check-row';
+  ready.textContent = 'I am ready!';
+  rec.appendChild(factsBox);
+  rec.appendChild(readRow);
+  rec.appendChild(ready);
+  card.appendChild(rec);
+  a.appendChild(card);
+
+  ready.addEventListener('click', function(){
+    AudioX.tap();
+    rec.innerHTML = '<div class="prompt-sub" style="font-size:15px;font-weight:700;color:var(--ink-soft)">Now tap the words you remember. Tap again to undo.</div>';
+    var bank = document.createElement('div');
+    bank.className = 'teach-bank';
+    var picked = {};
+    q.bank.forEach(function(w){
+      var b = document.createElement('button');
+      b.textContent = w;
+      b.dataset.w = w;
+      b.addEventListener('click', function(){
+        AudioX.tap();
+        b.classList.remove('bad');
+        var on = b.classList.toggle('pick');
+        picked[w] = on;
+      });
+      bank.appendChild(b);
+    });
+    rec.appendChild(bank);
+    var check = document.createElement('button');
+    check.className = 'btn btn-primary check-row';
+    check.textContent = 'Check';
+    check.addEventListener('click', function(){
+      var correct = true;
+      q.answers.forEach(function(x){ if(!picked[x]) correct = false; });
+      q.bank.forEach(function(x){ if(picked[x] && q.answers.indexOf(x) < 0) correct = false; });
+      if(!correct){
+        q.bank.forEach(function(x){
+          if(picked[x] && q.answers.indexOf(x) < 0){
+            var bb = bank.querySelector('button[data-w="' + x + '"]');
+            if(bb){ bb.classList.remove('pick'); bb.classList.add('bad'); }
+            picked[x] = false;
+          }
+        });
+        AudioX.wrong(); onWrong(); updateHud();
+        mascotSay(pick(ENCOURAGE) + ' Tap the words that were in the sentence.');
+        return;
+      }
+      recordCorrect(); updateHud();
+      check.disabled = true;
+      celebrate(check, q);
+    });
+    rec.appendChild(check);
+  });
+}
+
+/* ---------- main question entry ---------- */
+function renderQuestion(){
+  var c = currentCard();
+  var q = buildQuestion(c.fact, c.type);
+  cardProgress();
+  updateHud();
+  mascotSay(pick(INTROS));
+  var readMe = false;
+  if(q.type === 'mcq') renderMcq(q);
+  else if(q.type === 'tf') renderTf(q);
+  else if(q.type === 'sort') renderSort(q);
+  else if(q.type === 'order') renderOrder(q);
+  else if(q.type === 'match') renderMatch(q);
+  else if(q.type === 'fill') renderFill(q);
+  else if(q.type === 'teach') renderTeach(q);
+  else renderMcq(q);
+  var badge = $('view-play').querySelector('.q-tag');
+}
+
+/* ---------- mission entry ---------- */
+function startChapter(id){
+  AudioX.ensure();
+  buildMission('chapter', id);
+  go('view-play');
+  startTimer();
+  renderQuestion();
+}
+function startMix(){
+  AudioX.ensure();
+  buildMission(store.settings.mixFresh ? 'mix' : 'mix');
+  if(!store.settings.mixFresh){ /* fresh mix: ignore weak weighting */
+    var all = allFacts();
+    var n = Math.min(6 + Math.floor(Math.random()*3), all.length);
+    S.cards = shuffle(all).slice(0, n).map(function(f){ return { fact:f, type:pickType(f) }; });
+  }
+  go('view-play');
+  startTimer();
+  renderQuestion();
+}
+function startLightning(){
+  AudioX.ensure();
+  buildMission('lightning');
+  go('view-play');
+  startTimer();
+  renderQuestion();
+}
+
+/* ---------- event wiring ---------- */
+document.addEventListener('click', function(e){
+  var el = e.target.closest('[data-action]');
+  if(!el) return;
+  var act = el.getAttribute('data-action');
+  if(act === 'toggle-sound'){
+    store.settings.sound = !store.settings.sound;
+    AudioX.muted = !store.settings.sound;
+    if(store.settings.sound){ AudioX.ensure(); AudioX.tap(); }
+    storeSave(); updateSoundIcon();
+  }
+  else if(act === 'go-home'){
+    if(!$('view-play').classList.contains('hidden') && !S.finished){ endMission('early'); }
+    else if(!$('view-done').classList.contains('hidden')){ /* stay */ }
+    go('view-home');
+  }
+  else if(act === 'toggle-shuffle'){
+    store.settings.shuffle = !store.settings.shuffle; storeSave(); renderHome();
+  }
+  else if(act === 'toggle-mix'){
+    store.settings.mixFresh = !store.settings.mixFresh; storeSave(); renderHome();
+  }
+  else if(act === 'pick-timer'){
+    var opts = [5,6,7,8];
+    var i = opts.indexOf(store.settings.timerMin);
+    store.settings.timerMin = opts[(i + 1) % opts.length];
+    storeSave(); renderHome(); toast('Mission time: ' + store.settings.timerMin + ' min');
+  }
+  else if(act === 'start-mix'){ startMix(); }
+  else if(act === 'start-lightning'){ startLightning(); }
+  else if(act === 'open-parent'){ go('view-parent'); }
+  else if(act === 'exit-early'){ endMission('early'); }
+  else if(act === 'play-again'){
+    var mode = S.mode, cid = S.chapterId;
+    if(mode === 'chapter') startChapter(cid);
+    else if(mode === 'lightning') startLightning();
+    else startMix();
+  }
+  else if(act === 'reset-progress'){
+    if(!confirm('Reset all progress and stars?')) return;
+    try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+    storeLoad(); go('view-home');
+  }
+});
+
+/* ---------- PWA ---------- */
+function registerSW(){
+  if(!('serviceWorker' in navigator)) return;
+  if(location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  });
+}
+
+/* ---------- init ---------- */
+document.addEventListener('pointerdown', function once(){
+  AudioX.ensure();
+  document.removeEventListener('pointerdown', once);
+});
+window.addEventListener('hashchange', router);
+loadCards().then(function(){
+  updateSoundIcon();
+  renderHome();
+  router();
+  registerSW();
+  try{ window.speechSynthesis && window.speechSynthesis.getVoices(); }catch(e){}
+});
 
 </script>
 </body>
