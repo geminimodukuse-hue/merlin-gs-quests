@@ -1,0 +1,1340 @@
+{
+  "meta": {
+    "title": "Merlin GS Quests",
+    "subject": "New General Studies (NGS) · Term 1",
+    "level": "Primary 3",
+    "version": "1.0.0"
+  },
+  "units": [
+    {
+      "id": "u1",
+      "title": "Healthy Living",
+      "emoji": "💪",
+      "color": "#2BAE8A",
+      "chapters": [
+        {
+          "id": "c1",
+          "title": "Get Well Soon",
+          "pages": "pp.4–9",
+          "emoji": "🤒",
+          "color": "#2BAE8A",
+          "facts": [
+            {
+              "id": "c1f1",
+              "unit": "Healthy Living",
+              "chapter": "Get Well Soon",
+              "topic": "When you are ill",
+              "page": "pp.4–9",
+              "facts": [
+                "When you feel ill, see a doctor, take the right dose of medicine on time, and rest and drink water."
+              ],
+              "good": [
+                "See a doctor",
+                "Take the right dose of medicine on time",
+                "Rest and drink water"
+              ],
+              "bad": [
+                "Buy leftover medicine from the pharmacy",
+                "Take leftover medicine at home",
+                "Only sleep and do nothing"
+              ],
+              "why": "A doctor can find out what is wrong and give the right medicine. Rest and water help your body recover.",
+              "scenario": "You wake up with a sore throat. What is the best thing to do?",
+              "steps": [
+                "See a doctor as soon as possible",
+                "Take medicine according to the doctor",
+                "Rest",
+                "Drink water"
+              ],
+              "fill": {
+                "text": "When you are ill, you should see a ____.",
+                "answer": "doctor",
+                "bank": [
+                  "doctor",
+                  "teacher",
+                  "friend"
+                ]
+              },
+              "keywords": [
+                "see a doctor",
+                "right dose",
+                "on time",
+                "rest",
+                "water"
+              ],
+              "can": "唔舒服嘅時候，應該點做呀？",
+              "questionBank": [
+                "MCQ: Which should you do when you feel ill?",
+                "TF: 'Only sleep and do nothing' is a good way to get better.",
+                "Sort: Good idea vs Not a good idea when ill",
+                "Fill: When you are ill, you should see a ____."
+              ]
+            },
+            {
+              "id": "c1f2",
+              "unit": "Healthy Living",
+              "chapter": "Get Well Soon",
+              "topic": "Doctor and Chinese medicine practitioner",
+              "page": "pp.4–9",
+              "facts": [
+                "Doctors and Chinese medicine practitioners both check you and prescribe medicine. A doctor uses a stethoscope. A Chinese medicine practitioner checks your pulse by hand. They may give different medicine."
+              ],
+              "good": [
+                "A doctor uses a stethoscope",
+                "A Chinese medicine practitioner checks your pulse by hand",
+                "Both of them check you and prescribe medicine"
+              ],
+              "bad": [
+                "The doctor checks your pulse by hand",
+                "Only the doctor prescribes medicine",
+                "You do not need to tell them how you feel"
+              ],
+              "why": "Doctors and Chinese medicine practitioners both help you, but they check you in different ways and may give different medicine.",
+              "scenario": "At the clinic, the person checks your pulse by hand. Who is this?",
+              "pairs": [
+                [
+                  "Doctor",
+                  "stethoscope"
+                ],
+                [
+                  "Chinese medicine practitioner",
+                  "checks your pulse by hand"
+                ]
+              ],
+              "fill": {
+                "text": "A doctor uses a ____ to listen to your body.",
+                "answer": "stethoscope",
+                "bank": [
+                  "stethoscope",
+                  "drum",
+                  "phone"
+                ]
+              },
+              "keywords": [
+                "stethoscope",
+                "pulse by hand",
+                "prescribe medicine"
+              ],
+              "can": "中醫同西醫檢查身體嘅方法有咩唔同呀？",
+              "questionBank": [
+                "MCQ: Who uses a stethoscope?",
+                "TF: A Chinese medicine practitioner checks your pulse by hand.",
+                "Match: Doctor vs Chinese medicine practitioner",
+                "Fill: A doctor uses a ____ to listen to your body."
+              ]
+            },
+            {
+              "id": "c1f3",
+              "unit": "Healthy Living",
+              "chapter": "Get Well Soon",
+              "topic": "Seeing the doctor",
+              "page": "pp.4–9",
+              "facts": [
+                "When you visit the doctor, tell them how you feel and follow their instructions."
+              ],
+              "good": [
+                "Tell the doctor how you feel",
+                "Follow the doctor's instructions",
+                "Tell the doctor what hurts"
+              ],
+              "bad": [
+                "Say nothing and guess",
+                "Hide how you feel",
+                "Do the opposite of what the doctor says"
+              ],
+              "why": "The doctor needs to know how you feel so they can give you the right help.",
+              "scenario": "The doctor asks you, 'How do you feel?' What should you do?",
+              "fill": {
+                "text": "Tell the doctor how you ____.",
+                "answer": "feel",
+                "bank": [
+                  "feel",
+                  "look",
+                  "smell"
+                ]
+              },
+              "keywords": [
+                "tell how you feel",
+                "follow instructions"
+              ],
+              "can": "睇醫生嘅時候要點樣同醫生講呀？",
+              "questionBank": [
+                "MCQ: What should you do at the doctor's?",
+                "TF: You should hide how you feel from the doctor.",
+                "Sort: Good idea vs Not a good idea at the doctor's",
+                "Fill: Tell the doctor how you ____."
+              ]
+            },
+            {
+              "id": "c1f4",
+              "unit": "Healthy Living",
+              "chapter": "Get Well Soon",
+              "topic": "Types of medicine",
+              "page": "pp.4–9",
+              "facts": [
+                "Medicine comes in many forms: syrup, pills, Chinese powder and herbs."
+              ],
+              "good": [
+                "Syrup",
+                "Pills",
+                "Chinese powder",
+                "Herbs"
+              ],
+              "bad": [
+                "Candy",
+                "Sweets",
+                "Chips"
+              ],
+              "why": "Medicine can be syrup, pills, Chinese powder or herbs. Only take the right kind for you.",
+              "scenario": "Which of these is a type of medicine?",
+              "pairs": [
+                [
+                  "syrup",
+                  "🍶"
+                ],
+                [
+                  "pills",
+                  "💊"
+                ],
+                [
+                  "Chinese powder",
+                  "🥄"
+                ],
+                [
+                  "herbs",
+                  "🌿"
+                ]
+              ],
+              "fill": {
+                "text": "____ is a type of medicine.",
+                "answer": "Syrup",
+                "bank": [
+                  "Syrup",
+                  "Candy",
+                  "Chips"
+                ]
+              },
+              "keywords": [
+                "syrup",
+                "pills",
+                "Chinese powder",
+                "herbs"
+              ],
+              "can": "藥有邊幾種樣式呀？",
+              "questionBank": [
+                "MCQ: Which is a type of medicine?",
+                "TF: Herbs are a type of medicine.",
+                "Match: Medicine form vs picture",
+                "Fill: ____ is a type of medicine."
+              ]
+            },
+            {
+              "id": "c1f5",
+              "unit": "Healthy Living",
+              "chapter": "Get Well Soon",
+              "topic": "Reading the medicine label",
+              "page": "pp.4–9",
+              "facts": [
+                "The medicine label tells you which clinic it came from, your name, when to start and how many days to take it, the amount, the dose and time, how to take it and possible side effects. Never take other people's medicine."
+              ],
+              "good": [
+                "Check which clinic the medicine came from",
+                "Never take other people's medicine",
+                "Read the dose and time on the label",
+                "Know when to start and how many days",
+                "Know how to take it and possible side effects"
+              ],
+              "bad": [
+                "Take other people's medicine",
+                "Take any amount you like",
+                "Skip reading the label"
+              ],
+              "why": "The label tells you exactly how to take the medicine safely.",
+              "scenario": "Your friend gives you his medicine. What should you do?",
+              "fill": {
+                "text": "Never take other ____'s medicine.",
+                "answer": "people",
+                "bank": [
+                  "people",
+                  "teacher",
+                  "pet"
+                ]
+              },
+              "keywords": [
+                "your name",
+                "dose and time",
+                "how to take it",
+                "side effects",
+                "never take others' medicine"
+              ],
+              "can": "藥袋上面嘅標籤有咩用㗎？",
+              "questionBank": [
+                "MCQ: What can the medicine label tell you?",
+                "TF: It is OK to take your friend's medicine.",
+                "Sort: What the label tells you vs Not",
+                "Fill: Never take other ____'s medicine."
+              ]
+            },
+            {
+              "id": "c1f6",
+              "unit": "Healthy Living",
+              "chapter": "Get Well Soon",
+              "topic": "Taking medicine correctly",
+              "page": "pp.4–9",
+              "facts": [
+                "Take medicine with water, on time, and follow the doctor. Never take the wrong amount, stop without asking the doctor, or take other people's medicine."
+              ],
+              "good": [
+                "Take medicine with water",
+                "Take medicine on time",
+                "Follow the doctor's instructions"
+              ],
+              "bad": [
+                "Take the wrong amount",
+                "Stop without asking the doctor",
+                "Take other people's medicine"
+              ],
+              "why": "Taking medicine the right way helps you get better safely.",
+              "scenario": "It is time for your medicine. What should you do?",
+              "fill": {
+                "text": "Take medicine with ____.",
+                "answer": "water",
+                "bank": [
+                  "water",
+                  "juice",
+                  "cola"
+                ]
+              },
+              "keywords": [
+                "with water",
+                "on time",
+                "follow the doctor"
+              ],
+              "can": "食藥嘅時候要留意啲咩呀？",
+              "questionBank": [
+                "MCQ: Which is the RIGHT way to take medicine?",
+                "TF: You can stop taking medicine without asking the doctor.",
+                "Sort: Right way vs Wrong way to take medicine",
+                "Fill: Take medicine with ____."
+              ]
+            },
+            {
+              "id": "c1f7",
+              "unit": "Healthy Living",
+              "chapter": "Get Well Soon",
+              "topic": "Storing medicine safely",
+              "page": "pp.4–9",
+              "facts": [
+                "Keep medicine in a cool, dry place, away from sunlight and out of children's reach."
+              ],
+              "good": [
+                "A cool place",
+                "A dry place",
+                "Away from sunlight",
+                "Out of children's reach"
+              ],
+              "bad": [
+                "A hot place",
+                "A damp place",
+                "In the sunlight",
+                "Where children can reach it"
+              ],
+              "why": "If medicine is stored badly, it can go bad or become dangerous.",
+              "scenario": "Where is the safest place to keep medicine at home?",
+              "fill": {
+                "text": "Keep medicine in a cool, ____ place.",
+                "answer": "dry",
+                "bank": [
+                  "dry",
+                  "wet",
+                  "hot"
+                ]
+              },
+              "keywords": [
+                "cool",
+                "dry",
+                "away from sunlight",
+                "out of children's reach"
+              ],
+              "can": "藥要收喺邊度先安全呀？",
+              "questionBank": [
+                "MCQ: Where should you keep medicine?",
+                "TF: Medicine can be kept in a hot, damp place.",
+                "Sort: Safe place vs Unsafe place for medicine",
+                "Fill: Keep medicine in a cool, ____ place."
+              ]
+            },
+            {
+              "id": "c1f8",
+              "unit": "Healthy Living",
+              "chapter": "Get Well Soon",
+              "topic": "Getting better fast",
+              "page": "pp.4–9",
+              "facts": [
+                "To get better fast: see a doctor as soon as possible, take medicine according to the doctor, keep the home airy, rest, drink water and eat healthy food."
+              ],
+              "good": [
+                "See a doctor as soon as possible",
+                "Take medicine according to the doctor",
+                "Keep the home airy",
+                "Rest",
+                "Drink water",
+                "Eat healthy food"
+              ],
+              "bad": [
+                "Play outside all day",
+                "Eat only junk food",
+                "Stay in a stuffy room"
+              ],
+              "why": "Rest, water, healthy food and fresh air all help your body fight the illness.",
+              "scenario": "How can you get better faster when you are ill?",
+              "fill": {
+                "text": "Eat ____ food to help you get better.",
+                "answer": "healthy",
+                "bank": [
+                  "healthy",
+                  "junk",
+                  "spicy"
+                ]
+              },
+              "keywords": [
+                "see a doctor",
+                "rest",
+                "drink water",
+                "healthy food",
+                "airy home"
+              ],
+              "can": "點樣先可以快啲好返呀？",
+              "questionBank": [
+                "MCQ: What helps you get better faster?",
+                "TF: Playing outside all day helps you get better faster.",
+                "Sort: Helps recovery vs Does not help",
+                "Fill: Eat ____ food to help you get better."
+              ]
+            },
+            {
+              "id": "c1f9",
+              "unit": "Healthy Living",
+              "chapter": "Get Well Soon",
+              "topic": "Caring for someone who is ill",
+              "page": "pp.4–9",
+              "facts": [
+                "You can care for an ill friend or family member by reminding them to take medicine, calling them and making them a get-well card."
+              ],
+              "good": [
+                "Remind them to take medicine",
+                "Call them to cheer them up",
+                "Make a get-well card"
+              ],
+              "bad": [
+                "Give them your medicine",
+                "Invite them to play football",
+                "Play loud music near them"
+              ],
+              "why": "Small caring acts, like a call, a reminder or a card, make someone who is ill feel loved.",
+              "scenario": "Your classmate is ill at home. How can you care for them?",
+              "fill": {
+                "text": "You can make a get-____ card for a sick friend.",
+                "answer": "well",
+                "bank": [
+                  "well",
+                  "sick",
+                  "bad"
+                ]
+              },
+              "keywords": [
+                "remind medicine",
+                "call",
+                "get-well card"
+              ],
+              "can": "朋友病咗，你可以點樣關心佢呀？",
+              "questionBank": [
+                "MCQ: How can you care for an ill friend?",
+                "TF: Give your medicine to a sick friend to help them.",
+                "Sort: Caring acts vs Not caring",
+                "Fill: You can make a get-____ card for a sick friend."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "title": "Say No to Smoking, Drinking and Drugs",
+          "pages": "pp.10–14",
+          "emoji": "🚭",
+          "color": "#2BAE8A",
+          "facts": [
+            {
+              "id": "c2f1",
+              "unit": "Healthy Living",
+              "chapter": "Say No to Smoking, Drinking and Drugs",
+              "topic": "Harms of smoking",
+              "page": "pp.10–14",
+              "facts": [
+                "Smoking gives you bad breath, makes your fingers and teeth yellow, makes you lose your appetite and weight, can cause serious diseases, and stops your lungs from growing well."
+              ],
+              "good": [
+                "Smoking gives you bad breath",
+                "Smoking makes your fingers and teeth yellow",
+                "Smoking makes you lose your appetite and weight",
+                "Smoking can cause serious diseases",
+                "Smoking stops your lungs from growing well"
+              ],
+              "bad": [
+                "Smoking keeps your teeth white",
+                "Smoking gives you strong lungs",
+                "Smoking gives you a big appetite"
+              ],
+              "why": "Smoking hurts your body in many ways: your breath, teeth, fingers, appetite, lungs and more.",
+              "scenario": "A friend offers you a cigarette. What should you do?",
+              "fill": {
+                "text": "Smoking gives you bad ____.",
+                "answer": "breath",
+                "bank": [
+                  "breath",
+                  "luck",
+                  "dreams"
+                ]
+              },
+              "keywords": [
+                "bad breath",
+                "yellow teeth",
+                "lose appetite",
+                "serious diseases",
+                "lungs"
+              ],
+              "can": "食煙會點樣整壞身體㗎？",
+              "questionBank": [
+                "MCQ: Which is a harm of smoking?",
+                "TF: Smoking gives you bad breath.",
+                "Sort: Harm of smoking vs Not a harm",
+                "Fill: Smoking gives you bad ____."
+              ]
+            },
+            {
+              "id": "c2f2",
+              "unit": "Healthy Living",
+              "chapter": "Say No to Smoking, Drinking and Drugs",
+              "topic": "Dangers of drinking",
+              "page": "pp.10–14",
+              "facts": [
+                "Drinking can make you lose control and judgement, and you may pass out. It can harm others, cause accidents, and make you lose money and things. Later it can damage your brain, cause heart failure, liver cancer and stomach bleeding."
+              ],
+              "good": [
+                "Drinking can make you lose control and judgement",
+                "Drinking can harm others and cause accidents",
+                "Drinking can make you lose money and things",
+                "Drinking can damage your brain",
+                "Drinking can cause heart failure, liver cancer and stomach bleeding"
+              ],
+              "bad": [
+                "Drinking makes you think clearly",
+                "Drinking keeps you healthy",
+                "Drinking makes you rich"
+              ],
+              "why": "Alcohol hurts your body now and later, and can hurt the people around you.",
+              "scenario": "Someone at a party offers you alcohol. What should you say?",
+              "fill": {
+                "text": "If someone asks you to drink, say ____.",
+                "answer": "no",
+                "bank": [
+                  "no",
+                  "yes",
+                  "maybe"
+                ]
+              },
+              "keywords": [
+                "lose control",
+                "accidents",
+                "brain damage",
+                "liver cancer",
+                "say no"
+              ],
+              "can": "有人請你飲酒，你應該點做呀？",
+              "questionBank": [
+                "MCQ: Which is a danger of drinking?",
+                "TF: Drinking can damage your brain.",
+                "Sort: Danger of drinking vs Not a danger",
+                "Fill: If someone asks you to drink, say ____."
+              ]
+            },
+            {
+              "id": "c2f3",
+              "unit": "Healthy Living",
+              "chapter": "Say No to Smoking, Drinking and Drugs",
+              "topic": "Drug abuse",
+              "page": "pp.10–14",
+              "facts": [
+                "Drug abuse means taking drugs in the wrong way. It harms you and others, hurts your health and studies, changes your appearance, and can even cause death."
+              ],
+              "good": [
+                "Drug abuse means taking drugs in the wrong way",
+                "Drug abuse harms your health",
+                "Drug abuse harms your studies",
+                "Drug abuse changes your appearance",
+                "Drug abuse can cause death"
+              ],
+              "bad": [
+                "Drug abuse makes you smarter",
+                "Drug abuse is good for your health",
+                "Drug abuse is safe to try once"
+              ],
+              "why": "Drug abuse is very dangerous: it hurts you, your family and your future.",
+              "scenario": "Which of these is TRUE about drug abuse?",
+              "buckets": [
+                "True about drug abuse",
+                "Not true"
+              ],
+              "fill": {
+                "text": "Drug abuse means taking drugs in the ____ way.",
+                "answer": "wrong",
+                "bank": [
+                  "wrong",
+                  "right",
+                  "fun"
+                ]
+              },
+              "keywords": [
+                "wrong way",
+                "harms your health",
+                "harms your studies",
+                "death"
+              ],
+              "can": "濫藥係咩意思？有咩害處呀？",
+              "questionBank": [
+                "MCQ: Which is TRUE about drug abuse?",
+                "TF: Drug abuse can cause death.",
+                "Sort: True about drug abuse vs Not true",
+                "Fill: Drug abuse means taking drugs in the ____ way."
+              ]
+            },
+            {
+              "id": "c2f4",
+              "unit": "Healthy Living",
+              "chapter": "Say No to Smoking, Drinking and Drugs",
+              "topic": "Staying away and getting help",
+              "page": "pp.10–14",
+              "facts": [
+                "If someone offers you cigarettes, alcohol or drugs, say no. If you see other people being offered them, tell your teacher or parents, call the police, run away, or stop them."
+              ],
+              "good": [
+                "Say no",
+                "Tell a teacher or your parents",
+                "Call the police",
+                "Run away",
+                "Stop them from doing it"
+              ],
+              "bad": [
+                "Try it to be cool",
+                "Take it home",
+                "Pretend it is fine"
+              ],
+              "why": "Say no, and if others are in danger, get help from an adult or the police.",
+              "scenario": "A stranger offers you something that is not medicine. What should you do?",
+              "steps": [
+                "Say no",
+                "Tell a teacher or your parents",
+                "Call the police if needed"
+              ],
+              "fill": {
+                "text": "If you see others being offered drugs, tell your teacher or ____.",
+                "answer": "parents",
+                "bank": [
+                  "parents",
+                  "friends",
+                  "pets"
+                ]
+              },
+              "keywords": [
+                "say no",
+                "tell teachers or parents",
+                "call the police",
+                "run away"
+              ],
+              "can": "有人叫你試煙、酒或者毒品，你要點做呀？",
+              "questionBank": [
+                "MCQ: What should you do if someone offers you cigarettes?",
+                "TF: You should try a cigarette once to be cool.",
+                "Order: What to do when someone offers you drugs",
+                "Fill: Tell your teacher or ____ if you see others being offered drugs."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "Healthy Mind",
+      "emoji": "🧠",
+      "color": "#7C6BF0",
+      "chapters": [
+        {
+          "id": "c3",
+          "title": "My Feelings",
+          "pages": "pp.18–24",
+          "emoji": "🌈",
+          "color": "#7C6BF0",
+          "facts": [
+            {
+              "id": "c3f1",
+              "unit": "Healthy Mind",
+              "chapter": "My Feelings",
+              "topic": "Positive and negative feelings",
+              "page": "pp.18–24",
+              "facts": [
+                "Happy, touched and excited are positive feelings. Sad, angry and scared are negative feelings."
+              ],
+              "good": [
+                "Happy",
+                "Touched",
+                "Excited"
+              ],
+              "bad": [
+                "Sad",
+                "Angry",
+                "Scared"
+              ],
+              "why": "Happy, touched and excited feel good, so they are positive feelings. Sad, angry and scared are negative feelings.",
+              "scenario": "Which of these is a POSITIVE feeling?",
+              "buckets": [
+                "Positive feeling",
+                "Negative feeling"
+              ],
+              "pairs": [
+                [
+                  "happy",
+                  "😊"
+                ],
+                [
+                  "touched",
+                  "🥹"
+                ],
+                [
+                  "excited",
+                  "🤩"
+                ],
+                [
+                  "sad",
+                  "😢"
+                ],
+                [
+                  "angry",
+                  "😠"
+                ],
+                [
+                  "scared",
+                  "😨"
+                ]
+              ],
+              "fill": {
+                "text": "Feeling happy is a ____ feeling.",
+                "answer": "positive",
+                "bank": [
+                  "positive",
+                  "negative",
+                  "secret"
+                ]
+              },
+              "keywords": [
+                "happy",
+                "touched",
+                "excited",
+                "sad",
+                "angry",
+                "scared"
+              ],
+              "can": "開心、感動、興奮係正面定負面情緒呀？",
+              "questionBank": [
+                "MCQ: Which is a positive feeling?",
+                "TF: Being scared is a positive feeling.",
+                "Sort: Positive feeling vs Negative feeling",
+                "Match: Feeling vs Face"
+              ]
+            },
+            {
+              "id": "c3f2",
+              "unit": "Healthy Mind",
+              "chapter": "My Feelings",
+              "topic": "What makes us sad",
+              "page": "pp.18–24",
+              "facts": [
+                "You may feel sad when family members argue, when you lose a pet, when you get bad results, or when you are bullied."
+              ],
+              "good": [
+                "When family members argue",
+                "When you lose a pet",
+                "When you get bad results",
+                "When you are bullied"
+              ],
+              "bad": [
+                "When you eat your favourite food",
+                "When you play with friends",
+                "When you win a prize"
+              ],
+              "why": "Sad feelings often come from things that are hard, like arguments, losing something, bad results or bullying.",
+              "scenario": "Your pet fish died. How might you feel?",
+              "buckets": [
+                "Can make you feel sad",
+                "Usually makes you happy"
+              ],
+              "fill": {
+                "text": "You might feel sad when your family ____.",
+                "answer": "argues",
+                "bank": [
+                  "argues",
+                  "dances",
+                  "sings"
+                ]
+              },
+              "keywords": [
+                "family argues",
+                "lose a pet",
+                "bad results",
+                "bullied"
+              ],
+              "can": "有咩事會令你覺得唔開心呀？",
+              "questionBank": [
+                "MCQ: Which can make you feel sad?",
+                "TF: Losing a pet can make you feel sad.",
+                "Sort: Can make you sad vs Usually makes you happy",
+                "Fill: You might feel sad when your family ____."
+              ]
+            },
+            {
+              "id": "c3f3",
+              "unit": "Healthy Mind",
+              "chapter": "My Feelings",
+              "topic": "Ways to feel better",
+              "page": "pp.18–24",
+              "facts": [
+                "When you feel sad, you can cry, talk to someone, listen to music, exercise, draw or write a diary."
+              ],
+              "good": [
+                "Cry",
+                "Talk to someone",
+                "Listen to music",
+                "Exercise",
+                "Draw",
+                "Write a diary"
+              ],
+              "bad": [
+                "Hit or hurt someone",
+                "Throw or destroy things",
+                "Refuse to eat"
+              ],
+              "why": "Talking, moving, drawing or writing can help sad feelings pass.",
+              "scenario": "You feel sad today. Which is a good way to feel better?",
+              "pairs": [
+                [
+                  "talk to someone",
+                  "🗣️"
+                ],
+                [
+                  "listen to music",
+                  "🎵"
+                ],
+                [
+                  "exercise",
+                  "🏃"
+                ],
+                [
+                  "draw",
+                  "🎨"
+                ],
+                [
+                  "write a diary",
+                  "📔"
+                ]
+              ],
+              "fill": {
+                "text": "You can write a ____ when you feel sad.",
+                "answer": "diary",
+                "bank": [
+                  "diary",
+                  "letter",
+                  "song"
+                ]
+              },
+              "keywords": [
+                "cry",
+                "talk to someone",
+                "listen to music",
+                "exercise",
+                "draw",
+                "diary"
+              ],
+              "can": "唔開心嘅時候，有咩方法可以舒服啲呀？",
+              "questionBank": [
+                "MCQ: Which is a good way to feel better?",
+                "TF: Throwing things is a good way to feel better.",
+                "Sort: Good way to feel better vs Not good",
+                "Match: Way to feel better vs Picture"
+              ]
+            },
+            {
+              "id": "c3f4",
+              "unit": "Healthy Mind",
+              "chapter": "My Feelings",
+              "topic": "Losing your temper",
+              "page": "pp.18–24",
+              "facts": [
+                "Losing your temper can mean hitting or hurting others, throwing or destroying things, or refusing to eat. These hurt you and others."
+              ],
+              "good": [
+                "Take a deep breath",
+                "Wash your face",
+                "Tell someone how you feel"
+              ],
+              "bad": [
+                "Hit or hurt others",
+                "Throw or destroy things",
+                "Refuse to eat"
+              ],
+              "why": "Losing your temper can hurt people and things. There are better ways to calm down.",
+              "scenario": "You are very angry. Which should you NOT do?",
+              "fill": {
+                "text": "Do not throw or ____ things when you are angry.",
+                "answer": "destroy",
+                "bank": [
+                  "destroy",
+                  "save",
+                  "clean"
+                ]
+              },
+              "keywords": [
+                "hit or hurt",
+                "throw or destroy",
+                "refuse to eat"
+              ],
+              "can": "嬲嘅時候，有邊啲行為唔應該做呀？",
+              "questionBank": [
+                "MCQ: Which should you NOT do when you are angry?",
+                "TF: Hitting others when angry is a good idea.",
+                "Sort: Good idea vs Not a good idea when angry",
+                "Fill: Do not throw or ____ things when you are angry."
+              ]
+            },
+            {
+              "id": "c3f5",
+              "unit": "Healthy Mind",
+              "chapter": "My Feelings",
+              "topic": "Calming down when angry",
+              "page": "pp.18–24",
+              "facts": [
+                "When you are angry, take a deep breath and wash your face to calm down."
+              ],
+              "good": [
+                "Take a deep breath",
+                "Wash your face",
+                "Think of a good way to solve it"
+              ],
+              "bad": [
+                "Shout at everyone",
+                "Hit the wall",
+                "Throw your things"
+              ],
+              "why": "Deep breaths and washing your face cool your anger so you can think clearly.",
+              "scenario": "You feel angry. What helps you calm down?",
+              "steps": [
+                "Take a deep breath",
+                "Wash your face",
+                "Think of a good way to solve it"
+              ],
+              "fill": {
+                "text": "Take a deep ____ to calm down.",
+                "answer": "breath",
+                "bank": [
+                  "breath",
+                  "bite",
+                  "break"
+                ]
+              },
+              "keywords": [
+                "deep breath",
+                "wash your face"
+              ],
+              "can": "嬲嘅時候點樣可以冷靜返呀？",
+              "questionBank": [
+                "MCQ: What helps you calm down when angry?",
+                "TF: Shouting at everyone helps you calm down.",
+                "Order: How to calm down when you are angry",
+                "Fill: Take a deep ____ to calm down."
+              ]
+            },
+            {
+              "id": "c3f6",
+              "unit": "Healthy Mind",
+              "chapter": "My Feelings",
+              "topic": "Facing problems",
+              "page": "pp.18–24",
+              "facts": [
+                "When you have a problem, think positively and find ways to solve it."
+              ],
+              "good": [
+                "Think positively",
+                "Find ways to solve the problem"
+              ],
+              "bad": [
+                "Give up",
+                "Hide it from everyone",
+                "Blame others"
+              ],
+              "why": "Thinking positively and finding solutions help you feel in control.",
+              "scenario": "You get a bad result in a test. What should you do?",
+              "fill": {
+                "text": "Think ____ and find ways to solve the problem.",
+                "answer": "positively",
+                "bank": [
+                  "positively",
+                  "angrily",
+                  "sadly"
+                ]
+              },
+              "keywords": [
+                "think positively",
+                "find ways"
+              ],
+              "can": "遇到問題嘅時候，應該用咩心態面對呀？",
+              "questionBank": [
+                "MCQ: What should you do when you have a problem?",
+                "TF: Giving up is a good way to face a problem.",
+                "Sort: Good way to face a problem vs Not good",
+                "Fill: Think ____ and find ways to solve the problem."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c4",
+          "title": "My Friends",
+          "pages": "pp.25–30",
+          "emoji": "🤝",
+          "color": "#7C6BF0",
+          "facts": [
+            {
+              "id": "c4f1",
+              "unit": "Healthy Mind",
+              "chapter": "My Friends",
+              "topic": "Fun with friends",
+              "page": "pp.25–30",
+              "facts": [
+                "You can have fun with friends by reading, playing football, playing games and celebrating birthdays together."
+              ],
+              "good": [
+                "Reading",
+                "Football",
+                "Games",
+                "Birthday parties"
+              ],
+              "bad": [
+                "Fighting",
+                "Taking their things without asking",
+                "Laughing at them"
+              ],
+              "why": "Reading, playing and celebrating together make friendships fun and strong.",
+              "scenario": "Which is a fun activity to do with friends?",
+              "pairs": [
+                [
+                  "reading",
+                  "📚"
+                ],
+                [
+                  "football",
+                  "⚽"
+                ],
+                [
+                  "games",
+                  "🎲"
+                ],
+                [
+                  "birthday parties",
+                  "🎂"
+                ]
+              ],
+              "fill": {
+                "text": "You can read a ____ with your friends.",
+                "answer": "book",
+                "bank": [
+                  "book",
+                  "medicine",
+                  "fridge"
+                ]
+              },
+              "keywords": [
+                "reading",
+                "football",
+                "games",
+                "birthday parties"
+              ],
+              "can": "同朋友一齊可以玩啲咩呀？",
+              "questionBank": [
+                "MCQ: Which is a fun activity with friends?",
+                "TF: Fighting is a fun activity with friends.",
+                "Match: Activity vs Picture",
+                "Fill: You can read a ____ with your friends."
+              ]
+            },
+            {
+              "id": "c4f2",
+              "unit": "Healthy Mind",
+              "chapter": "My Friends",
+              "topic": "Sharing with friends",
+              "page": "pp.25–30",
+              "facts": [
+                "Good friends share food, books, toys, and happy and sad things with each other."
+              ],
+              "good": [
+                "Share food",
+                "Share books",
+                "Share toys",
+                "Share happy and sad things"
+              ],
+              "bad": [
+                "Keep everything to yourself",
+                "Take your friend's medicine",
+                "Share nothing and laugh at them"
+              ],
+              "why": "Sharing makes both of you happy and makes the friendship stronger.",
+              "scenario": "Your friend wants to borrow your book. What do you do?",
+              "fill": {
+                "text": "It is good to share your ____ with friends.",
+                "answer": "toys",
+                "bank": [
+                  "toys",
+                  "medicine",
+                  "money"
+                ]
+              },
+              "keywords": [
+                "share food",
+                "share books",
+                "share toys",
+                "share happy and sad things"
+              ],
+              "can": "同朋友之間，有咩可以分享㗎？",
+              "questionBank": [
+                "MCQ: What can you share with friends?",
+                "TF: Good friends share happy and sad things.",
+                "Sort: Things to share vs Not to share",
+                "Fill: It is good to share your ____ with friends."
+              ]
+            },
+            {
+              "id": "c4f3",
+              "unit": "Healthy Mind",
+              "chapter": "My Friends",
+              "topic": "Caring words",
+              "page": "pp.25–30",
+              "facts": [
+                "When a friend is sad, you can say: 'I'm here to listen.' 'It must be hard for you.' 'I'm here for you.'"
+              ],
+              "good": [
+                "I'm here to listen",
+                "It must be hard for you",
+                "I'm here for you"
+              ],
+              "bad": [
+                "Go away",
+                "It's your fault",
+                "Stop crying, it's nothing"
+              ],
+              "why": "Kind words tell your friend that you care and that they are not alone.",
+              "scenario": "Your friend is sad. What can you say to them?",
+              "fill": {
+                "text": "I'm here to ____.",
+                "answer": "listen",
+                "bank": [
+                  "listen",
+                  "shout",
+                  "sleep"
+                ]
+              },
+              "keywords": [
+                "I'm here to listen",
+                "It must be hard for you",
+                "I'm here for you"
+              ],
+              "can": "朋友唔開心嘅時候，可以同佢講啲咩呀？",
+              "questionBank": [
+                "MCQ: What can you say to a sad friend?",
+                "TF: 'Go away' is a caring thing to say.",
+                "Sort: Caring words vs Not caring",
+                "Fill: I'm here to ____."
+              ]
+            },
+            {
+              "id": "c4f4",
+              "unit": "Healthy Mind",
+              "chapter": "My Friends",
+              "topic": "Getting along",
+              "page": "pp.25–30",
+              "facts": [
+                "To get along with friends, share when needed, help each other, and care for them when they are ill."
+              ],
+              "good": [
+                "Share when needed",
+                "Help each other",
+                "Care for them when they are ill"
+              ],
+              "bad": [
+                "Always fight",
+                "Never help",
+                "Ignore them when they are ill"
+              ],
+              "why": "Sharing, helping and caring are the secrets to getting along with friends.",
+              "scenario": "Your friend is ill. How can you show you care?",
+              "fill": {
+                "text": "Help your friends when they need ____.",
+                "answer": "help",
+                "bank": [
+                  "help",
+                  "money",
+                  "trouble"
+                ]
+              },
+              "keywords": [
+                "share when needed",
+                "help each other",
+                "care when ill"
+              ],
+              "can": "點樣先可以同朋友相處得好呀？",
+              "questionBank": [
+                "MCQ: How do friends get along?",
+                "TF: Friends always fight to get along.",
+                "Sort: Getting along vs Not getting along",
+                "Fill: Help your friends when they need ____."
+              ]
+            },
+            {
+              "id": "c4f5",
+              "unit": "Healthy Mind",
+              "chapter": "My Friends",
+              "topic": "When friends ask you to do wrong things",
+              "page": "pp.25–30",
+              "facts": [
+                "If a friend asks you to do something wrong, say no and point out their mistake."
+              ],
+              "good": [
+                "Say no",
+                "Point out their mistake",
+                "Tell them what is right"
+              ],
+              "bad": [
+                "Do it because they asked",
+                "Keep quiet and do it",
+                "Copy what they do"
+              ],
+              "why": "A real friend stops you from doing wrong, and you can do the same for them.",
+              "scenario": "A friend asks you to do something wrong. What should you do?",
+              "fill": {
+                "text": "If a friend asks you to do something wrong, say ____.",
+                "answer": "no",
+                "bank": [
+                  "no",
+                  "yes",
+                  "maybe"
+                ]
+              },
+              "keywords": [
+                "say no",
+                "point out their mistake"
+              ],
+              "can": "朋友叫你做啲唔啱嘅嘢，你應該點做呀？",
+              "questionBank": [
+                "MCQ: What should you do if a friend asks you to do something wrong?",
+                "TF: You should do it because your friend asked you.",
+                "Sort: Good response vs Not good",
+                "Fill: If a friend asks you to do something wrong, say ____."
+              ]
+            },
+            {
+              "id": "c4f6",
+              "unit": "Healthy Mind",
+              "chapter": "My Friends",
+              "topic": "Arguing calmly",
+              "page": "pp.25–30",
+              "facts": [
+                "When you and a friend argue, stay calm and respect each other."
+              ],
+              "good": [
+                "Argue calmly",
+                "Respect each other",
+                "Listen to each other"
+              ],
+              "bad": [
+                "Shout at each other",
+                "Fight",
+                "Call each other names"
+              ],
+              "why": "Arguing calmly and respecting each other solves problems without hurting the friendship.",
+              "scenario": "You and your friend disagree about a game. What should you do?",
+              "fill": {
+                "text": "When you argue, stay ____.",
+                "answer": "calm",
+                "bank": [
+                  "calm",
+                  "loud",
+                  "angry"
+                ]
+              },
+              "keywords": [
+                "argue calmly",
+                "respect each other"
+              ],
+              "can": "同朋友鬧交嘅時候，要點樣處理呀？",
+              "questionBank": [
+                "MCQ: How should you argue with a friend?",
+                "TF: Shouting is the best way to argue.",
+                "Sort: Good way to argue vs Not good",
+                "Fill: When you argue, stay ____."
+              ]
+            },
+            {
+              "id": "c4f7",
+              "unit": "Healthy Mind",
+              "chapter": "My Friends",
+              "topic": "Saying sorry",
+              "page": "pp.25–30",
+              "facts": [
+                "When you do something wrong to a friend, say sorry face to face, or write them a note."
+              ],
+              "good": [
+                "Say sorry face to face",
+                "Write a note",
+                "Say sorry right away"
+              ],
+              "bad": [
+                "Pretend nothing happened",
+                "Blame your friend",
+                "Wait for them to say sorry first"
+              ],
+              "why": "A sincere sorry, face to face or in a note, helps heal the friendship.",
+              "scenario": "You broke your friend's toy. What should you do?",
+              "fill": {
+                "text": "You can say sorry face to face or write a ____.",
+                "answer": "note",
+                "bank": [
+                  "note",
+                  "song",
+                  "list"
+                ]
+              },
+              "keywords": [
+                "face to face",
+                "write a note"
+              ],
+              "can": "整爛咗朋友嘅嘢，要點樣道歉呀？",
+              "questionBank": [
+                "MCQ: How can you say sorry to a friend?",
+                "TF: Pretending nothing happened is a good way to say sorry.",
+                "Sort: Good way to say sorry vs Not good",
+                "Fill: You can say sorry face to face or write a ____."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
