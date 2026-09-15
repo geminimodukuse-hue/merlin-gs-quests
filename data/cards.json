@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Merlin GS Quests",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "level": "Primary 3",
     "subject": "NGS Term 1"
   },
@@ -29,25 +29,51 @@
                 {
                   "id": "c1f1_q1",
                   "type": "mcq",
-                  "prompt": "When you feel ill, what should you do first?",
+                  "prompt": "When you feel ill, what should you do FIRST?",
                   "explain": "A doctor finds out what is wrong and gives the right medicine.",
                   "options": [
                     "See a doctor",
                     "Take leftover medicine at home",
-                    "Only sleep and do nothing",
-                    "Buy any medicine from the pharmacy"
+                    "Only sleep and do nothing else",
+                    "Buy any medicine from a pharmacy without advice"
                   ],
                   "answer": "See a doctor"
                 },
                 {
                   "id": "c1f1_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a good idea when you are ill?",
+                  "explain": "Leftover medicine may be wrong or unsafe — never take it.",
+                  "options": [
+                    "Rest more and drink plenty of water",
+                    "Take the right amount of medicine on time",
+                    "Take leftover medicine from last year",
+                    "See a doctor"
+                  ],
+                  "answer": "Take leftover medicine from last year"
+                },
+                {
+                  "id": "c1f1_q3",
+                  "type": "mcq",
+                  "prompt": "Which choice is BEST when you wake up feeling ill?",
+                  "explain": "Doctor + right dose + rest + water is the full safe plan.",
+                  "options": [
+                    "See a doctor, then rest and drink water",
+                    "Only sleep all day and skip water",
+                    "Take pharmacy medicine without asking",
+                    "Share leftover pills with a sibling"
+                  ],
+                  "answer": "See a doctor, then rest and drink water"
+                },
+                {
+                  "id": "c1f1_q4",
                   "type": "flash",
                   "prompt": "Name three good things to do when you are ill.",
                   "explain": "These three help you get better safely.",
                   "answer": "See a doctor; take the right dose on time; rest and drink water."
                 },
                 {
-                  "id": "c1f1_q3",
+                  "id": "c1f1_q5",
                   "type": "short",
                   "prompt": "Should you take leftover medicine when you are ill? (yes/no)",
                   "explain": "Leftover medicine may be wrong or unsafe for you.",
@@ -58,33 +84,85 @@
                   ]
                 },
                 {
-                  "id": "c1f1_q4",
+                  "id": "c1f1_q6",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Always see a doctor when you feel ill.",
                   "answer": "doctor",
                   "bank": [
                     "doctor",
-                    "teacher",
-                    "friend",
+                    "pharmacist only",
+                    "classmate",
                     "shopkeeper"
                   ],
                   "blank": "When you are ill, you should see a ____."
                 },
                 {
-                  "id": "c1f1_q5",
+                  "id": "c1f1_q7",
+                  "type": "match",
+                  "prompt": "Match SHOULD vs SHOULD NOT when ill.",
+                  "explain": "Doctor, right dose, rest, water — yes. Leftovers and random pharmacy buys — no.",
+                  "pairs": [
+                    [
+                      "See a doctor",
+                      "SHOULD"
+                    ],
+                    [
+                      "Take leftover medicine",
+                      "SHOULD NOT"
+                    ],
+                    [
+                      "Rest and drink water",
+                      "SHOULD"
+                    ],
+                    [
+                      "Buy pharmacy medicine without advice",
+                      "SHOULD NOT"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c1f1_q8",
                   "type": "case",
-                  "prompt": "What should Merlin do?",
-                  "explain": "Seeing a doctor and resting is the safe way to get better.",
+                  "prompt": "Which plan is BEST?",
+                  "explain": "See a doctor first. Never take leftover medicine.",
                   "options": [
-                    "See a doctor and rest",
-                    "Take leftover pills from last year",
+                    "See a doctor; do not take last winter's syrup",
+                    "Take the old syrup and skip the doctor",
                     "Only sleep and skip water",
-                    "Buy any syrup from a shop"
+                    "Buy any pharmacy medicine himself"
                   ],
-                  "answer": "See a doctor and rest",
-                  "story": "Merlin wakes up with a sore throat and feels hot. He wants to feel better quickly.",
+                  "answer": "See a doctor; do not take last winter's syrup",
+                  "story": "Merlin has a fever. Mum asks what to do. He also has leftover cough syrup from last winter.",
                   "scene": "🤒🛏️🌡️"
+                },
+                {
+                  "id": "c1f1_q9",
+                  "type": "mcq",
+                  "prompt": "Resting more and drinking plenty of water is something you ____ when ill.",
+                  "explain": "Rest and water help your body recover — along with seeing a doctor.",
+                  "options": [
+                    "SHOULD do",
+                    "SHOULD NOT do",
+                    "Only do if you skip the doctor",
+                    "Only do instead of medicine"
+                  ],
+                  "answer": "SHOULD do"
+                },
+                {
+                  "id": "c1f1_q10",
+                  "type": "short",
+                  "prompt": "Name one thing you SHOULD NOT do when ill.",
+                  "explain": "No leftover medicine, no random pharmacy buys, and not only sleeping.",
+                  "answers": [
+                    "take leftover medicine",
+                    "leftover medicine",
+                    "buy pharmacy medicine",
+                    "take medicine from pharmacy",
+                    "only sleep",
+                    "do nothing but sleep",
+                    "sleep only"
+                  ]
                 }
               ]
             },
@@ -98,18 +176,44 @@
                 {
                   "id": "c1f2_q1",
                   "type": "mcq",
-                  "prompt": "Who uses a stethoscope to check you?",
-                  "explain": "A doctor listens with a stethoscope. A CMP checks your pulse by hand.",
+                  "prompt": "Who uses a stethoscope to check your heartbeat?",
+                  "explain": "A doctor uses a stethoscope. A CMP checks pulse by hand.",
                   "options": [
-                    "A Chinese medicine practitioner",
                     "A doctor",
-                    "A teacher",
-                    "A pharmacist only"
+                    "A Chinese medicine practitioner",
+                    "Both equally use only a stethoscope",
+                    "Neither — only a nurse does"
                   ],
                   "answer": "A doctor"
                 },
                 {
                   "id": "c1f2_q2",
+                  "type": "mcq",
+                  "prompt": "Who usually checks your pulse by hand?",
+                  "explain": "CMP checks pulse by hand; doctor uses a stethoscope.",
+                  "options": [
+                    "A Chinese medicine practitioner",
+                    "A doctor with a stethoscope only",
+                    "A pharmacist only",
+                    "A teacher"
+                  ],
+                  "answer": "A Chinese medicine practitioner"
+                },
+                {
+                  "id": "c1f2_q3",
+                  "type": "mcq",
+                  "prompt": "What do BOTH a doctor and a Chinese medicine practitioner do?",
+                  "explain": "Same goals; different checking tools and kinds of medicine.",
+                  "options": [
+                    "Check your condition and prescribe medicine",
+                    "Only use a stethoscope",
+                    "Only check pulse by hand",
+                    "Never prescribe medicine"
+                  ],
+                  "answer": "Check your condition and prescribe medicine"
+                },
+                {
+                  "id": "c1f2_q4",
                   "type": "match",
                   "prompt": "Match each helper to how they check you.",
                   "explain": "Same goal (help you), different checking tools.",
@@ -125,28 +229,28 @@
                   ]
                 },
                 {
-                  "id": "c1f2_q3",
+                  "id": "c1f2_q5",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
-                  "explain": "The stethoscope helps the doctor hear your heartbeat and breathing.",
+                  "explain": "The stethoscope helps the doctor hear your heartbeat.",
                   "answer": "stethoscope",
                   "bank": [
                     "stethoscope",
-                    "thermometer only",
-                    "drum",
-                    "phone"
+                    "pulse by hand",
+                    "label",
+                    "syrup"
                   ],
-                  "blank": "A doctor uses a ____ to listen to your body."
+                  "blank": "A doctor uses a ____ to listen to your heartbeat."
                 },
                 {
-                  "id": "c1f2_q4",
+                  "id": "c1f2_q6",
                   "type": "flash",
                   "prompt": "What do BOTH a doctor and a Chinese medicine practitioner do?",
                   "explain": "They both help you get well, even if their methods differ.",
                   "answer": "Both check your condition and prescribe medicine."
                 },
                 {
-                  "id": "c1f2_q5",
+                  "id": "c1f2_q7",
                   "type": "short",
                   "prompt": "How does a Chinese medicine practitioner often check you?",
                   "explain": "They check your pulse by hand.",
@@ -155,8 +259,51 @@
                     "checks pulse by hand",
                     "check pulse by hand",
                     "by pulse",
-                    "pulse"
+                    "pulse",
+                    "hand pulse"
                   ]
+                },
+                {
+                  "id": "c1f2_q8",
+                  "type": "case",
+                  "prompt": "Which is TRUE about doctor vs CMP?",
+                  "explain": "Similarities: check + prescribe. Differences: tools and kinds of medicine.",
+                  "options": [
+                    "They both help, but check you differently and may give different medicine",
+                    "Only doctors ever prescribe medicine",
+                    "Only CMPs ever check your condition",
+                    "They use identical tools always"
+                  ],
+                  "answer": "They both help, but check you differently and may give different medicine",
+                  "story": "Merlin's uncle says doctors and Chinese medicine practitioners are exactly the same in every way.",
+                  "scene": "🩺🤚⚖️"
+                },
+                {
+                  "id": "c1f2_q9",
+                  "type": "mcq",
+                  "prompt": "Which statement is NOT true?",
+                  "explain": "Both check your physical condition.",
+                  "options": [
+                    "A doctor uses a stethoscope",
+                    "A CMP checks pulse by hand",
+                    "Both prescribe medicine",
+                    "Only a doctor ever checks your condition"
+                  ],
+                  "answer": "Only a doctor ever checks your condition"
+                },
+                {
+                  "id": "c1f2_q10",
+                  "type": "fill",
+                  "prompt": "Fill in the blank.",
+                  "explain": "Pulse by hand is the CMP difference.",
+                  "answer": "pulse",
+                  "bank": [
+                    "pulse",
+                    "stethoscope",
+                    "label",
+                    "syrup"
+                  ],
+                  "blank": "A Chinese medicine practitioner checks your ____ by hand."
                 }
               ]
             },
@@ -173,29 +320,55 @@
                   "prompt": "When the doctor asks how you feel, you should:",
                   "explain": "Honest answers help the doctor help you.",
                   "options": [
-                    "Hide how you feel",
-                    "Say nothing and guess",
                     "Tell the doctor how you feel",
-                    "Do the opposite of what they say"
+                    "Hide how you feel",
+                    "Say you feel fine even if you do not",
+                    "Do the opposite of instructions"
                   ],
                   "answer": "Tell the doctor how you feel"
                 },
                 {
                   "id": "c1f3_q2",
+                  "type": "mcq",
+                  "prompt": "Which is BEST after the doctor gives instructions?",
+                  "explain": "Listen carefully and follow the doctor's plan.",
+                  "options": [
+                    "Pay attention and follow them",
+                    "Ignore them if you feel shy",
+                    "Only follow half of them",
+                    "Ask a classmate to change them"
+                  ],
+                  "answer": "Pay attention and follow them"
+                },
+                {
+                  "id": "c1f3_q3",
+                  "type": "mcq",
+                  "prompt": "Which is NOT helpful at the clinic?",
+                  "explain": "Hiding symptoms can lead to wrong care.",
+                  "options": [
+                    "Telling how you feel",
+                    "Following instructions",
+                    "Hiding your symptoms",
+                    "Listening carefully"
+                  ],
+                  "answer": "Hiding your symptoms"
+                },
+                {
+                  "id": "c1f3_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Describe your symptoms clearly.",
                   "answer": "feel",
                   "bank": [
                     "feel",
-                    "look",
-                    "smell",
-                    "draw"
+                    "guess",
+                    "hide",
+                    "ignore"
                   ],
                   "blank": "Tell the doctor how you ____."
                 },
                 {
-                  "id": "c1f3_q3",
+                  "id": "c1f3_q5",
                   "type": "case",
                   "prompt": "What should Merlin do?",
                   "explain": "The doctor needs the truth to prescribe the right care.",
@@ -203,14 +376,14 @@
                     "Tell the doctor his tummy hurts",
                     "Stay silent and nod",
                     "Say he feels fine",
-                    "Run out of the room"
+                    "Leave without speaking"
                   ],
                   "answer": "Tell the doctor his tummy hurts",
                   "story": "At the clinic, Merlin feels shy. His tummy hurts but he does not want to talk.",
                   "scene": "🏥👨‍⚕️🧒"
                 },
                 {
-                  "id": "c1f3_q4",
+                  "id": "c1f3_q6",
                   "type": "short",
                   "prompt": "After the doctor gives instructions, what should you do?",
                   "explain": "Follow the doctor's instructions carefully.",
@@ -219,15 +392,62 @@
                     "follow instructions",
                     "follow the doctor",
                     "listen and follow",
-                    "obey the doctor"
+                    "obey the doctor",
+                    "pay attention"
                   ]
                 },
                 {
-                  "id": "c1f3_q5",
+                  "id": "c1f3_q7",
                   "type": "flash",
                   "prompt": "Two important things when seeing the doctor:",
                   "explain": "Talk honestly and then follow the plan.",
                   "answer": "Tell how you feel; follow the doctor's instructions."
+                },
+                {
+                  "id": "c1f3_q8",
+                  "type": "match",
+                  "prompt": "Match visit step to action.",
+                  "explain": "Honesty + following instructions = good visit.",
+                  "pairs": [
+                    [
+                      "Doctor asks how you feel",
+                      "Tell the truth about symptoms"
+                    ],
+                    [
+                      "Doctor gives instructions",
+                      "Pay attention and follow"
+                    ],
+                    [
+                      "You feel shy",
+                      "Still describe how you feel"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c1f3_q9",
+                  "type": "case",
+                  "prompt": "Which reply is BEST?",
+                  "explain": "Clear, honest symptoms help the doctor.",
+                  "options": [
+                    "My throat hurts and I have a headache",
+                    "I feel fine",
+                    "I will not say",
+                    "Guess what is wrong without telling"
+                  ],
+                  "answer": "My throat hurts and I have a headache",
+                  "story": "The doctor asks Merlin, 'How do you feel today?' Merlin has a sore throat and headache.",
+                  "scene": "🗣️🤒📋"
+                },
+                {
+                  "id": "c1f3_q10",
+                  "type": "short",
+                  "prompt": "Should you hide how you feel from the doctor? (yes/no)",
+                  "explain": "Never hide symptoms from the doctor.",
+                  "answers": [
+                    "no",
+                    "nope",
+                    "never"
+                  ]
                 }
               ]
             },
@@ -241,18 +461,44 @@
                 {
                   "id": "c1f4_q1",
                   "type": "mcq",
-                  "prompt": "Which of these is a type of medicine?",
-                  "explain": "Syrup, pills, Chinese powder and herbs are medicine — not snacks.",
+                  "prompt": "Which is a liquid type of medicine from the lesson?",
+                  "explain": "Cough syrup is liquid; pills are solid; powder and herbs are other forms.",
                   "options": [
                     "Cough syrup",
-                    "Candy",
-                    "Potato chips",
-                    "Ice cream"
+                    "Pills",
+                    "Chinese herbs",
+                    "Chinese medicine powder"
                   ],
                   "answer": "Cough syrup"
                 },
                 {
                   "id": "c1f4_q2",
+                  "type": "mcq",
+                  "prompt": "Which form is usually small solid tablets?",
+                  "explain": "Pills are small solid tablets.",
+                  "options": [
+                    "Pills",
+                    "Cough syrup",
+                    "Chinese herbs",
+                    "Water only"
+                  ],
+                  "answer": "Pills"
+                },
+                {
+                  "id": "c1f4_q3",
+                  "type": "mcq",
+                  "prompt": "Chinese medicine powder is BEST described as:",
+                  "explain": "Powder differs from syrup, pills, and whole herbs.",
+                  "options": [
+                    "Fine powder medicine (not liquid syrup)",
+                    "The same as cough syrup",
+                    "Only whole dried plants",
+                    "Not a medicine type in the lesson"
+                  ],
+                  "answer": "Fine powder medicine (not liquid syrup)"
+                },
+                {
+                  "id": "c1f4_q4",
                   "type": "match",
                   "prompt": "Match the medicine type to a hint.",
                   "explain": "Know the forms so you take the correct one.",
@@ -276,28 +522,28 @@
                   ]
                 },
                 {
-                  "id": "c1f4_q3",
+                  "id": "c1f4_q5",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Cough syrup is liquid medicine.",
                   "answer": "Cough syrup",
                   "bank": [
                     "Cough syrup",
-                    "Candy",
-                    "Chips",
-                    "Juice"
+                    "Pills",
+                    "Chinese herbs",
+                    "Chinese medicine powder"
                   ],
                   "blank": "____ is a liquid type of medicine for coughs."
                 },
                 {
-                  "id": "c1f4_q4",
+                  "id": "c1f4_q6",
                   "type": "flash",
                   "prompt": "List four types of medicine from the lesson.",
                   "explain": "These are the forms in your textbook.",
                   "answer": "Cough syrup, pills, Chinese medicine powder, Chinese herbs."
                 },
                 {
-                  "id": "c1f4_q5",
+                  "id": "c1f4_q7",
                   "type": "short",
                   "prompt": "Name one solid form of medicine.",
                   "explain": "Pills are a common solid form.",
@@ -306,6 +552,47 @@
                     "pill",
                     "tablets",
                     "tablet"
+                  ]
+                },
+                {
+                  "id": "c1f4_q8",
+                  "type": "case",
+                  "prompt": "Which is CORRECT?",
+                  "explain": "Syrup, pills, powder, and herbs are all lesson medicine types.",
+                  "options": [
+                    "All four can be types of medicine from the lesson",
+                    "Only cough syrup counts as medicine",
+                    "Pills are never medicine",
+                    "Herbs are never used as medicine"
+                  ],
+                  "answer": "All four can be types of medicine from the lesson",
+                  "story": "Mum shows Merlin four packages: cough syrup, pills, Chinese powder, and Chinese herbs.",
+                  "scene": "💊🧴🌿"
+                },
+                {
+                  "id": "c1f4_q9",
+                  "type": "mcq",
+                  "prompt": "Which is NOT one of the four medicine types in the lesson?",
+                  "explain": "Water helps you take medicine but is not a medicine type here.",
+                  "options": [
+                    "Water with no medicine in it",
+                    "Cough syrup",
+                    "Pills",
+                    "Chinese herbs"
+                  ],
+                  "answer": "Water with no medicine in it"
+                },
+                {
+                  "id": "c1f4_q10",
+                  "type": "short",
+                  "prompt": "Name one Chinese medicine form from the lesson.",
+                  "explain": "Chinese medicine powder or Chinese herbs.",
+                  "answers": [
+                    "chinese medicine powder",
+                    "powder",
+                    "chinese herbs",
+                    "herbs",
+                    "chinese herb"
                   ]
                 }
               ]
@@ -320,11 +607,11 @@
                 {
                   "id": "c1f5_q1",
                   "type": "mcq",
-                  "prompt": "Your friend offers you his leftover medicine. You should:",
+                  "prompt": "Your friend offers leftover medicine. You should:",
                   "explain": "Other people's medicine may be wrong or unsafe for you.",
                   "options": [
-                    "Take it to be polite",
                     "Never take other people's medicine",
+                    "Take it to be polite",
                     "Mix it with yours",
                     "Take a bigger dose"
                   ],
@@ -332,27 +619,53 @@
                 },
                 {
                   "id": "c1f5_q2",
+                  "type": "mcq",
+                  "prompt": "Which information is useful on a medicine label?",
+                  "explain": "Labels also show clinic, start date/days, amount, and how to take.",
+                  "options": [
+                    "Your name, dose, when to take it, and side effects",
+                    "Only the colour of the bottle",
+                    "Only a friend's nickname",
+                    "Nothing — labels are useless"
+                  ],
+                  "answer": "Your name, dose, when to take it, and side effects"
+                },
+                {
+                  "id": "c1f5_q3",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a reason labels are useful?",
+                  "explain": "Labels stop guessing — they give exact instructions.",
+                  "options": [
+                    "Know how much and when to take",
+                    "Know side effects",
+                    "Avoid others' medicine",
+                    "Guess a random dose without reading"
+                  ],
+                  "answer": "Guess a random dose without reading"
+                },
+                {
+                  "id": "c1f5_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Medicine is prescribed for one person only.",
                   "answer": "people",
                   "bank": [
                     "people",
-                    "doctor",
+                    "label",
                     "clinic",
-                    "label"
+                    "doctor"
                   ],
                   "blank": "Never take other ____'s medicine."
                 },
                 {
-                  "id": "c1f5_q3",
+                  "id": "c1f5_q5",
                   "type": "flash",
                   "prompt": "Name three things a medicine label tells you.",
                   "explain": "Read the whole label before taking medicine.",
                   "answer": "Your name; dose and time; how to take it / side effects (also clinic, start date, days)."
                 },
                 {
-                  "id": "c1f5_q4",
+                  "id": "c1f5_q6",
                   "type": "short",
                   "prompt": "Should you skip reading the medicine label? (yes/no)",
                   "explain": "Always read the label so you take the right amount.",
@@ -363,7 +676,7 @@
                   ]
                 },
                 {
-                  "id": "c1f5_q5",
+                  "id": "c1f5_q7",
                   "type": "case",
                   "prompt": "What should Merlin do?",
                   "explain": "Never take someone else's medicine — ask an adult or doctor.",
@@ -376,6 +689,62 @@
                   "answer": "Refuse and ask Mum/Dad or a doctor",
                   "story": "Merlin's sister has a cold. She gives Merlin her cough syrup because he also coughs a little.",
                   "scene": "💊🏷️🙅"
+                },
+                {
+                  "id": "c1f5_q8",
+                  "type": "match",
+                  "prompt": "Match label use to reason.",
+                  "explain": "Every label detail keeps you safe.",
+                  "pairs": [
+                    [
+                      "Name on label",
+                      "Confirms it is yours"
+                    ],
+                    [
+                      "How much / when",
+                      "Safe correct dose"
+                    ],
+                    [
+                      "Side effects",
+                      "Know what to watch for"
+                    ],
+                    [
+                      "Avoid others' medicine",
+                      "Wrong medicine can harm you"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c1f5_q9",
+                  "type": "mcq",
+                  "prompt": "Which BEST describes why you check the start date / days?",
+                  "explain": "Start date and days tell the treatment length.",
+                  "options": [
+                    "To know how long to take the medicine",
+                    "To decorate the bottle",
+                    "To share with friends",
+                    "To skip the doctor's name"
+                  ],
+                  "answer": "To know how long to take the medicine"
+                },
+                {
+                  "id": "c1f5_q10",
+                  "type": "short",
+                  "prompt": "Name one thing you can find on a medicine label.",
+                  "explain": "Name, dose, timing, side effects, clinic, dates…",
+                  "answers": [
+                    "name",
+                    "your name",
+                    "dose",
+                    "amount",
+                    "how much",
+                    "when",
+                    "side effects",
+                    "clinic",
+                    "start date",
+                    "days",
+                    "how to take"
+                  ]
                 }
               ]
             },
@@ -389,39 +758,65 @@
                 {
                   "id": "c1f6_q1",
                   "type": "mcq",
-                  "prompt": "The best way to take medicine is:",
+                  "prompt": "The BEST way to take medicine is:",
                   "explain": "Water + right time + doctor's plan = safe.",
                   "options": [
-                    "With cola and late at night",
                     "With water, on time, following the doctor",
                     "Any amount you like",
-                    "Stop when you feel a bit better"
+                    "Stop when you feel a bit better",
+                    "With any drink at any time"
                   ],
                   "answer": "With water, on time, following the doctor"
                 },
                 {
                   "id": "c1f6_q2",
+                  "type": "mcq",
+                  "prompt": "Which is a WRONG way to take medicine?",
+                  "explain": "Wrong amount, stopping early, or others' medicine are wrong.",
+                  "options": [
+                    "Take the wrong amount",
+                    "Take with water",
+                    "Take on time",
+                    "Follow the doctor"
+                  ],
+                  "answer": "Take the wrong amount"
+                },
+                {
+                  "id": "c1f6_q3",
+                  "type": "mcq",
+                  "prompt": "You feel better after two days. What should you do?",
+                  "explain": "Do not stop without the doctor's instructions.",
+                  "options": [
+                    "Ask the doctor before stopping",
+                    "Stop at once without asking",
+                    "Give the rest to a friend",
+                    "Double tonight's dose"
+                  ],
+                  "answer": "Ask the doctor before stopping"
+                },
+                {
+                  "id": "c1f6_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Water is the safe way to swallow medicine.",
                   "answer": "water",
                   "bank": [
                     "water",
-                    "cola",
-                    "juice",
-                    "milkshake"
+                    "any soft drink",
+                    "nothing ever",
+                    "someone else's syrup"
                   ],
                   "blank": "Take medicine with ____."
                 },
                 {
-                  "id": "c1f6_q3",
+                  "id": "c1f6_q5",
                   "type": "flash",
                   "prompt": "Name two WRONG ways to take medicine.",
                   "explain": "These mistakes can make you worse or unsafe.",
                   "answer": "Wrong amount; stop without asking the doctor; take other people's medicine."
                 },
                 {
-                  "id": "c1f6_q4",
+                  "id": "c1f6_q6",
                   "type": "short",
                   "prompt": "If you feel better, can you stop medicine without asking the doctor? (yes/no)",
                   "explain": "Always ask the doctor before stopping.",
@@ -432,7 +827,7 @@
                   ]
                 },
                 {
-                  "id": "c1f6_q5",
+                  "id": "c1f6_q7",
                   "type": "case",
                   "prompt": "What should Merlin do?",
                   "explain": "Follow the schedule unless the doctor says otherwise.",
@@ -445,6 +840,59 @@
                   "answer": "Take it on time as the doctor said",
                   "story": "It is 8 pm — medicine time. Merlin feels a bit better and wants to skip tonight's dose.",
                   "scene": "⏰💊🧒"
+                },
+                {
+                  "id": "c1f6_q8",
+                  "type": "match",
+                  "prompt": "Match action to correct/wrong.",
+                  "explain": "Correct = water, on time, follow doctor.",
+                  "pairs": [
+                    [
+                      "With water, on time",
+                      "CORRECT"
+                    ],
+                    [
+                      "Wrong amount",
+                      "WRONG"
+                    ],
+                    [
+                      "Follow the doctor",
+                      "CORRECT"
+                    ],
+                    [
+                      "Stop without asking",
+                      "WRONG"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c1f6_q9",
+                  "type": "case",
+                  "prompt": "Which choice is BEST?",
+                  "explain": "Never take others' medicine; read your own label.",
+                  "options": [
+                    "Do not take someone else's medicine — check the label",
+                    "Take the brother's pills if colours match",
+                    "Stop his own medicine tonight",
+                    "Mix both bottles"
+                  ],
+                  "answer": "Do not take someone else's medicine — check the label",
+                  "story": "Merlin almost takes his brother's pills because the bottles look similar.",
+                  "scene": "💊🙅⚖️"
+                },
+                {
+                  "id": "c1f6_q10",
+                  "type": "short",
+                  "prompt": "Name one CORRECT way to take medicine.",
+                  "explain": "With water, on time, follow the doctor.",
+                  "answers": [
+                    "with water",
+                    "water",
+                    "on time",
+                    "follow the doctor",
+                    "follow doctor",
+                    "right amount"
+                  ]
                 }
               ]
             },
@@ -459,17 +907,43 @@
                   "id": "c1f7_q1",
                   "type": "mcq",
                   "prompt": "Where should you store medicine?",
-                  "explain": "Cool, dry, shaded, and high up / locked away.",
+                  "explain": "Cool, dry, shaded, and out of reach.",
                   "options": [
-                    "In strong sunlight by the window",
                     "In a cool, dry place out of children's reach",
-                    "In a damp bathroom cupboard that kids open",
-                    "Next to the cooker where it is hot"
+                    "In strong sunlight by the window",
+                    "In a damp place young children open",
+                    "Next to a hot cooker"
                   ],
                   "answer": "In a cool, dry place out of children's reach"
                 },
                 {
                   "id": "c1f7_q2",
+                  "type": "mcq",
+                  "prompt": "Which storage place is NOT safe?",
+                  "explain": "Out of reach of young children is required.",
+                  "options": [
+                    "A high locked cupboard, cool and dry",
+                    "On a low shelf where toddlers play",
+                    "A shaded dry cabinet adults use",
+                    "A cool drawer children cannot open"
+                  ],
+                  "answer": "On a low shelf where toddlers play"
+                },
+                {
+                  "id": "c1f7_q3",
+                  "type": "mcq",
+                  "prompt": "Why keep medicine away from strong sunlight?",
+                  "explain": "Away from strong sunlight keeps medicine good.",
+                  "options": [
+                    "Heat and light can spoil it",
+                    "Sunlight makes it stronger",
+                    "Sunlight is required for all medicine",
+                    "Labels need more fading"
+                  ],
+                  "answer": "Heat and light can spoil it"
+                },
+                {
+                  "id": "c1f7_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Moisture can spoil medicine.",
@@ -483,7 +957,7 @@
                   "blank": "Keep medicine in a cool, ____ place."
                 },
                 {
-                  "id": "c1f7_q3",
+                  "id": "c1f7_q5",
                   "type": "match",
                   "prompt": "Match storage rule to reason.",
                   "explain": "All three rules keep medicine safe.",
@@ -503,7 +977,7 @@
                   ]
                 },
                 {
-                  "id": "c1f7_q4",
+                  "id": "c1f7_q6",
                   "type": "short",
                   "prompt": "Should medicine be kept where young children can reach it? (yes/no)",
                   "explain": "Keep it out of reach to prevent accidents.",
@@ -514,11 +988,55 @@
                   ]
                 },
                 {
-                  "id": "c1f7_q5",
+                  "id": "c1f7_q7",
                   "type": "flash",
                   "prompt": "Three rules for storing medicine:",
                   "explain": "Remember: cool, dry, shaded, high/safe.",
                   "answer": "Cool and dry; away from sunlight; out of young children's reach."
+                },
+                {
+                  "id": "c1f7_q8",
+                  "type": "case",
+                  "prompt": "Which home spot is BEST?",
+                  "explain": "Cool, dry, shaded, out of children's reach.",
+                  "options": [
+                    "High cool dry cupboard adults control",
+                    "Sunny windowsill",
+                    "Bathroom shelf toddlers open",
+                    "Beside the hot stove"
+                  ],
+                  "answer": "High cool dry cupboard adults control",
+                  "story": "The family chooses where to put Merlin's medicine bottle.",
+                  "scene": "🏠🔐☀️"
+                },
+                {
+                  "id": "c1f7_q9",
+                  "type": "mcq",
+                  "prompt": "Which rule is missing if medicine sits in a sunny wet bathroom kids use?",
+                  "explain": "That spot breaks every storage rule.",
+                  "options": [
+                    "Cool, dry, away from sun, and out of reach — all missing",
+                    "Only the colour rule is missing",
+                    "Nothing is wrong",
+                    "Only the doctor's name is missing"
+                  ],
+                  "answer": "Cool, dry, away from sun, and out of reach — all missing"
+                },
+                {
+                  "id": "c1f7_q10",
+                  "type": "short",
+                  "prompt": "Name one rule for storing medicine.",
+                  "explain": "Cool/dry, away from sun, or out of reach.",
+                  "answers": [
+                    "cool",
+                    "dry",
+                    "cool dry",
+                    "away from sunlight",
+                    "out of reach",
+                    "out of children's reach",
+                    "away from sun",
+                    "cool and dry"
+                  ]
                 }
               ]
             },
@@ -533,38 +1051,64 @@
                   "id": "c1f8_q1",
                   "type": "mcq",
                   "prompt": "Which helps you get better when ill?",
-                  "explain": "Rest + water + healthy food (plus doctor care) help recovery.",
+                  "explain": "Also see a doctor, take medicine as told, keep home airy.",
                   "options": [
-                    "Play outside all day",
-                    "Eat only junk food",
                     "Rest, drink water, eat healthy food",
-                    "Stay in a stuffy closed room"
+                    "Stay in a stuffy closed room only",
+                    "Skip the doctor's medicine",
+                    "Play hard outside all day while feverish"
                   ],
                   "answer": "Rest, drink water, eat healthy food"
                 },
                 {
                   "id": "c1f8_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a lesson tip for getting better?",
+                  "explain": "Airy home + rest help recovery.",
+                  "options": [
+                    "Keep home airy",
+                    "See a doctor immediately",
+                    "Eat healthy food",
+                    "Keep all windows shut forever and skip rest"
+                  ],
+                  "answer": "Keep all windows shut forever and skip rest"
+                },
+                {
+                  "id": "c1f8_q3",
+                  "type": "mcq",
+                  "prompt": "Which plan is BEST for recovery?",
+                  "explain": "All six tips work together.",
+                  "options": [
+                    "Doctor + medicine as told + airy home + rest + water + healthy food",
+                    "Only junk food and no rest",
+                    "Skip doctor but open windows",
+                    "Only sleep with no water"
+                  ],
+                  "answer": "Doctor + medicine as told + airy home + rest + water + healthy food"
+                },
+                {
+                  "id": "c1f8_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Healthy food gives your body energy to heal.",
                   "answer": "healthy",
                   "bank": [
                     "healthy",
-                    "junk",
-                    "only spicy",
-                    "no"
+                    "only junk",
+                    "no",
+                    "spoiled"
                   ],
                   "blank": "Eat ____ food to help you get better."
                 },
                 {
-                  "id": "c1f8_q3",
+                  "id": "c1f8_q5",
                   "type": "flash",
                   "prompt": "Name four ways to get better faster.",
                   "explain": "Doctors + rest + fresh air + water + healthy food.",
                   "answer": "See a doctor; take medicine as told; keep home airy; rest; drink water; eat healthy food."
                 },
                 {
-                  "id": "c1f8_q4",
+                  "id": "c1f8_q6",
                   "type": "short",
                   "prompt": "Should the home be stuffy or airy when you are ill?",
                   "explain": "Keep the home airy for fresh air.",
@@ -577,19 +1121,77 @@
                   ]
                 },
                 {
-                  "id": "c1f8_q5",
+                  "id": "c1f8_q7",
                   "type": "case",
                   "prompt": "What should Merlin's family do?",
                   "explain": "Airy home, rest and healthy food support recovery.",
                   "options": [
                     "Open windows a bit, rest, eat healthy food",
                     "Keep all windows shut forever",
-                    "Only eat chips and play football",
+                    "Only eat junk food and skip rest",
                     "Skip the doctor's medicine"
                   ],
                   "answer": "Open windows a bit, rest, eat healthy food",
-                  "story": "Merlin has a cold. The windows are shut all day and he only wants chips.",
+                  "story": "Merlin has a cold. The windows are shut all day and he only wants junk food.",
                   "scene": "🏠🪟🥗"
+                },
+                {
+                  "id": "c1f8_q8",
+                  "type": "match",
+                  "prompt": "Match tip to purpose.",
+                  "explain": "Each tip supports getting well.",
+                  "pairs": [
+                    [
+                      "See a doctor soon",
+                      "Right care and medicine"
+                    ],
+                    [
+                      "Keep home airy",
+                      "Fresh air helps"
+                    ],
+                    [
+                      "Rest more",
+                      "Body recovers"
+                    ],
+                    [
+                      "Drink more water",
+                      "Helps the body"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c1f8_q9",
+                  "type": "case",
+                  "prompt": "Which is NOT enough by itself?",
+                  "explain": "Airy home helps, but doctor care still matters.",
+                  "options": [
+                    "Also see a doctor and take medicine as told — window alone is not enough",
+                    "Window alone always cures everything",
+                    "Never rest when ill",
+                    "Never drink water"
+                  ],
+                  "answer": "Also see a doctor and take medicine as told — window alone is not enough",
+                  "story": "Dad says Merlin only needs to open a window and can skip seeing a doctor.",
+                  "scene": "🪟🩺❓"
+                },
+                {
+                  "id": "c1f8_q10",
+                  "type": "short",
+                  "prompt": "Name one way to get better when ill.",
+                  "explain": "Any of the six lesson tips.",
+                  "answers": [
+                    "see a doctor",
+                    "doctor",
+                    "take medicine",
+                    "medicine as told",
+                    "keep home airy",
+                    "airy",
+                    "rest",
+                    "drink water",
+                    "water",
+                    "eat healthy food",
+                    "healthy food"
+                  ]
                 }
               ]
             },
@@ -604,17 +1206,43 @@
                   "id": "c1f9_q1",
                   "type": "mcq",
                   "prompt": "Your classmate is ill at home. A kind thing to do is:",
-                  "explain": "A call, a reminder, or a card shows care — not your medicine.",
+                  "explain": "Call, reminder, or card shows care — not your medicine.",
                   "options": [
-                    "Give them your own medicine",
-                    "Invite them to play football now",
                     "Call them and make a get-well card",
-                    "Play loud music near them"
+                    "Give them your own leftover medicine",
+                    "Invite them to play football right now",
+                    "Ignore them completely"
                   ],
                   "answer": "Call them and make a get-well card"
                 },
                 {
                   "id": "c1f9_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a lesson way to care for patients?",
+                  "explain": "Never share medicine; remind, call, or card instead.",
+                  "options": [
+                    "Remind them to take medicine",
+                    "Give a call",
+                    "Give a card",
+                    "Give them your leftover pills"
+                  ],
+                  "answer": "Give them your leftover pills"
+                },
+                {
+                  "id": "c1f9_q3",
+                  "type": "mcq",
+                  "prompt": "Which is BEST if your friend is home with flu?",
+                  "explain": "Remind, call, card — simple and kind.",
+                  "options": [
+                    "Call and send a get-well card; remind them about medicine",
+                    "Bring them someone else's syrup",
+                    "Play loud games in their room",
+                    "Tell them to skip the doctor"
+                  ],
+                  "answer": "Call and send a get-well card; remind them about medicine"
+                },
+                {
+                  "id": "c1f9_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "A get-well card cheers them up.",
@@ -622,20 +1250,20 @@
                   "bank": [
                     "well",
                     "sick",
-                    "bad",
+                    "angry",
                     "loud"
                   ],
                   "blank": "You can make a get-____ card for a sick friend."
                 },
                 {
-                  "id": "c1f9_q3",
+                  "id": "c1f9_q5",
                   "type": "flash",
                   "prompt": "Three ways to care for someone who is ill:",
                   "explain": "Remind, call, card — simple and kind.",
                   "answer": "Remind them to take medicine; give a call; give a card."
                 },
                 {
-                  "id": "c1f9_q4",
+                  "id": "c1f9_q6",
                   "type": "short",
                   "prompt": "Name one way to care for an ill friend.",
                   "explain": "Call, card, or medicine reminder all count.",
@@ -647,11 +1275,12 @@
                     "get-well card",
                     "remind medicine",
                     "remind them to take medicine",
-                    "give a card"
+                    "give a card",
+                    "card"
                   ]
                 },
                 {
-                  "id": "c1f9_q5",
+                  "id": "c1f9_q7",
                   "type": "case",
                   "prompt": "What should Merlin do?",
                   "explain": "Kind contact helps; do not share medicine.",
@@ -664,6 +1293,52 @@
                   "answer": "Call Tom and make a get-well card",
                   "story": "Tom is home with flu. Merlin wants to help but is not a doctor.",
                   "scene": "📞💌🤒"
+                },
+                {
+                  "id": "c1f9_q8",
+                  "type": "match",
+                  "prompt": "Match caring act to meaning.",
+                  "explain": "Small acts show big care.",
+                  "pairs": [
+                    [
+                      "Remind about medicine",
+                      "Help them follow the doctor's plan"
+                    ],
+                    [
+                      "Give a call",
+                      "Show you care by talking"
+                    ],
+                    [
+                      "Give a card",
+                      "Cheer them up with kind words"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c1f9_q9",
+                  "type": "case",
+                  "prompt": "Which choice is WORST?",
+                  "explain": "Sharing leftover medicine is unsafe — not true care.",
+                  "options": [
+                    "Hand Mei leftover medicine from home",
+                    "Call Mei",
+                    "Make a get-well card",
+                    "Remind Mei to take her prescribed medicine"
+                  ],
+                  "answer": "Hand Mei leftover medicine from home",
+                  "story": "Mei is ill. Classmates suggest ways to help.",
+                  "scene": "🙅💊💌"
+                },
+                {
+                  "id": "c1f9_q10",
+                  "type": "short",
+                  "prompt": "Complete: give a get-____ card.",
+                  "explain": "Get-well card.",
+                  "answers": [
+                    "well",
+                    "get-well",
+                    "get well"
+                  ]
                 }
               ]
             }
@@ -689,36 +1364,62 @@
                   "prompt": "Which is a harm of smoking?",
                   "explain": "Smoking yellows teeth/fingers and causes bad breath.",
                   "options": [
+                    "Bad breath and yellow teeth",
                     "Stronger lungs",
                     "Whiter teeth",
-                    "Bad breath and yellow teeth",
                     "Bigger appetite"
                   ],
                   "answer": "Bad breath and yellow teeth"
                 },
                 {
                   "id": "c2f1_q2",
+                  "type": "mcq",
+                  "prompt": "Which harm is more typical of SMOKING than of drinking alcohol?",
+                  "explain": "Yellow fingers/teeth and bad breath are smoking harms; liver/stomach/judgement harms are drinking.",
+                  "options": [
+                    "Yellow fingers and teeth",
+                    "Liver cancer",
+                    "Losing judgement after drinking",
+                    "Stomach bleeding from alcohol"
+                  ],
+                  "answer": "Yellow fingers and teeth"
+                },
+                {
+                  "id": "c2f1_q3",
+                  "type": "mcq",
+                  "prompt": "Which statement about smoking is NOT true?",
+                  "explain": "Smoking reduces lung growth and functions.",
+                  "options": [
+                    "It reduces lung growth and functions",
+                    "It can raise chance of serious diseases",
+                    "It causes poor appetite and weight loss",
+                    "It makes lungs grow stronger"
+                  ],
+                  "answer": "It makes lungs grow stronger"
+                },
+                {
+                  "id": "c2f1_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Bad breath is an early, clear harm of smoking.",
                   "answer": "breath",
                   "bank": [
                     "breath",
-                    "luck",
-                    "dreams",
+                    "judgement only",
+                    "liver only",
                     "grades"
                   ],
                   "blank": "Smoking gives you bad ____."
                 },
                 {
-                  "id": "c2f1_q3",
+                  "id": "c2f1_q5",
                   "type": "flash",
                   "prompt": "Name four harms of smoking.",
                   "explain": "Smoking hurts many parts of the body.",
                   "answer": "Bad breath; yellow fingers/teeth; poor appetite and weight loss; serious diseases; reduced lung growth."
                 },
                 {
-                  "id": "c2f1_q4",
+                  "id": "c2f1_q6",
                   "type": "short",
                   "prompt": "Does smoking help lungs grow well? (yes/no)",
                   "explain": "Smoking reduces lung growth and function.",
@@ -729,7 +1430,7 @@
                   ]
                 },
                 {
-                  "id": "c2f1_q5",
+                  "id": "c2f1_q7",
                   "type": "case",
                   "prompt": "What should Merlin say?",
                   "explain": "Always refuse. Smoking is harmful.",
@@ -742,6 +1443,61 @@
                   "answer": "Say no — smoking harms health",
                   "story": "An older kid offers Merlin a cigarette and says it looks cool.",
                   "scene": "🚭🧒🙅"
+                },
+                {
+                  "id": "c2f1_q8",
+                  "type": "match",
+                  "prompt": "Match smoking harm to body effect.",
+                  "explain": "Smoking harms appearance, appetite, and lungs.",
+                  "pairs": [
+                    [
+                      "Bad breath",
+                      "Mouth / smell"
+                    ],
+                    [
+                      "Yellow fingers and teeth",
+                      "Appearance"
+                    ],
+                    [
+                      "Reduced lung growth",
+                      "Breathing / lungs"
+                    ],
+                    [
+                      "Poor appetite and weight loss",
+                      "Eating / body weight"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c2f1_q9",
+                  "type": "mcq",
+                  "prompt": "Which pair BEST lists smoking harms from the lesson?",
+                  "explain": "Those are smoking harms; liver/pass out are drinking; others are other chapters.",
+                  "options": [
+                    "Bad breath, yellow teeth, reduced lung growth",
+                    "Liver cancer, stomach bleeding, pass out",
+                    "Share toys, birthday party, games",
+                    "Deep breath, wash face, diary"
+                  ],
+                  "answer": "Bad breath, yellow teeth, reduced lung growth"
+                },
+                {
+                  "id": "c2f1_q10",
+                  "type": "short",
+                  "prompt": "Name one harm of smoking.",
+                  "explain": "Any smoking harm from the lesson.",
+                  "answers": [
+                    "bad breath",
+                    "yellow fingers",
+                    "yellow teeth",
+                    "yellow fingers and teeth",
+                    "poor appetite",
+                    "weight loss",
+                    "serious diseases",
+                    "reduced lung growth",
+                    "lung",
+                    "lungs"
+                  ]
                 }
               ]
             },
@@ -758,15 +1514,41 @@
                   "prompt": "Drinking alcohol can make you:",
                   "explain": "You may lose control, pass out, or cause accidents.",
                   "options": [
-                    "Think more clearly",
                     "Lose control and judgement",
+                    "Think more clearly",
                     "Become healthier",
-                    "Get richer"
+                    "Grow stronger lungs like exercise"
                   ],
                   "answer": "Lose control and judgement"
                 },
                 {
                   "id": "c2f2_q2",
+                  "type": "mcq",
+                  "prompt": "Which harm is more typical of DRINKING than of smoking?",
+                  "explain": "Drinking: behaviour/safety + brain/heart/liver/stomach. Smoking: breath, teeth, lungs.",
+                  "options": [
+                    "Liver cancer and losing judgement",
+                    "Yellow fingers",
+                    "Bad breath from smoke",
+                    "Reduced lung growth from smoke"
+                  ],
+                  "answer": "Liver cancer and losing judgement"
+                },
+                {
+                  "id": "c2f2_q3",
+                  "type": "mcq",
+                  "prompt": "Which is a long-term HEALTH harm of drinking?",
+                  "explain": "Those are the textbook long-term drinking harms.",
+                  "options": [
+                    "Brain damage / heart failure / liver cancer / stomach bleeding",
+                    "Only yellow teeth",
+                    "Only bad breath",
+                    "Stronger appetite forever"
+                  ],
+                  "answer": "Brain damage / heart failure / liver cancer / stomach bleeding"
+                },
+                {
+                  "id": "c2f2_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Say no — drinking harms your health.",
@@ -780,7 +1562,7 @@
                   "blank": "If someone asks you to drink, say ____."
                 },
                 {
-                  "id": "c2f2_q3",
+                  "id": "c2f2_q5",
                   "type": "match",
                   "prompt": "Match drinking harm to type.",
                   "explain": "Drinking harms behaviour now and organs later.",
@@ -804,14 +1586,14 @@
                   ]
                 },
                 {
-                  "id": "c2f2_q4",
+                  "id": "c2f2_q6",
                   "type": "flash",
                   "prompt": "Name two long-term health harms of drinking.",
                   "explain": "Organs can be seriously damaged.",
                   "answer": "Brain damage; heart failure; liver cancer; stomach bleeding."
                 },
                 {
-                  "id": "c2f2_q5",
+                  "id": "c2f2_q7",
                   "type": "short",
                   "prompt": "What should you say if someone asks you to drink?",
                   "explain": "Say no clearly.",
@@ -820,6 +1602,50 @@
                     "say no",
                     "no thanks",
                     "drinking harms my health"
+                  ]
+                },
+                {
+                  "id": "c2f2_q8",
+                  "type": "case",
+                  "prompt": "Which reply is BEST?",
+                  "explain": "Refuse clearly.",
+                  "options": [
+                    "Say no — drinking harms my health",
+                    "Take one sip to be polite",
+                    "Hide a bottle for later",
+                    "Dare a friend to drink more"
+                  ],
+                  "answer": "Say no — drinking harms my health",
+                  "story": "At a party, someone offers Merlin alcohol and says one sip is fine.",
+                  "scene": "🚫🍺🧒"
+                },
+                {
+                  "id": "c2f2_q9",
+                  "type": "mcq",
+                  "prompt": "Losing money or causing accidents after drinking is mainly a ____ danger.",
+                  "explain": "Lose control/judgement/pass out → accidents, harm others, lose things.",
+                  "options": [
+                    "Behaviour / safety",
+                    "Only yellow-teeth",
+                    "Only lung-growth",
+                    "Friendship activity"
+                  ],
+                  "answer": "Behaviour / safety"
+                },
+                {
+                  "id": "c2f2_q10",
+                  "type": "short",
+                  "prompt": "Name one long-term health harm of drinking.",
+                  "explain": "Brain, heart, liver, or stomach harms.",
+                  "answers": [
+                    "brain damage",
+                    "heart failure",
+                    "liver cancer",
+                    "stomach bleeding",
+                    "brain",
+                    "heart",
+                    "liver",
+                    "stomach"
                   ]
                 }
               ]
@@ -837,36 +1663,62 @@
                   "prompt": "Drug abuse means:",
                   "explain": "Abuse = harmful use, not prescribed treatment.",
                   "options": [
-                    "Taking medicine for illness as the doctor said",
                     "Taking drugs that may harm you, not for treating illness",
+                    "Taking medicine for illness as the doctor said",
                     "Eating healthy food",
-                    "Doing exercise every day"
+                    "Resting when you are ill"
                   ],
                   "answer": "Taking drugs that may harm you, not for treating illness"
                 },
                 {
                   "id": "c2f3_q2",
-                  "type": "fill",
-                  "prompt": "Fill in the blank.",
-                  "explain": "It is the wrong, harmful way to take drugs.",
-                  "answer": "wrong",
-                  "bank": [
-                    "wrong",
-                    "right",
-                    "fun",
-                    "safe"
+                  "type": "mcq",
+                  "prompt": "Which is NOT drug abuse?",
+                  "explain": "Doctor-prescribed treatment is not abuse.",
+                  "options": [
+                    "Taking prescribed medicine for illness as the doctor said",
+                    "Taking harmful drugs not for illness",
+                    "Using drugs that harm body or mind for fun",
+                    "Taking drugs that may cause death"
                   ],
-                  "blank": "Drug abuse means taking drugs in the ____ way."
+                  "answer": "Taking prescribed medicine for illness as the doctor said"
                 },
                 {
                   "id": "c2f3_q3",
+                  "type": "mcq",
+                  "prompt": "Which is a long-term effect of drug abuse?",
+                  "explain": "Serious lasting effects including death.",
+                  "options": [
+                    "Harm studies/work, appearance, health — even death",
+                    "Better grades always",
+                    "Stronger lungs like exercise",
+                    "Whiter teeth"
+                  ],
+                  "answer": "Harm studies/work, appearance, health — even death"
+                },
+                {
+                  "id": "c2f3_q4",
+                  "type": "fill",
+                  "prompt": "Fill in the blank.",
+                  "explain": "Not for treating illness = abuse definition.",
+                  "answer": "illness",
+                  "bank": [
+                    "illness",
+                    "friendship",
+                    "football",
+                    "homework"
+                  ],
+                  "blank": "Drug abuse means taking drugs that may do harm, not for treating ____."
+                },
+                {
+                  "id": "c2f3_q5",
                   "type": "flash",
                   "prompt": "Name three long-term effects of drug abuse.",
                   "explain": "Effects are serious and lasting.",
                   "answer": "Harm self/others; health problems; hurt work/studies; change appearance; death."
                 },
                 {
-                  "id": "c2f3_q4",
+                  "id": "c2f3_q6",
                   "type": "short",
                   "prompt": "Can drug abuse cause death? (yes/no)",
                   "explain": "Yes — it can even cause death.",
@@ -876,7 +1728,7 @@
                   ]
                 },
                 {
-                  "id": "c2f3_q5",
+                  "id": "c2f3_q7",
                   "type": "case",
                   "prompt": "Which statement is TRUE?",
                   "explain": "It harms health, studies, appearance — and can kill.",
@@ -889,6 +1741,54 @@
                   "answer": "Drug abuse can harm studies and health",
                   "story": "In class, kids debate drugs. Merlin must choose the true idea.",
                   "scene": "🧠⚠️📚"
+                },
+                {
+                  "id": "c2f3_q8",
+                  "type": "match",
+                  "prompt": "Match idea to true/false.",
+                  "explain": "Know the definition and the serious effects.",
+                  "pairs": [
+                    [
+                      "Prescribed medicine for illness",
+                      "NOT drug abuse"
+                    ],
+                    [
+                      "Harmful drugs not for illness",
+                      "Drug abuse"
+                    ],
+                    [
+                      "Can affect appearance and studies",
+                      "Long-term effect"
+                    ],
+                    [
+                      "Can cause death",
+                      "Long-term effect"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c2f3_q9",
+                  "type": "mcq",
+                  "prompt": "Which BEST completes: Drug abuse can harm ____.",
+                  "explain": "Wide, serious harm — including death.",
+                  "options": [
+                    "Yourself, others, studies, appearance, and even cause death",
+                    "Only yellow teeth like smoking alone",
+                    "Only get-well cards",
+                    "Only birthday parties"
+                  ],
+                  "answer": "Yourself, others, studies, appearance, and even cause death"
+                },
+                {
+                  "id": "c2f3_q10",
+                  "type": "short",
+                  "prompt": "Is taking medicine as the doctor prescribed for illness called drug abuse? (yes/no)",
+                  "explain": "Prescribed treatment is not abuse.",
+                  "answers": [
+                    "no",
+                    "nope",
+                    "never"
+                  ]
                 }
               ]
             },
@@ -905,8 +1805,8 @@
                   "prompt": "If someone offers you drugs, you should:",
                   "explain": "Refuse clearly — then get away and tell an adult if needed.",
                   "options": [
-                    "Try it to be cool",
                     "Say no",
+                    "Try it to be cool",
                     "Take it home",
                     "Pretend it is fine"
                   ],
@@ -914,20 +1814,46 @@
                 },
                 {
                   "id": "c2f4_q2",
+                  "type": "mcq",
+                  "prompt": "If you see someone offering drugs to classmates, which is BEST?",
+                  "explain": "Tell trusted adults; you may also run away or stop them safely.",
+                  "options": [
+                    "Tell teachers or parents (or call the police)",
+                    "Join in quietly",
+                    "Ignore it forever",
+                    "Take the drugs to hide them"
+                  ],
+                  "answer": "Tell teachers or parents (or call the police)"
+                },
+                {
+                  "id": "c2f4_q3",
+                  "type": "mcq",
+                  "prompt": "Which action is NOT helpful when drugs appear around you?",
+                  "explain": "Get help — do not stay silent.",
+                  "options": [
+                    "Pretend nothing is wrong and tell nobody",
+                    "Say no",
+                    "Tell teachers/parents",
+                    "Call the police / run away"
+                  ],
+                  "answer": "Pretend nothing is wrong and tell nobody"
+                },
+                {
+                  "id": "c2f4_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Tell trusted adults: teachers or parents.",
                   "answer": "parents",
                   "bank": [
                     "parents",
-                    "pets",
-                    "strangers online",
-                    "nobody"
+                    "nobody",
+                    "the person offering drugs to keep it secret",
+                    "only your pet"
                   ],
                   "blank": "If you see others being offered drugs, tell your teacher or ____."
                 },
                 {
-                  "id": "c2f4_q3",
+                  "id": "c2f4_q5",
                   "type": "match",
                   "prompt": "Match the situation to the action.",
                   "explain": "Refuse for yourself; get help for others.",
@@ -947,14 +1873,14 @@
                   ]
                 },
                 {
-                  "id": "c2f4_q4",
+                  "id": "c2f4_q6",
                   "type": "flash",
                   "prompt": "Four helpful actions if drugs appear around you:",
                   "explain": "Protect yourself and get adult help.",
                   "answer": "Say no; tell teachers/parents; call the police; run away / stop them."
                 },
                 {
-                  "id": "c2f4_q5",
+                  "id": "c2f4_q7",
                   "type": "short",
                   "prompt": "Name one trusted person to tell if someone offers drugs.",
                   "explain": "Teachers, parents, or the police.",
@@ -967,6 +1893,45 @@
                     "dad",
                     "police",
                     "adult"
+                  ]
+                },
+                {
+                  "id": "c2f4_q8",
+                  "type": "case",
+                  "prompt": "What should Merlin do?",
+                  "explain": "Get adult help and stay safe.",
+                  "options": [
+                    "Tell a teacher/parent or call the police; get away",
+                    "Try the pills with them",
+                    "Keep it a secret",
+                    "Take the pills home"
+                  ],
+                  "answer": "Tell a teacher/parent or call the police; get away",
+                  "story": "Merlin sees an older stranger offering pills to his classmate near the school gate.",
+                  "scene": "🚨🏫🙅"
+                },
+                {
+                  "id": "c2f4_q9",
+                  "type": "mcq",
+                  "prompt": "Saying no is for when drugs are offered to ____; telling teachers/parents is especially for when ____ are at risk.",
+                  "explain": "Refuse for yourself; protect others with adult help.",
+                  "options": [
+                    "You; family/friends/classmates",
+                    "Only pets; only toys",
+                    "Only doctors; only labels",
+                    "Only birthday guests; only books"
+                  ],
+                  "answer": "You; family/friends/classmates"
+                },
+                {
+                  "id": "c2f4_q10",
+                  "type": "short",
+                  "prompt": "What should you say if someone offers you drugs?",
+                  "explain": "Say no.",
+                  "answers": [
+                    "no",
+                    "say no",
+                    "no thanks"
                   ]
                 }
               ]
@@ -1001,15 +1966,41 @@
                   "prompt": "Which is a POSITIVE feeling?",
                   "explain": "Happy, touched and excited are positive.",
                   "options": [
+                    "Excited",
                     "Sad",
                     "Angry",
-                    "Excited",
                     "Scared"
                   ],
                   "answer": "Excited"
                 },
                 {
                   "id": "c3f1_q2",
+                  "type": "mcq",
+                  "prompt": "Which is a NEGATIVE feeling?",
+                  "explain": "Sad, angry, scared are negative.",
+                  "options": [
+                    "Scared",
+                    "Happy",
+                    "Touched",
+                    "Excited"
+                  ],
+                  "answer": "Scared"
+                },
+                {
+                  "id": "c3f1_q3",
+                  "type": "mcq",
+                  "prompt": "Which pair is ALL positive?",
+                  "explain": "Those three are the lesson positives.",
+                  "options": [
+                    "Happy, touched, excited",
+                    "Sad, angry, scared",
+                    "Happy, sad, angry",
+                    "Excited, scared, touched"
+                  ],
+                  "answer": "Happy, touched, excited"
+                },
+                {
+                  "id": "c3f1_q4",
                   "type": "match",
                   "prompt": "Sort each feeling.",
                   "explain": "Positive feel good; negative feel hard.",
@@ -1041,7 +2032,7 @@
                   ]
                 },
                 {
-                  "id": "c3f1_q3",
+                  "id": "c3f1_q5",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Happy is positive.",
@@ -1055,20 +2046,59 @@
                   "blank": "Feeling happy is a ____ feeling."
                 },
                 {
-                  "id": "c3f1_q4",
+                  "id": "c3f1_q6",
                   "type": "flash",
                   "prompt": "Name three negative feelings from the lesson.",
                   "explain": "These are the textbook negatives.",
                   "answer": "Sad, angry, scared."
                 },
                 {
-                  "id": "c3f1_q5",
+                  "id": "c3f1_q7",
                   "type": "short",
                   "prompt": "Is 'scared' a positive or negative feeling?",
                   "explain": "Scared is a negative feeling.",
                   "answers": [
                     "negative",
                     "neg"
+                  ]
+                },
+                {
+                  "id": "c3f1_q8",
+                  "type": "case",
+                  "prompt": "Which label is BEST?",
+                  "explain": "Touched is positive; scared is negative.",
+                  "options": [
+                    "Touched = positive; scared = negative",
+                    "Both are positive",
+                    "Both are negative",
+                    "Touched is negative; scared is positive"
+                  ],
+                  "answer": "Touched = positive; scared = negative",
+                  "story": "Merlin feels touched after Mum helps him, then scared during a storm.",
+                  "scene": "😊⛈️"
+                },
+                {
+                  "id": "c3f1_q9",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a positive feeling in the lesson?",
+                  "explain": "Angry is negative.",
+                  "options": [
+                    "Angry",
+                    "Happy",
+                    "Touched",
+                    "Excited"
+                  ],
+                  "answer": "Angry"
+                },
+                {
+                  "id": "c3f1_q10",
+                  "type": "short",
+                  "prompt": "Name one positive feeling from the lesson.",
+                  "explain": "Happy, touched, or excited.",
+                  "answers": [
+                    "happy",
+                    "touched",
+                    "excited"
                   ]
                 }
               ]
@@ -1086,36 +2116,62 @@
                   "prompt": "Which can make you feel sad?",
                   "explain": "Bullying, arguments, losing a pet, or bad results can cause sadness.",
                   "options": [
-                    "Winning a prize",
-                    "Playing with friends",
                     "Being bullied by classmates",
+                    "Winning a prize",
+                    "Playing happily with friends",
                     "Eating favourite food"
                   ],
                   "answer": "Being bullied by classmates"
                 },
                 {
                   "id": "c3f2_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a lesson cause of sadness?",
+                  "explain": "Party is fun (Ch.4); the four sad causes are argue, lose pet, bad results, bullied.",
+                  "options": [
+                    "A fun birthday party with friends",
+                    "Argue with family",
+                    "Lose a pet",
+                    "Bad test results"
+                  ],
+                  "answer": "A fun birthday party with friends"
+                },
+                {
+                  "id": "c3f2_q3",
+                  "type": "mcq",
+                  "prompt": "Worry about disappointing parents often links to which cause?",
+                  "explain": "Bad results / worry about disappointing parents.",
+                  "options": [
+                    "Bad test results",
+                    "Birthday party",
+                    "Reading with friends",
+                    "Sharing toys"
+                  ],
+                  "answer": "Bad test results"
+                },
+                {
+                  "id": "c3f2_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Family arguments can make children sad.",
                   "answer": "argues",
                   "bank": [
                     "argues",
-                    "dances",
-                    "smiles",
-                    "celebrates"
+                    "celebrates kindly",
+                    "shares toys",
+                    "reads together"
                   ],
                   "blank": "You might feel sad when your family ____."
                 },
                 {
-                  "id": "c3f2_q3",
+                  "id": "c3f2_q5",
                   "type": "flash",
                   "prompt": "Four causes of sadness in the lesson:",
                   "explain": "These hard events often bring sadness.",
                   "answer": "Family argue; lose a pet; bad test results; bullied by classmates."
                 },
                 {
-                  "id": "c3f2_q4",
+                  "id": "c3f2_q6",
                   "type": "short",
                   "prompt": "Name one cause of sadness from the lesson.",
                   "explain": "Any of the four textbook causes is fine.",
@@ -1133,7 +2189,7 @@
                   ]
                 },
                 {
-                  "id": "c3f2_q5",
+                  "id": "c3f2_q7",
                   "type": "case",
                   "prompt": "How might Merlin feel?",
                   "explain": "Losing a pet is a common cause of sadness.",
@@ -1141,11 +2197,60 @@
                     "He may feel sad",
                     "He must feel excited",
                     "He cannot feel anything",
-                    "He should feel angry at lunch only"
+                    "He should feel only happy"
                   ],
                   "answer": "He may feel sad",
                   "story": "Merlin's pet fish died last night. He sits quietly at breakfast.",
                   "scene": "🐟😢🧒"
+                },
+                {
+                  "id": "c3f2_q8",
+                  "type": "match",
+                  "prompt": "Match event to likely feeling cause.",
+                  "explain": "Know the four sadness causes.",
+                  "pairs": [
+                    [
+                      "Family argue",
+                      "Cause of sadness"
+                    ],
+                    [
+                      "Lose a pet",
+                      "Cause of sadness"
+                    ],
+                    [
+                      "Bullied by classmates",
+                      "Cause of sadness"
+                    ],
+                    [
+                      "Birthday party fun",
+                      "Not a sadness cause"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c3f2_q9",
+                  "type": "case",
+                  "prompt": "Which situation matches a lesson cause of sadness?",
+                  "explain": "That is one textbook cause of sadness.",
+                  "options": [
+                    "Bad test results / worry about disappointing parents",
+                    "Only a positive feeling of excitement",
+                    "A caring phrase list",
+                    "A medicine label rule"
+                  ],
+                  "answer": "Bad test results / worry about disappointing parents",
+                  "story": "Sam got a low mark and worries Mum will be disappointed.",
+                  "scene": "📝😟"
+                },
+                {
+                  "id": "c3f2_q10",
+                  "type": "short",
+                  "prompt": "Can being bullied make someone sad? (yes/no)",
+                  "explain": "Yes — bullied by classmates is a cause.",
+                  "answers": [
+                    "yes",
+                    "y"
+                  ]
                 }
               ]
             },
@@ -1162,15 +2267,41 @@
                   "prompt": "A healthy way to feel better when sad is:",
                   "explain": "Cry, talk, music, exercise, draw, diary — not hurting others.",
                   "options": [
+                    "Talk to someone or listen to music",
                     "Hit someone",
                     "Throw and destroy things",
-                    "Talk to someone or listen to music",
                     "Refuse to eat for days"
                   ],
                   "answer": "Talk to someone or listen to music"
                 },
                 {
                   "id": "c3f3_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a healthy way to deal with sadness in the lesson?",
+                  "explain": "Hurting others is temper harm, not healthy coping.",
+                  "options": [
+                    "Hit or hurt others",
+                    "Cry",
+                    "Draw",
+                    "Write in a diary"
+                  ],
+                  "answer": "Hit or hurt others"
+                },
+                {
+                  "id": "c3f3_q3",
+                  "type": "mcq",
+                  "prompt": "Which set is ALL healthy coping ways?",
+                  "explain": "Those six are the lesson ways.",
+                  "options": [
+                    "Cry, talk, music, exercise, draw, diary",
+                    "Hit, destroy, refuse to eat",
+                    "Smoke, drink, take drugs",
+                    "Hide symptoms from the doctor"
+                  ],
+                  "answer": "Cry, talk, music, exercise, draw, diary"
+                },
+                {
+                  "id": "c3f3_q4",
                   "type": "match",
                   "prompt": "Match the helpful action.",
                   "explain": "Many gentle actions can help.",
@@ -1194,7 +2325,7 @@
                   ]
                 },
                 {
-                  "id": "c3f3_q3",
+                  "id": "c3f3_q5",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "A diary helps you express feelings safely.",
@@ -1203,19 +2334,19 @@
                     "diary",
                     "threat",
                     "insult",
-                    "ticket"
+                    "drug note"
                   ],
                   "blank": "You can write a ____ when you feel sad."
                 },
                 {
-                  "id": "c3f3_q4",
+                  "id": "c3f3_q6",
                   "type": "flash",
                   "prompt": "Name four ways to feel better when sad.",
                   "explain": "Choose what helps you most.",
                   "answer": "Cry; talk to someone; listen to music; exercise; draw; write a diary."
                 },
                 {
-                  "id": "c3f3_q5",
+                  "id": "c3f3_q7",
                   "type": "short",
                   "prompt": "Name one healthy way to feel better.",
                   "explain": "Any healthy coping way from the lesson works.",
@@ -1227,6 +2358,47 @@
                     "music",
                     "exercise",
                     "draw",
+                    "diary",
+                    "write a diary",
+                    "write in a diary"
+                  ]
+                },
+                {
+                  "id": "c3f3_q8",
+                  "type": "case",
+                  "prompt": "What should Merlin try?",
+                  "explain": "Healthy coping — not temper harms.",
+                  "options": [
+                    "Talk to someone, listen to music, or write a diary",
+                    "Hit his brother",
+                    "Destroy his toy",
+                    "Refuse dinner for a week"
+                  ],
+                  "answer": "Talk to someone, listen to music, or write a diary",
+                  "story": "Merlin feels sad after a quarrel. He wants a healthy way to feel better.",
+                  "scene": "😢🎵📓"
+                },
+                {
+                  "id": "c3f3_q9",
+                  "type": "mcq",
+                  "prompt": "Crying when sad is:",
+                  "explain": "Cry is listed as a way to deal with sadness.",
+                  "options": [
+                    "An allowed healthy way in the lesson",
+                    "Always wrong",
+                    "The same as hitting others",
+                    "Drug abuse"
+                  ],
+                  "answer": "An allowed healthy way in the lesson"
+                },
+                {
+                  "id": "c3f3_q10",
+                  "type": "short",
+                  "prompt": "Name one creative way to feel better (draw or diary).",
+                  "explain": "Draw or write a diary.",
+                  "answers": [
+                    "draw",
+                    "drawing",
                     "diary",
                     "write a diary",
                     "write in a diary"
@@ -1247,8 +2419,8 @@
                   "prompt": "When you lose your temper, you should NOT:",
                   "explain": "Hitting, destroying things, or refusing to eat are harmful.",
                   "options": [
-                    "Take a deep breath later",
                     "Hit or hurt others",
+                    "Take a deep breath later",
                     "Tell someone how you feel calmly",
                     "Wash your face"
                   ],
@@ -1256,6 +2428,32 @@
                 },
                 {
                   "id": "c3f4_q2",
+                  "type": "mcq",
+                  "prompt": "Refusing to eat when angry is harmful because it:",
+                  "explain": "Textbook: refuse to eat harms health and makes mother unhappy.",
+                  "options": [
+                    "Harms health and can make mother unhappy",
+                    "Helps lungs grow",
+                    "Is a caring phrase",
+                    "Is a medicine label rule"
+                  ],
+                  "answer": "Harms health and can make mother unhappy"
+                },
+                {
+                  "id": "c3f4_q3",
+                  "type": "mcq",
+                  "prompt": "Which is a harmful temper action?",
+                  "explain": "Throw/destroy is a temper harm.",
+                  "options": [
+                    "Throw or destroy things",
+                    "Take a deep breath",
+                    "Wash your face",
+                    "Talk calmly later"
+                  ],
+                  "answer": "Throw or destroy things"
+                },
+                {
+                  "id": "c3f4_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Destroying things hurts people and property.",
@@ -1263,20 +2461,20 @@
                   "bank": [
                     "destroy",
                     "save",
-                    "clean",
-                    "share"
+                    "share calmly",
+                    "label"
                   ],
                   "blank": "Do not throw or ____ things when you are angry."
                 },
                 {
-                  "id": "c3f4_q3",
+                  "id": "c3f4_q5",
                   "type": "flash",
                   "prompt": "Three harmful temper actions:",
                   "explain": "These hurt you and others.",
                   "answer": "Hit/hurt others; throw/destroy things; refuse to eat."
                 },
                 {
-                  "id": "c3f4_q4",
+                  "id": "c3f4_q6",
                   "type": "short",
                   "prompt": "Is refusing to eat a good way to show anger? (yes/no)",
                   "explain": "It harms health and makes your mother unhappy.",
@@ -1287,7 +2485,7 @@
                   ]
                 },
                 {
-                  "id": "c3f4_q5",
+                  "id": "c3f4_q7",
                   "type": "case",
                   "prompt": "What should Merlin avoid?",
                   "explain": "Do not hurt people or things when angry.",
@@ -1300,6 +2498,56 @@
                   "answer": "Do not throw or destroy the toy",
                   "story": "Merlin is furious after losing a game. He wants to throw his friend's toy.",
                   "scene": "😠🧸💥"
+                },
+                {
+                  "id": "c3f4_q8",
+                  "type": "match",
+                  "prompt": "Match temper action to problem.",
+                  "explain": "All three are harmful temper actions.",
+                  "pairs": [
+                    [
+                      "Hit / hurt others",
+                      "Hurts people"
+                    ],
+                    [
+                      "Throw / destroy things",
+                      "Damages property"
+                    ],
+                    [
+                      "Refuse to eat",
+                      "Harms health; makes mother unhappy"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c3f4_q9",
+                  "type": "case",
+                  "prompt": "Which is BETTER than losing temper?",
+                  "explain": "Use calming tools — not temper harms.",
+                  "options": [
+                    "Calm down (deep breath / wash face) instead of hitting",
+                    "Hit them back hard",
+                    "Destroy their bag",
+                    "Skip meals for days"
+                  ],
+                  "answer": "Calm down (deep breath / wash face) instead of hitting",
+                  "story": "Merlin feels rage rising after someone bumps him.",
+                  "scene": "😤→💧"
+                },
+                {
+                  "id": "c3f4_q10",
+                  "type": "short",
+                  "prompt": "Name one harmful thing people do when they lose their temper.",
+                  "explain": "Hit/hurt, throw/destroy, or refuse to eat.",
+                  "answers": [
+                    "hit",
+                    "hurt others",
+                    "hit others",
+                    "throw things",
+                    "destroy things",
+                    "refuse to eat",
+                    "not eat"
+                  ]
                 }
               ]
             },
@@ -1316,8 +2564,8 @@
                   "prompt": "When you are angry, a good first step is:",
                   "explain": "Deep breath (and washing your face) helps you calm down.",
                   "options": [
-                    "Shout at everyone",
                     "Take a deep breath",
+                    "Shout at everyone",
                     "Hit the wall",
                     "Throw your things"
                   ],
@@ -1325,6 +2573,32 @@
                 },
                 {
                   "id": "c3f5_q2",
+                  "type": "mcq",
+                  "prompt": "Which pair are BOTH calming actions from the lesson?",
+                  "explain": "Those two calm anger.",
+                  "options": [
+                    "Deep breath and wash your face",
+                    "Hit others and destroy things",
+                    "Refuse to eat and shout",
+                    "Smoke and drink"
+                  ],
+                  "answer": "Deep breath and wash your face"
+                },
+                {
+                  "id": "c3f5_q3",
+                  "type": "mcq",
+                  "prompt": "Washing your face when angry is meant to:",
+                  "explain": "Wash face is a calming tool.",
+                  "options": [
+                    "Help you calm down",
+                    "Replace seeing a doctor forever",
+                    "Be a harm of smoking",
+                    "Be a caring phrase to a friend"
+                  ],
+                  "answer": "Help you calm down"
+                },
+                {
+                  "id": "c3f5_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "A deep breath slows angry feelings.",
@@ -1338,14 +2612,14 @@
                   "blank": "Take a deep ____ to calm down."
                 },
                 {
-                  "id": "c3f5_q3",
+                  "id": "c3f5_q5",
                   "type": "flash",
                   "prompt": "Two calming actions when angry:",
                   "explain": "Simple body actions reset your mood.",
                   "answer": "Take a deep breath; wash your face."
                 },
                 {
-                  "id": "c3f5_q4",
+                  "id": "c3f5_q6",
                   "type": "short",
                   "prompt": "Name one way to calm down when angry.",
                   "explain": "Deep breath or wash face.",
@@ -1359,7 +2633,7 @@
                   ]
                 },
                 {
-                  "id": "c3f5_q5",
+                  "id": "c3f5_q7",
                   "type": "case",
                   "prompt": "What should Merlin try?",
                   "explain": "Wash face + deep breath = calm down tools.",
@@ -1371,7 +2645,50 @@
                   ],
                   "answer": "Wash his face and breathe deeply",
                   "story": "Merlin's face feels hot with anger after a quarrel.",
-                  "scene": "😤💧洗面"
+                  "scene": "😤💧"
+                },
+                {
+                  "id": "c3f5_q8",
+                  "type": "match",
+                  "prompt": "Match angry moment to better action.",
+                  "explain": "Calm first, then think.",
+                  "pairs": [
+                    [
+                      "Feel rage rising",
+                      "Take a deep breath"
+                    ],
+                    [
+                      "Face feels hot",
+                      "Wash your face"
+                    ],
+                    [
+                      "Want to hit",
+                      "Stop — use calming tools"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c3f5_q9",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a calming action from this fact?",
+                  "explain": "Destroying is temper harm, not calming.",
+                  "options": [
+                    "Throw and destroy things",
+                    "Take a deep breath",
+                    "Wash your face",
+                    "Breathe deeply then wash face"
+                  ],
+                  "answer": "Throw and destroy things"
+                },
+                {
+                  "id": "c3f5_q10",
+                  "type": "short",
+                  "prompt": "Complete: wash your ____.",
+                  "explain": "Wash your face.",
+                  "answers": [
+                    "face",
+                    "wash your face"
+                  ]
                 }
               ]
             },
@@ -1388,8 +2705,8 @@
                   "prompt": "When you face a problem, you should:",
                   "explain": "Positive thinking + action beats giving up.",
                   "options": [
-                    "Give up at once",
                     "Think positively and find ways to solve it",
+                    "Give up at once",
                     "Hide it from everyone forever",
                     "Only blame others"
                   ],
@@ -1397,6 +2714,32 @@
                 },
                 {
                   "id": "c3f6_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT helpful when facing a problem?",
+                  "explain": "Mindset + solutions, not giving up.",
+                  "options": [
+                    "Giving up and blaming only others",
+                    "Thinking positively",
+                    "Finding ways to deal with it",
+                    "Making a small improvement plan"
+                  ],
+                  "answer": "Giving up and blaming only others"
+                },
+                {
+                  "id": "c3f6_q3",
+                  "type": "mcq",
+                  "prompt": "The lesson's two steps for problems are:",
+                  "explain": "Mindset first, then action.",
+                  "options": [
+                    "Think positively; find ways to deal with it",
+                    "Hit others; refuse to eat",
+                    "Smoke; drink",
+                    "Hide symptoms; skip labels"
+                  ],
+                  "answer": "Think positively; find ways to deal with it"
+                },
+                {
+                  "id": "c3f6_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Positive thinking opens solutions.",
@@ -1404,20 +2747,20 @@
                   "bank": [
                     "positively",
                     "angrily",
-                    "sadly",
-                    "never"
+                    "never",
+                    "hopelessly"
                   ],
                   "blank": "Think ____ and find ways to solve the problem."
                 },
                 {
-                  "id": "c3f6_q3",
+                  "id": "c3f6_q5",
                   "type": "flash",
                   "prompt": "Two steps for facing problems:",
                   "explain": "Mindset first, then action.",
                   "answer": "Think positively; find ways to deal with / solve the problem."
                 },
                 {
-                  "id": "c3f6_q4",
+                  "id": "c3f6_q6",
                   "type": "short",
                   "prompt": "Should you give up when you have a problem? (yes/no)",
                   "explain": "Find ways instead of giving up.",
@@ -1428,7 +2771,7 @@
                   ]
                 },
                 {
-                  "id": "c3f6_q5",
+                  "id": "c3f6_q7",
                   "type": "case",
                   "prompt": "What should Merlin do?",
                   "explain": "Face the problem with a plan.",
@@ -1441,6 +2784,59 @@
                   "answer": "Think positively and plan how to improve",
                   "story": "Merlin got a low mark. He worries Mum will be upset.",
                   "scene": "📝😟💡"
+                },
+                {
+                  "id": "c3f6_q8",
+                  "type": "match",
+                  "prompt": "Match response to helpful/unhelpful.",
+                  "explain": "Positive + solutions = helpful.",
+                  "pairs": [
+                    [
+                      "Think positively",
+                      "Helpful"
+                    ],
+                    [
+                      "Find ways to deal with it",
+                      "Helpful"
+                    ],
+                    [
+                      "Give up at once",
+                      "Unhelpful"
+                    ],
+                    [
+                      "Only blame others",
+                      "Unhelpful"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c3f6_q9",
+                  "type": "case",
+                  "prompt": "Which is BEST?",
+                  "explain": "Positive thinking + find ways.",
+                  "options": [
+                    "Stay positive and try another way to fix it",
+                    "Quit and never try again",
+                    "Get angry and destroy the project",
+                    "Refuse to eat until someone else fixes it"
+                  ],
+                  "answer": "Stay positive and try another way to fix it",
+                  "story": "Merlin's project failed once. Friends suggest ideas.",
+                  "scene": "🧩➡️✅"
+                },
+                {
+                  "id": "c3f6_q10",
+                  "type": "short",
+                  "prompt": "Name one thing to do when you face a problem.",
+                  "explain": "Think positively or find ways to deal with it.",
+                  "answers": [
+                    "think positively",
+                    "positively",
+                    "find ways",
+                    "solve it",
+                    "deal with it",
+                    "find ways to deal with it"
+                  ]
                 }
               ]
             }
@@ -1466,8 +2862,8 @@
                   "prompt": "A fun activity with friends is:",
                   "explain": "Reading, football, games, birthday parties are fun together.",
                   "options": [
-                    "Fighting",
                     "Playing football or games",
+                    "Fighting",
                     "Taking their things without asking",
                     "Laughing at them unkindly"
                   ],
@@ -1475,6 +2871,32 @@
                 },
                 {
                   "id": "c4f1_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a lesson fun activity with friends?",
+                  "explain": "Lesson activities: reading, football, games, birthday party.",
+                  "options": [
+                    "Taking drugs together",
+                    "Reading",
+                    "Football",
+                    "Birthday party"
+                  ],
+                  "answer": "Taking drugs together"
+                },
+                {
+                  "id": "c4f1_q3",
+                  "type": "mcq",
+                  "prompt": "Which set lists the lesson activities?",
+                  "explain": "Four textbook friendship activities.",
+                  "options": [
+                    "Reading, football, games, birthday party",
+                    "Hit, destroy, refuse to eat",
+                    "Smoke, drink, abuse drugs",
+                    "Stethoscope, pulse, syrup only"
+                  ],
+                  "answer": "Reading, football, games, birthday party"
+                },
+                {
+                  "id": "c4f1_q4",
                   "type": "match",
                   "prompt": "Match the activity.",
                   "explain": "Shared activities build friendship.",
@@ -1498,28 +2920,28 @@
                   ]
                 },
                 {
-                  "id": "c4f1_q3",
+                  "id": "c4f1_q5",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Reading together is a friendly activity.",
                   "answer": "book",
                   "bank": [
                     "book",
-                    "medicine",
-                    "fridge",
-                    "label"
+                    "medicine label for someone else",
+                    "drug offer",
+                    "temper tantrum"
                   ],
                   "blank": "You can read a ____ with your friends."
                 },
                 {
-                  "id": "c4f1_q4",
+                  "id": "c4f1_q6",
                   "type": "flash",
                   "prompt": "Four fun things to do with friends:",
                   "explain": "From the textbook list.",
                   "answer": "Reading; football; games; birthday parties."
                 },
                 {
-                  "id": "c4f1_q5",
+                  "id": "c4f1_q7",
                   "type": "short",
                   "prompt": "Name one fun activity with friends.",
                   "explain": "Any from the lesson list.",
@@ -1533,6 +2955,44 @@
                     "birthday",
                     "birthday party",
                     "party"
+                  ]
+                },
+                {
+                  "id": "c4f1_q8",
+                  "type": "case",
+                  "prompt": "Which plan is BEST for Saturday with friends?",
+                  "explain": "Lesson fun activities.",
+                  "options": [
+                    "Read, play football/games, or join a birthday party",
+                    "Fight over toys",
+                    "Offer each other cigarettes",
+                    "Cheat on homework together"
+                  ],
+                  "answer": "Read, play football/games, or join a birthday party",
+                  "story": "Merlin and Sam want something fun and kind to do together.",
+                  "scene": "📖⚽🎂"
+                },
+                {
+                  "id": "c4f1_q9",
+                  "type": "mcq",
+                  "prompt": "A birthday party with friends is mainly about:",
+                  "explain": "Birthday party = celebrate together.",
+                  "options": [
+                    "Celebrating together",
+                    "Saying unkind phrases",
+                    "Sharing leftover medicine",
+                    "Losing temper"
+                  ],
+                  "answer": "Celebrating together"
+                },
+                {
+                  "id": "c4f1_q10",
+                  "type": "short",
+                  "prompt": "Name one sport activity with friends from the lesson.",
+                  "explain": "Football.",
+                  "answers": [
+                    "football",
+                    "soccer"
                   ]
                 }
               ]
@@ -1550,36 +3010,62 @@
                   "prompt": "Good friends should share:",
                   "explain": "Share food, books, toys, happy and sad things.",
                   "options": [
-                    "Nothing and laugh at each other",
                     "Food, books, toys, and feelings",
+                    "Nothing and laugh at each other",
                     "Only other people's medicine",
-                    "Secrets that hurt others"
+                    "Secrets that hurt others on purpose"
                   ],
                   "answer": "Food, books, toys, and feelings"
                 },
                 {
                   "id": "c4f2_q2",
+                  "type": "mcq",
+                  "prompt": "Which should friends NOT share?",
+                  "explain": "Medicine is not for sharing; food/books/toys/feelings are.",
+                  "options": [
+                    "Other people's leftover medicine",
+                    "Tasty food",
+                    "Interesting books",
+                    "Happy and sad feelings"
+                  ],
+                  "answer": "Other people's leftover medicine"
+                },
+                {
+                  "id": "c4f2_q3",
+                  "type": "mcq",
+                  "prompt": "Sharing sad things with friends means:",
+                  "explain": "Friends share happy and sad things.",
+                  "options": [
+                    "Talking about hard feelings so you are not alone",
+                    "Giving them harmful drugs",
+                    "Hitting them",
+                    "Ignoring them when ill"
+                  ],
+                  "answer": "Talking about hard feelings so you are not alone"
+                },
+                {
+                  "id": "c4f2_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Toys (and food, books, feelings) are good to share.",
                   "answer": "toys",
                   "bank": [
                     "toys",
-                    "medicine",
+                    "leftover medicine",
                     "anger punches",
-                    "lies"
+                    "lies that hurt"
                   ],
                   "blank": "It is good to share your ____ with friends."
                 },
                 {
-                  "id": "c4f2_q3",
+                  "id": "c4f2_q5",
                   "type": "flash",
                   "prompt": "Things good friends share:",
                   "explain": "Share things and feelings.",
                   "answer": "Tasty food; interesting books; fun toys; happy things; sad things."
                 },
                 {
-                  "id": "c4f2_q4",
+                  "id": "c4f2_q6",
                   "type": "short",
                   "prompt": "Name one thing friends can share.",
                   "explain": "Food, books, toys, or feelings.",
@@ -1595,7 +3081,7 @@
                   ]
                 },
                 {
-                  "id": "c4f2_q5",
+                  "id": "c4f2_q7",
                   "type": "case",
                   "prompt": "What should Merlin do?",
                   "explain": "Sharing food is kind friendship.",
@@ -1608,6 +3094,53 @@
                   "answer": "Share some tasty food with Sam",
                   "story": "Merlin brought snacks. His friend Sam looks hungry and shy.",
                   "scene": "🍪🤝😊"
+                },
+                {
+                  "id": "c4f2_q8",
+                  "type": "match",
+                  "prompt": "Match share item to type.",
+                  "explain": "Share both things and feelings.",
+                  "pairs": [
+                    [
+                      "Tasty food",
+                      "Things to share"
+                    ],
+                    [
+                      "Interesting books",
+                      "Things to share"
+                    ],
+                    [
+                      "Happy things",
+                      "Feelings to share"
+                    ],
+                    [
+                      "Sad things",
+                      "Feelings to share"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c4f2_q9",
+                  "type": "mcq",
+                  "prompt": "Which list is COMPLETE for lesson sharing?",
+                  "explain": "All five appear in the notes.",
+                  "options": [
+                    "Food, books, toys, happy things, sad things",
+                    "Only food",
+                    "Only toys",
+                    "Only medicine labels"
+                  ],
+                  "answer": "Food, books, toys, happy things, sad things"
+                },
+                {
+                  "id": "c4f2_q10",
+                  "type": "short",
+                  "prompt": "Can friends share sad things as well as happy things? (yes/no)",
+                  "explain": "Yes — happy and sad things.",
+                  "answers": [
+                    "yes",
+                    "y"
+                  ]
                 }
               ]
             },
@@ -1624,15 +3157,41 @@
                   "prompt": "Your friend is sad. A caring thing to say is:",
                   "explain": "Kind listening words help more than blame.",
                   "options": [
+                    "I'm here to listen",
                     "Go away",
                     "It's your fault",
-                    "I'm here to listen",
                     "Stop crying, it's nothing"
                   ],
                   "answer": "I'm here to listen"
                 },
                 {
                   "id": "c4f3_q2",
+                  "type": "mcq",
+                  "prompt": "Which is an UNKIND phrase (not a care phrase)?",
+                  "explain": "Care phrases support; blame/push-away do not.",
+                  "options": [
+                    "It's your fault — go away",
+                    "I'm here for you",
+                    "It must be hard for you",
+                    "I'm here to listen"
+                  ],
+                  "answer": "It's your fault — go away"
+                },
+                {
+                  "id": "c4f3_q3",
+                  "type": "mcq",
+                  "prompt": "Which set are ALL caring phrases from the lesson?",
+                  "explain": "Those three are the textbook care phrases.",
+                  "options": [
+                    "I'm here to listen; It must be hard for you; I'm here for you",
+                    "Go away; It's your fault; Stop crying",
+                    "Say yes to drugs; Try smoking; Drink with me",
+                    "Hit them; Destroy things; Refuse to eat"
+                  ],
+                  "answer": "I'm here to listen; It must be hard for you; I'm here for you"
+                },
+                {
+                  "id": "c4f3_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "\"I'm here to listen\" is a caring phrase.",
@@ -1640,20 +3199,20 @@
                   "bank": [
                     "listen",
                     "shout",
-                    "sleep",
-                    "tease"
+                    "tease",
+                    "blame"
                   ],
                   "blank": "I'm here to ____."
                 },
                 {
-                  "id": "c4f3_q3",
+                  "id": "c4f3_q5",
                   "type": "flash",
                   "prompt": "Three caring phrases:",
                   "explain": "Memorise these kind lines.",
                   "answer": "I'm here to listen; It must be hard for you; I'm here for you."
                 },
                 {
-                  "id": "c4f3_q4",
+                  "id": "c4f3_q6",
                   "type": "short",
                   "prompt": "Complete: \"It must be ____ for you.\"",
                   "explain": "\"It must be hard for you.\"",
@@ -1663,7 +3222,7 @@
                   ]
                 },
                 {
-                  "id": "c4f3_q5",
+                  "id": "c4f3_q7",
                   "type": "case",
                   "prompt": "What should Merlin say?",
                   "explain": "Supportive words matter.",
@@ -1676,6 +3235,60 @@
                   "answer": "I'm here for you",
                   "story": "Lily failed a test and looks tearful.",
                   "scene": "😢🗣️💙"
+                },
+                {
+                  "id": "c4f3_q8",
+                  "type": "match",
+                  "prompt": "Match phrase to care/unkind.",
+                  "explain": "Know care phrases vs unkind lines.",
+                  "pairs": [
+                    [
+                      "I'm here to listen",
+                      "Caring"
+                    ],
+                    [
+                      "It must be hard for you",
+                      "Caring"
+                    ],
+                    [
+                      "I'm here for you",
+                      "Caring"
+                    ],
+                    [
+                      "It's your fault",
+                      "Unkind"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c4f3_q9",
+                  "type": "case",
+                  "prompt": "Which reply is BEST?",
+                  "explain": "Combine care phrases kindly.",
+                  "options": [
+                    "It must be hard for you — I'm here to listen",
+                    "Go away",
+                    "It's your fault",
+                    "Stop talking"
+                  ],
+                  "answer": "It must be hard for you — I'm here to listen",
+                  "story": "Sam whispers that home has been hard. Merlin wants to show care.",
+                  "scene": "🤝💬"
+                },
+                {
+                  "id": "c4f3_q10",
+                  "type": "short",
+                  "prompt": "Name one caring phrase from the lesson.",
+                  "explain": "Any of the three care phrases.",
+                  "answers": [
+                    "i'm here to listen",
+                    "im here to listen",
+                    "here to listen",
+                    "it must be hard for you",
+                    "i'm here for you",
+                    "im here for you",
+                    "here for you"
+                  ]
                 }
               ]
             },
@@ -1692,36 +3305,62 @@
                   "prompt": "To get along with friends, you should:",
                   "explain": "Share + help + care = getting along.",
                   "options": [
+                    "Share, help each other, care when ill",
                     "Always fight",
                     "Never help",
-                    "Share, help each other, care when ill",
                     "Ignore them when they are ill"
                   ],
                   "answer": "Share, help each other, care when ill"
                 },
                 {
                   "id": "c4f4_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a getting-along tip from the lesson?",
+                  "explain": "Show care when friends are ill.",
+                  "options": [
+                    "Ignore friends when they are ill",
+                    "Share when needed",
+                    "Help each other",
+                    "Show care when friends are ill"
+                  ],
+                  "answer": "Ignore friends when they are ill"
+                },
+                {
+                  "id": "c4f4_q3",
+                  "type": "mcq",
+                  "prompt": "Showing care when a friend is ill is MOST like which other lesson idea?",
+                  "explain": "Getting along includes caring when ill — like Ch.1 care acts.",
+                  "options": [
+                    "Call / card / remind medicine (care for patients)",
+                    "Offer them cigarettes",
+                    "Ask them to drink",
+                    "Share leftover medicine"
+                  ],
+                  "answer": "Call / card / remind medicine (care for patients)"
+                },
+                {
+                  "id": "c4f4_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Friends help each other.",
                   "answer": "help",
                   "bank": [
                     "help",
-                    "trouble",
                     "fights",
-                    "insults"
+                    "insults",
+                    "drugs"
                   ],
                   "blank": "Help your friends when they need ____."
                 },
                 {
-                  "id": "c4f4_q3",
+                  "id": "c4f4_q5",
                   "type": "flash",
                   "prompt": "Three ways to get along:",
                   "explain": "Simple daily kindness.",
                   "answer": "Share when needed; help each other; show care when friends are ill."
                 },
                 {
-                  "id": "c4f4_q4",
+                  "id": "c4f4_q6",
                   "type": "short",
                   "prompt": "Name one way to get along with friends.",
                   "explain": "Share, help, or care when ill.",
@@ -1736,7 +3375,7 @@
                   ]
                 },
                 {
-                  "id": "c4f4_q5",
+                  "id": "c4f4_q7",
                   "type": "case",
                   "prompt": "What should Merlin do?",
                   "explain": "Care when friends are ill.",
@@ -1749,6 +3388,50 @@
                   "answer": "Show care — ask how they feel / help them",
                   "story": "His friend is ill and missed PE. Merlin wonders how to get along kindly.",
                   "scene": "🤒🤝💌"
+                },
+                {
+                  "id": "c4f4_q8",
+                  "type": "match",
+                  "prompt": "Match getting-along tip.",
+                  "explain": "Three daily habits.",
+                  "pairs": [
+                    [
+                      "Share when needed",
+                      "Be generous"
+                    ],
+                    [
+                      "Help each other",
+                      "Support"
+                    ],
+                    [
+                      "Care when friends are ill",
+                      "Show kindness in sickness"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c4f4_q9",
+                  "type": "mcq",
+                  "prompt": "Which choice is BEST for getting along?",
+                  "explain": "Share + help + care.",
+                  "options": [
+                    "Share a book, help with a bag, care when a friend is ill",
+                    "Fight daily",
+                    "Never help",
+                    "Ignore sick friends"
+                  ],
+                  "answer": "Share a book, help with a bag, care when a friend is ill"
+                },
+                {
+                  "id": "c4f4_q10",
+                  "type": "short",
+                  "prompt": "Should you ignore friends when they are ill? (yes/no)",
+                  "explain": "Show care when friends are ill.",
+                  "answers": [
+                    "no",
+                    "nope",
+                    "never"
+                  ]
                 }
               ]
             },
@@ -1765,8 +3448,8 @@
                   "prompt": "If a friend asks you to do something wrong, you should:",
                   "explain": "Refuse and explain what is right.",
                   "options": [
-                    "Do it because they asked",
                     "Say no and point out the mistake",
+                    "Do it because they asked",
                     "Keep quiet and do it",
                     "Copy what they do"
                   ],
@@ -1774,6 +3457,32 @@
                 },
                 {
                   "id": "c4f5_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT enough by itself if a friend asks something wrong?",
+                  "explain": "Say no AND point out mistakes.",
+                  "options": [
+                    "Only staying quiet and then doing it anyway",
+                    "Saying no",
+                    "Pointing out the mistake",
+                    "Saying no and explaining"
+                  ],
+                  "answer": "Only staying quiet and then doing it anyway"
+                },
+                {
+                  "id": "c4f5_q3",
+                  "type": "mcq",
+                  "prompt": "Saying no to a wrong request is MOST like which other lesson idea?",
+                  "explain": "Refuse wrong actions — same courage as saying no to harmful offers.",
+                  "options": [
+                    "Say no to smoking, drinking, or drugs",
+                    "Share leftover medicine",
+                    "Hide symptoms from the doctor",
+                    "Lose your temper"
+                  ],
+                  "answer": "Say no to smoking, drinking, or drugs"
+                },
+                {
+                  "id": "c4f5_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Say no clearly.",
@@ -1787,14 +3496,14 @@
                   "blank": "If a friend asks you to do something wrong, say ____."
                 },
                 {
-                  "id": "c4f5_q3",
+                  "id": "c4f5_q5",
                   "type": "flash",
                   "prompt": "Two things to do if a friend asks something wrong:",
                   "explain": "Refuse + guide them to what is right.",
                   "answer": "Say no; point out their mistake."
                 },
                 {
-                  "id": "c4f5_q4",
+                  "id": "c4f5_q6",
                   "type": "short",
                   "prompt": "Should you do something wrong just because a friend asked? (yes/no)",
                   "explain": "Never — say no.",
@@ -1805,7 +3514,7 @@
                   ]
                 },
                 {
-                  "id": "c4f5_q5",
+                  "id": "c4f5_q7",
                   "type": "case",
                   "prompt": "What should Merlin do?",
                   "explain": "Real friends stop wrong actions.",
@@ -1818,6 +3527,54 @@
                   "answer": "Say no and point out it is wrong",
                   "story": "A friend asks Merlin to cheat on a quiz and hide the paper.",
                   "scene": "📝🙅⚖️"
+                },
+                {
+                  "id": "c4f5_q8",
+                  "type": "match",
+                  "prompt": "Match action when asked to do wrong.",
+                  "explain": "Refuse + correct kindly.",
+                  "pairs": [
+                    [
+                      "Friend asks something wrong",
+                      "Say no"
+                    ],
+                    [
+                      "After saying no",
+                      "Point out the mistake"
+                    ],
+                    [
+                      "Real friendship",
+                      "Stops wrong actions"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c4f5_q9",
+                  "type": "case",
+                  "prompt": "Which is BEST?",
+                  "explain": "Say no and point out the mistake.",
+                  "options": [
+                    "Say no and explain stealing is wrong",
+                    "Steal to stay friends",
+                    "Steal only an eraser",
+                    "Blame another classmate"
+                  ],
+                  "answer": "Say no and explain stealing is wrong",
+                  "story": "A friend asks Merlin to steal stationery from the classroom.",
+                  "scene": "✏️🚫"
+                },
+                {
+                  "id": "c4f5_q10",
+                  "type": "short",
+                  "prompt": "Besides saying no, what else should you do?",
+                  "explain": "Point out their mistake.",
+                  "answers": [
+                    "point out mistakes",
+                    "point out the mistake",
+                    "point out their mistake",
+                    "explain",
+                    "explain it is wrong"
+                  ]
                 }
               ]
             },
@@ -1834,8 +3591,8 @@
                   "prompt": "When you and a friend disagree, you should:",
                   "explain": "Calm words + respect keep the friendship.",
                   "options": [
-                    "Shout at each other",
                     "Express thoughts calmly and respect each other",
+                    "Shout at each other",
                     "Fight",
                     "Call each other names"
                   ],
@@ -1843,6 +3600,32 @@
                 },
                 {
                   "id": "c4f6_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a calm disagreeing tip?",
+                  "explain": "Respect each other — no name-calling.",
+                  "options": [
+                    "Call each other unkind names",
+                    "Express thoughts calmly",
+                    "Respect each other",
+                    "Speak without shouting"
+                  ],
+                  "answer": "Call each other unkind names"
+                },
+                {
+                  "id": "c4f6_q3",
+                  "type": "mcq",
+                  "prompt": "Calm disagreeing is DIFFERENT from losing temper because you:",
+                  "explain": "Disagree without temper harms.",
+                  "options": [
+                    "Stay calm and respectful instead of hitting or destroying",
+                    "Hit harder",
+                    "Refuse to eat",
+                    "Throw more things"
+                  ],
+                  "answer": "Stay calm and respectful instead of hitting or destroying"
+                },
+                {
+                  "id": "c4f6_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "Stay calm when you disagree.",
@@ -1850,20 +3633,20 @@
                   "bank": [
                     "calm",
                     "loud",
-                    "angry",
-                    "mean"
+                    "mean",
+                    "violent"
                   ],
                   "blank": "When you argue, stay ____."
                 },
                 {
-                  "id": "c4f6_q3",
+                  "id": "c4f6_q5",
                   "type": "flash",
                   "prompt": "Two rules when you disagree:",
                   "explain": "Calm + respect.",
                   "answer": "Express thoughts calmly; respect each other."
                 },
                 {
-                  "id": "c4f6_q4",
+                  "id": "c4f6_q6",
                   "type": "short",
                   "prompt": "Should you shout names when you disagree? (yes/no)",
                   "explain": "Respect each other instead.",
@@ -1874,7 +3657,7 @@
                   ]
                 },
                 {
-                  "id": "c4f6_q5",
+                  "id": "c4f6_q7",
                   "type": "case",
                   "prompt": "What should Merlin do?",
                   "explain": "Disagree without hurting the friendship.",
@@ -1887,6 +3670,59 @@
                   "answer": "Talk calmly and respect each other's ideas",
                   "story": "Merlin and Sam both want to be team captain. Voices are rising.",
                   "scene": "🗣️🤝🕊️"
+                },
+                {
+                  "id": "c4f6_q8",
+                  "type": "match",
+                  "prompt": "Match disagree style.",
+                  "explain": "Calm + respect win.",
+                  "pairs": [
+                    [
+                      "Express thoughts calmly",
+                      "Good"
+                    ],
+                    [
+                      "Respect each other",
+                      "Good"
+                    ],
+                    [
+                      "Shout names",
+                      "Bad"
+                    ],
+                    [
+                      "Fight",
+                      "Bad"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c4f6_q9",
+                  "type": "case",
+                  "prompt": "Which is BEST?",
+                  "explain": "Express calmly + respect.",
+                  "options": [
+                    "Calmly share ideas and respect the choice",
+                    "Fight over the ball",
+                    "Call each other names",
+                    "Destroy the game pieces"
+                  ],
+                  "answer": "Calmly share ideas and respect the choice",
+                  "story": "Friends disagree about which game to play at recess.",
+                  "scene": "🎲🤝"
+                },
+                {
+                  "id": "c4f6_q10",
+                  "type": "short",
+                  "prompt": "Name one rule when you disagree with a friend.",
+                  "explain": "Calm expression or respect.",
+                  "answers": [
+                    "stay calm",
+                    "calm",
+                    "express calmly",
+                    "respect",
+                    "respect each other",
+                    "express thoughts calmly"
+                  ]
                 }
               ]
             },
@@ -1903,8 +3739,8 @@
                   "prompt": "You broke your friend's toy. You should:",
                   "explain": "Apologise sincerely, in person or with a note.",
                   "options": [
-                    "Pretend nothing happened",
                     "Say sorry face to face or write a note",
+                    "Pretend nothing happened",
                     "Blame your friend",
                     "Wait for them to say sorry first"
                   ],
@@ -1912,27 +3748,53 @@
                 },
                 {
                   "id": "c4f7_q2",
+                  "type": "mcq",
+                  "prompt": "Which is NOT a lesson way to say sorry?",
+                  "explain": "Face to face or a note — not pretending.",
+                  "options": [
+                    "Pretend nothing happened",
+                    "Say sorry face to face",
+                    "Write a note",
+                    "Apologise in person"
+                  ],
+                  "answer": "Pretend nothing happened"
+                },
+                {
+                  "id": "c4f7_q3",
+                  "type": "mcq",
+                  "prompt": "Writing a sorry note is useful when:",
+                  "explain": "A note is a valid apology way.",
+                  "options": [
+                    "You want to apologise sincerely (even if face to face is hard)",
+                    "You want to blame them",
+                    "You want to hide forever",
+                    "You want them to apologise first only"
+                  ],
+                  "answer": "You want to apologise sincerely (even if face to face is hard)"
+                },
+                {
+                  "id": "c4f7_q4",
                   "type": "fill",
                   "prompt": "Fill in the blank.",
                   "explain": "A note is a good way to apologise.",
                   "answer": "note",
                   "bank": [
                     "note",
-                    "song",
-                    "list",
-                    "joke"
+                    "threat",
+                    "insult",
+                    "drug offer"
                   ],
                   "blank": "You can say sorry face to face or write a ____."
                 },
                 {
-                  "id": "c4f7_q3",
+                  "id": "c4f7_q5",
                   "type": "flash",
                   "prompt": "Two ways to say sorry:",
                   "explain": "Both show you mean it.",
                   "answer": "Face to face; write a note."
                 },
                 {
-                  "id": "c4f7_q4",
+                  "id": "c4f7_q6",
                   "type": "short",
                   "prompt": "Name one way to say sorry.",
                   "explain": "Face to face or a written note.",
@@ -1947,7 +3809,7 @@
                   ]
                 },
                 {
-                  "id": "c4f7_q5",
+                  "id": "c4f7_q7",
                   "type": "case",
                   "prompt": "What should Merlin do?",
                   "explain": "A real apology heals friendship.",
@@ -1960,6 +3822,52 @@
                   "answer": "Say sorry face to face (or write a note)",
                   "story": "Merlin snapped at Mei and she looked hurt. He feels sorry now.",
                   "scene": "🙏📝😊"
+                },
+                {
+                  "id": "c4f7_q8",
+                  "type": "match",
+                  "prompt": "Match apology choice.",
+                  "explain": "Two good ways; pretending fails.",
+                  "pairs": [
+                    [
+                      "Face to face",
+                      "Say sorry in person"
+                    ],
+                    [
+                      "Write a note",
+                      "Apologise on paper"
+                    ],
+                    [
+                      "Pretend nothing happened",
+                      "Not a real apology"
+                    ]
+                  ]
+                },
+                {
+                  "id": "c4f7_q9",
+                  "type": "case",
+                  "prompt": "Which is BEST?",
+                  "explain": "Own the mistake and apologise.",
+                  "options": [
+                    "Apologise face to face or with a note",
+                    "Hide the book",
+                    "Blame Sam for lending it",
+                    "Wait for Sam to say sorry"
+                  ],
+                  "answer": "Apologise face to face or with a note",
+                  "story": "Merlin borrowed Sam's book and tore a page by accident.",
+                  "scene": "📖🙏"
+                },
+                {
+                  "id": "c4f7_q10",
+                  "type": "short",
+                  "prompt": "Should you pretend nothing happened instead of saying sorry? (yes/no)",
+                  "explain": "Apologise sincerely.",
+                  "answers": [
+                    "no",
+                    "nope",
+                    "never"
+                  ]
                 }
               ]
             }
