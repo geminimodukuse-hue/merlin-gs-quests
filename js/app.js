@@ -104,6 +104,50 @@
     return scored.slice(0, n);
   }
 
+  /** Round-robin across question types so Mix/Lightning stay varied in a large bank. */
+  function pickAcrossTypes(pool, size) {
+    const byType = {};
+    for (const q of shuffle(pool)) {
+      (byType[q.type] = byType[q.type] || []).push(q);
+    }
+    const types = shuffle(Object.keys(byType));
+    const picked = [];
+    const used = new Set();
+    let guard = 0;
+    while (picked.length < size && types.length && guard < size * 30) {
+      guard += 1;
+      let progressed = false;
+      for (let i = 0; i < types.length && picked.length < size; i++) {
+        const t = types[i];
+        const list = byType[t];
+        while (list.length) {
+          const q = list.shift();
+          if (!used.has(q.id)) {
+            used.add(q.id);
+            picked.push(q);
+            progressed = true;
+            break;
+          }
+        }
+        if (!list.length) {
+          types.splice(i, 1);
+          i -= 1;
+        }
+      }
+      if (!progressed) break;
+    }
+    if (picked.length < size) {
+      for (const q of shuffle(pool)) {
+        if (picked.length >= size) break;
+        if (!used.has(q.id)) {
+          used.add(q.id);
+          picked.push(q);
+        }
+      }
+    }
+    return shuffle(picked);
+  }
+
   function buildQueue(mode, chapterId) {
     let pool;
     if (mode === "mix" || mode === "lightning") {
@@ -120,7 +164,11 @@
     }
     if (!pool.length) pool = allQuestions(null, chapterId);
     const size = mode === "lightning" ? 10 : mode === "mix" ? 7 : Math.min(8, pool.length);
-    return shuffle(pool).slice(0, Math.max(1, Math.min(size, pool.length)));
+    const n = Math.max(1, Math.min(size, pool.length));
+    if (mode === "mix" || mode === "lightning") {
+      return pickAcrossTypes(pool, n);
+    }
+    return shuffle(pool).slice(0, n);
   }
 
   /* ---- WebAudio beeps ---- */
