@@ -1,5 +1,7 @@
 # Merlin GS Quests (v3)
 
+**Version 2.1.0** — 260 deeper questions (10 per fact). See `CHANGELOG_v2.1.md`.
+
 Primary 3 NGS Term 1 revision quests for Merlin — warm coral/gold/violet UI, mobile-first.
 
 ## Open it
